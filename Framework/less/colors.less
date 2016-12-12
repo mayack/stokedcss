@@ -1,0 +1,388 @@
+// ==========================================================
+// Swatches
+// ==========================================================
+
+.createSmartSwatch(@sName, @sFill:#fff, @sText:auto, @sHeading:auto, @sComment:auto, @sLink:auto, @sLinkHover:auto, @sButtonText:auto, @sSwatchSensitivity:50%, @sHoverIntensity:4%, @sBorderIntensity:3%, @sBorder:darken(@sFill, @sBorderIntensity*2), @sBorderDisabled:darken(@sFill, @sBorderIntensity), @sBorderActive:darken(@sFill, @sBorderIntensity*4), @sBorderOverlay:darken(@sFill, @sBorderIntensity*5), @sCustomStyles:false,  @sjQueryUI:false) {
+
+    // Mixins
+    .colorCheck (@property:color, @color:#fff, @intensity:100%) when (luma(@color) >= @sSwatchSensitivity) {
+      & when (@property = color) {
+        @{property}: fade(black, @intensity);
+      }
+      & when (@property = background) {
+        @{property}-color: darken(@color, @intensity);
+      }
+    }
+    .colorCheck (@property:color, @color:#fff, @intensity:100%) when (luma(@color) < @sSwatchSensitivity) {
+      & when (@property = color) {
+        @{property}: fade(white, @intensity);
+      }
+      & when (@property = background) {
+        @{property}-color: darken(@color, @intensity);
+      }
+    }
+    .createBodyColor() {
+        & when (@sText = auto) {
+          .colorCheck(color, @sFill, 70%);
+        }
+        & when not (@sText = auto) {
+          color: @sText;
+        }
+    }
+    .createTextColors() {
+        & when (@sHeading = auto) {
+            h1, h2, h3, h4, h5, h6 {
+                .colorCheck(color, @sFill, 70%);
+            }
+        }
+        & when not (@sHeading = auto) {
+            h1, h2, h3, h4, h5, h6 {
+                color: @sHeading;
+            }
+        }
+        & when (@sComment = auto) {
+            .atk-comment, a.atk-comment:not([class*="atk-button"]):not([class*="atk-swatch"]),
+            .atk-comment a:not([class*="atk-button"]):not([class*="atk-swatch"]) {
+                .colorCheck(color, @sFill, 50%);
+            }
+            a.atk-comment:not([class*="atk-button"]):not([class*="atk-swatch"]):hover,
+            .atk-comment a:not([class*="atk-button"]):not([class*="atk-swatch"]):hover {
+                .colorCheck(color, @sFill, 60%);
+            }
+        }
+        & when not (@sComment = auto) {
+            .atk-comment, a.atk-comment:not([class*="atk-button"]):not([class*="atk-swatch"]),
+            .atk-comment a:not([class*="atk-button"]):not([class*="atk-swatch"]) {
+                color: @sComment;
+            }
+            a.atk-comment:not([class*="atk-button"]):not([class*="atk-swatch"]):hover,
+            .atk-comment a:not([class*="atk-button"]):not([class*="atk-swatch"]):hover {
+                color: darken(@sComment, 10%);
+            }
+        }
+        & when (@sLink = auto) {
+            a:not([class*="atk-button"]):not([class*="atk-swatch"]), a&:not([class*="atk-button"]) {
+                .colorCheck(color, @sFill, 90%);
+                & when (@sLinkHover = auto) {
+                    &:hover {
+                        .colorCheck(color, @sFill, (90% + @sHoverIntensity*4));
+                    }
+                }
+            }
+        }
+        & when not (@sLink = auto) {
+            a:not([class*="atk-button"]):not([class*="atk-swatch"]), a&:not([class*="atk-button"]) {
+                color: @sLink;
+                & when (@sLinkHover = auto) {
+                    &:hover {
+                        color: darken(@sLink, @sHoverIntensity*4);
+                    }
+                }
+            }
+        }
+        & when not (@sLinkHover = auto) {
+            a:not([class*="atk-button"]):not([class*="atk-swatch"]), a&:not([class*="atk-button"]) {
+                &:hover {
+                    color: @sLinkHover;
+                }
+            }
+        }
+    }
+    .createBorderColors() {
+
+      @bStatic: e('[class*="atk-border"][class*="-static"]');
+      @bDisabled: e('[class*="atk-border"][class*="-disabled"]');
+      @bActive: e('[class*="atk-border"][class*="-active"]');
+      @bOverlay: e('[class*="atk-border"][class*="-overlay"]');
+
+      & @{bStatic}, &@{bStatic}, hr,
+      &@{bStatic}[class*="atk-popover"] .atk-popoverArrow:before,
+      &[class*="atk-menu"][class*="-separated"]>li+li:not([class*="atk-border"]) {
+        border-color: @sBorder;
+      }      
+      & @{bDisabled}, &@{bDisabled}, & hr@{bDisabled},
+      &@{bDisabled}[class*="atk-popover"] .atk-popoverArrow:before,
+      [class*="atk-lister"]>*:not([class*="atk-border"]),
+      [class*="atk-table"][class*="-separated"] tbody>tr,
+      [class*="atk-table"][class*="-separated"] tbody>tr>td:not([class*="atk-border"]),
+      [class*="atk-table"][class*="-separated"] thead>tr>th:not([class*="atk-border"]) {
+        border-color: @sBorderDisabled;
+      }
+      & @{bActive}, &@{bActive}, & hr@{bActive},
+      &@{bActive}[class*="atk-popover"] .atk-popoverArrow:before,
+      input:not([type="submit"]):not([type="button"]):not([type="radio"]):not([type="checkbox"]), textarea {
+        border-color: @sBorderActive;
+      }
+      & @{bOverlay}, &@{bOverlay}, & hr@{bOverlay},
+      &@{bOverlay}[class*="atk-popover"] .atk-popoverArrow:before {
+        border-color: @sBorderOverlay;
+      }
+    }
+    .createWidgetColors() {
+        &.atk-box {
+          background-color: @sFill;
+          border-color: @sBorder;
+        }
+        &.atk-checkbox label, &.atk-radiobox label {
+          background-color: @sFill;
+        }
+        a&[class*="atk-button"],
+        input&[class*="atk-button"],
+        button&[class*="atk-button"],
+        .ui-state-default,
+        .ui-widget-content .ui-state-default, .ui-button,
+        &.atk-checkbox label, &.atk-radiobox label {
+          border-color: @sBorderActive;
+        }
+        a&[class*="atk-button"],
+        input&[class*="atk-button"],
+        button&[class*="atk-button"],
+        .ui-state-default,
+        .ui-widget-content .ui-state-default, .ui-button {
+          background-color: @sFill;
+          &:hover {
+            background-color: darken(@sFill,@sHoverIntensity);
+            border-color: darken(@sBorderActive,@sHoverIntensity);
+          }
+          & when (@sButtonText = auto) {
+            .colorCheck(color, @sFill);
+          }
+          & when not (@sButtonText = auto) {
+            color: @sButtonText;
+          }
+        }
+        &[class*="atk-button"][class*="-blank"]:not(:hover) {
+          color: @sFill;
+        }
+        &[class*="atk-border"][class*="-outline"] {
+          &, &[class*="atk-button"] {
+            background-color: transparent !important;
+            border-color: @sFill;   
+            color: @sFill !important;
+          }
+        }
+        &[class*="atk-border"][class*="-outline"][class*="atk-button"]:hover {
+          .colorCheck(color, @sFill) !important;
+          background-color: darken(@sFill,@sHoverIntensity) !important;
+          border-color: darken(@sFill,@sHoverIntensity);
+        }
+        &[class*="atk-popover"].atk-box .atk-popoverArrow:before {
+          background-color: @sFill;
+          border-color: @sBorder;
+        }
+        a&[class*="atk-swatch"]:not([class*="atk-button"]):not([class*="--text"]) {
+          &:hover {
+            .colorCheck(background, @sFill, @sHoverIntensity);
+          }
+        }
+        [class*="atk-table"][class*="-zebra"] tbody tr:nth-child(odd) td:not([class*="atk-swatch"]) {
+          background-color: darken(@sFill, 2%);
+        }
+    }
+    .createjQueryUI() {
+        .ui-widget {
+          color: @sText;
+        }
+        .ui-widget-hover {
+          &.ui-state-hover {
+            background-color: darken(@sFill, @sHoverIntensity);
+          }
+        }
+        .ui-widget-content {
+          background-color: @sFill;
+          border-color: @sBorder;
+        }
+        .ui-tabs {
+          .ui-tabs-nav.ui-widget-header {
+              border-bottom: 1px solid @sBorder;
+              .ui-state-default {
+                  a:not([class*="atk-button"]):not([class*="atk-swatch"]) {
+                      & when (@sText = auto) {
+                        .colorCheck(color, @sFill, 50%);
+                        &:hover {
+                          .colorCheck(color, @sFill, 70%);
+                        }
+                      }
+                      & when not (@sText = auto) {
+                        color: fade(@sText, 70%);
+                        &:hover {
+                          color: @sText;
+                        }
+                      }
+                  }
+                  &.ui-state-active {
+                    background-color: @sFill;
+                    border-color: @sBorder;
+                    a:not([class*="atk-button"]):not([class*="atk-swatch"]) {
+                      & when (@sText = auto) {
+                        .colorCheck(color, @sFill, 70%);
+                      }
+                      & when not (@sText = auto) {
+                        color: @sText;
+                      }
+                    }
+                  }
+              }
+          }
+          .ui-tabs-panel.ui-widget-content {
+            border: 1px solid @sBorder;
+            border-top-width: none;
+          }
+        }
+        .ui-accordion {
+            .ui-accordion-header {
+                &.ui-state-active {
+                    background-color: @sFill;
+                    border-color: @sBorder;
+                    border-bottom-color: @sFill;
+                }
+            }
+            .ui-accordion-content {
+                border-color: @sBorder;
+            }
+        }
+        .ui-dialog {
+            border-color: @sBorderOverlay;
+            .ui-widget-header.ui-dialog-titlebar {
+                .ui-button.ui-dialog-titlebar-close {
+                    .colorCheck(color, @sFill, 20%);
+                    &:hover {
+                        .colorCheck(color, @sFill, 30%);
+                    }
+                }
+            }
+            .ui-widget-header.ui-dialog-titlebar {
+                border-bottom: 1px solid @sBorder;
+            }
+            .ui-dialog-buttonset {
+                border-top: 1px solid @sBorder;
+            }
+        }
+    }
+    .createjQueryUISingular() {
+        .ui-datepicker {
+            &.ui-widget-content {
+                border-color: @sBorderOverlay;
+            }
+            .ui-datepicker-header {
+                color: @sText;
+            }
+            table.ui-datepicker-calendar tr {
+              a, a:hover {
+                  color: @sText;
+              }
+            }
+        }
+        .ui-selectmenu-menu .ui-menu {
+            border: 1px solid @sBorderOverlay;
+        }
+    }
+    & when (@sName = default) {
+        @void: e("");
+        .createWidgetColors();
+        body, .atk-swatch-@{sName}, [class*="atk-swatch"] .atk-swatch-@{sName} {
+          .createBodyColor();
+        }
+        & when not (@sjQueryUI = false) {
+          .createjQueryUISingular();
+        }
+        @{void}, .atk-swatch-@{sName}, [class*="atk-swatch"] .atk-swatch-@{sName} {
+          .createTextColors();
+          .createBorderColors();
+          & when not (@sjQueryUI = false) {
+            .createjQueryUI();
+          }
+        }
+        .atk-inputIcon a.atk-comment:not([class*=atk-button]):not([class*=atk-swatch]) {
+          &, [class*='atk-swatch'] & {
+            color: @sComment;
+            &:hover {
+              color: darken(@sComment, 10%);
+            }
+          }
+        }
+        .atk-swatch-@{sName}, [class*="atk-swatch"] .atk-swatch-@{sName} {
+          background-color: @sFill;
+        }
+        & when not (@sCustomStyles = false) {
+          @{void}, .atk-swatch-@{sName} {
+            @sCustomStyles();
+          }
+        }
+    }
+    & when not (@sName = default) {
+        .atk-swatch-@{sName} {
+            .createWidgetColors();
+            &, [class*="atk-swatch"] & {
+                .createBodyColor();
+                .createTextColors();
+                .createBorderColors();
+            }
+        }
+        & when not (@sCustomStyles = false) {
+          .atk-swatch-@{sName} {
+            @sCustomStyles();
+          }
+        }
+    }
+    .atk-swatch-@{sName}--text {
+      &, h1&, h2&, h3&, h4&, h5&, h6& {
+        color: @sFill;
+      }
+    }
+    .atk-swatch-@{sName}--text a&:hover {
+      color: darken(@sFill, @sHoverIntensity*4);
+    }
+    .atk-swatch-@{sName},
+    .atk-swatch-@{sName}--fill {
+      background-color: @sFill;
+      &, &[class*="atk-popover"] .atk-popoverArrow:before {
+        background-color: @sFill;
+      }
+    }
+}
+
+
+// ==========================================================
+// Effects
+// ==========================================================
+
+.createEffect(@name, @color, @customStyles:false) {
+  @bgColor: tint(@color, 95%);
+  .atk-effect-@{name} {
+    &:not(textarea) {
+      background-color: @bgColor;
+    }
+    &:not(textarea), h1, h2, h3, h4, h5, h6, a:not([class*="atk-swatch"]):not([class*="atk-button"]) {
+      color: @color;
+    }
+    a:hover:not([class*="atk-swatch"]):not([class*="atk-button"]) {
+      color: darken(@color, 5%);
+    }
+    &[class*="atk-button"], a& {
+      color: @color !important;
+    }
+    &.atk-box {
+      background-color: @bgColor !important;
+      border-color: @color !important;
+    }
+    input&, textarea& {
+      &:not(:focus) {
+        border-color: @color !important;
+      }
+    }
+    & when not (@customStyles = false) {
+      @customStyles();
+    }
+    .atk-popoverArrow:before {
+      background: @bgColor !important;
+      border-color: @color !important;
+    }
+  }
+  .atk-effect-@{name}--fill {
+    background-color: @bgColor !important;
+  }
+  .atk-effect-@{name}--text {
+    color: @color !important;
+  }
+}

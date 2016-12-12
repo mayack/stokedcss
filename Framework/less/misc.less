@@ -1,0 +1,110 @@
+// ==========================================================
+// General
+// ==========================================================
+
+@margin:                round(@bodyBaseline * 1rem, 1);
+@space:                 round(@margin, 1);
+@space-xs:              round(@margin/(1.5*@spaceRatio), 1);
+@space-s:               round(@margin/@spaceRatio, 1);
+@space-l:               round(@margin*@spaceRatio, 1);
+@space-xl:              round(@margin*(1.5*@spaceRatio), 1);
+
+* { 
+   .box-sizing();
+   outline: none;
+}
+body {
+    background: @bodyBackground;
+}
+
+
+// ==========================================================
+// Styles & Colors
+// ==========================================================
+
+.atk-background-cover {
+  .background-cover(inherit);
+}
+.atk-background-fixed {
+  .background-fixed;
+}
+::selection {
+    background: @textSelect;
+    .colorCheck(color, @textSelect);
+}
+::-moz-selection {
+    background: @textSelect;
+    .colorCheck(color, @textSelect);
+}
+img::selection {
+    background: transparent;
+}
+img::-moz-selection {
+    background: transparent;
+}
+
+
+// ==========================================================
+// Misc
+// ==========================================================
+
+.atk-absolute {
+  position: absolute;
+}
+.atk-relative {
+  position: relative;
+}
+.atk-overflow {
+  overflow: hidden;
+}
+.atk-inline {
+  display: inline !important;
+}
+.atk-inline-block {
+  display: inline-block !important;
+}
+.atk-block {
+  display: block !important;
+}
+.atk-expand {
+  width: 100% !important;
+}
+.atk-width-auto {
+  width: auto !important;
+}
+.atk-clear {
+  clear: both;
+}
+.atk-clear-fix {
+  .clear-fix;
+}
+.atk-disabled {
+  .opacity(50);
+  pointer-events: none;
+}
+.atk-filler {
+  .filler;
+}
+.atk-hide {
+  &, &[class*="atk-layout"], &[class*="atk-menu"][class*="-vertical"] {
+    display: none !important;
+  }
+}
+
+
+// ==========================================================
+// Fixes
+// ==========================================================
+
+a {
+  outline: none !important;
+}
+.atk-row {
+    .clear-fix;
+}
+*[class*=icon] {
+  &:before {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}

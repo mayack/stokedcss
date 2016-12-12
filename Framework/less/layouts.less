@@ -1,0 +1,306 @@
+// ==========================================================
+// Layouts
+// ==========================================================
+
+html, body, .atk-layout  {
+	height: 100%;
+}
+.atk-layout {
+	.box-sizing;
+	display: table;
+	width: 100%;
+	>.atk-layoutRow, >.atk-layoutColumn, .atk-layoutRow>.atk-layoutColumn {
+		height: 0.1%;
+		position: relative;
+	}
+	>.atk-layoutRow {
+		display: table-row;
+		height: 0.01em;
+    >.atk-layoutCell:not(.atk-layout) {
+      display: table-cell;
+    }
+		&.atk-layoutExpand {
+			height: auto;
+		}
+	}
+	>.atk-layoutColumn, >.atk-layoutRow>.atk-layoutColumn {
+		display: table-cell;
+		height: auto;
+		vertical-align: top;
+		width: 0.01em;
+		&.atk-layoutExpand {
+			width: 100%;
+		}
+	}
+}
+.atk-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+// ==========================================================
+// Responsive Grid System
+// ==========================================================
+
+.atk-row {
+  .clear-fix;
+  >*[class*="atk-col"] {
+    float: left;
+    min-height: 1px;
+  }
+}
+.showFeature(@c) {
+  .atk-@{c}-show {
+    &, &[class*="atk-button"], &[class*="atk-cell"], &li {
+      display: none;
+    }
+  }
+}
+
+// Grid System Loop
+.generateColumns(@n:@cols, @m:@colsGutter, @i:1) when (@i =< @n) {
+  // Percentage Column Gutter
+  & when (ispercentage(@m)) {
+    .atk-col-@{i} {
+      @colsSingleWidth: (100% - @m * (@n - 1)) / @n;
+      @colsInnerGutter: @m * (@i - 1);
+      width: @colsSingleWidth * @i + @colsInnerGutter;
+      &.atk-col-@{n} {
+        width: 100%;
+      }
+    }
+  }
+  // Pixel/EM Column Gutter
+  & when not (ispercentage(@m)) {
+    .atk-col-@{i} {
+      &, &[class*="atk-col"] {
+        width: (@i * 100% / @n);
+      }
+    }
+  }
+  .generateColumns(@n, @i:@i + 1, @m);
+}
+
+// Viewport Features
+.viewportFeatures(@c:@class, @cs:@customStyles, @g:@colsGutter, @b:@stackLayout, @wmin:@wrapperMinWidth, @wmax:@wrapperMaxWidth, @wm:@wrapperMargin, @winmin:@windowMinWidth) { 
+  
+  // Custom Mixin
+  & when not (@cs = false) {
+    
+    @cs();
+
+  }
+
+  // Layout
+  .layoutCell(@w) {
+    .atk-layout>.atk-layoutRow>.atk-layoutCell {
+      min-width: @w;
+    }
+  }
+  & when (@winmin = false) {
+    .layoutCell(100%);
+  }
+  & when (isunit(@wm,'px')) and (isunit(@wmin,'px')),
+         (isunit(@wm,'em')) and (isunit(@wmin,'em')),
+         (isunit(@wm,'rem')) and (isunit(@wmin,'rem')),
+         (isunit(@wm,'%')) and (isunit(@wmin,'%'))
+  {
+    .atk-wrapper {
+      .box-sizing(content-box);
+    }
+    & when (@winmin = false) {
+      .layoutCell(@wmin + @wm*2);
+    }
+  }
+  & when not (@winmin = false) {
+    .layoutCell(@winmin);
+  }
+
+  .atk-wrapper {
+      min-width: @wmin;
+      max-width: @wmax;
+      padding-left: @wm;
+      padding-right: @wm;
+  }
+
+  // Grid System
+  & when (ispercentage(@g)) {
+    .atk-row > *[class*="atk-col"] + *[class*="atk-col"] {
+      margin-left: @g;
+    }
+  }
+  & when not (ispercentage(@g)) {
+    .atk-row {
+      margin-left: -@g;
+      > *[class*="atk-col"] {
+        border-left:0px solid rgba(0,0,0,0);
+        border-right:0px solid rgba(0,0,0,0);
+        border-left-width: @g;
+      }
+    }
+    *[class*="atk-col"] {
+      width: 100%;
+    }
+  }
+  & when (iskeyword(@c)) and not (@c = false) {
+    .atk-@{c}-hide {
+      &, &[class*="atk-button"] {
+        display: none !important;
+      }
+    }
+    .atk-@{c}-show {
+      &[class*="icon"], &[class*="atk-button"], a&, span& {
+        display: inline-block !important;
+      }
+      &, [class*="atk-@{c}-stack"]>& {
+        display: block !important;
+      }
+      &[class*="atk-cell"] {
+        display: table-cell !important;
+      }
+    }
+    .atk-@{c}-expand {
+      display: block !important;
+      width: 100% !important;
+    }
+    .atk-@{c}-align-center {
+      text-align: center !important;
+    }
+    .atk-@{c}-align-left {
+      text-align: left !important;
+    }
+    .atk-@{c}-align-right {
+      text-align: right !important;
+    }
+    [class*="atk-@{c}-stack"] {
+      float: none !important;
+      width: 100%;
+      &.atk-layout>.atk-layoutColumn {
+        width: 100%;
+      }
+      &[class*='atk-cells-group-spacing']>[class*='atk-cells']>[class*='atk-cell'] {
+        padding-top: 0;
+      }
+      &, >*:not([class*="-hide"]), >*[class*="atk-button"],
+      &[class*='atk-cells-group'], &[class*='atk-cells-group']>[class*='atk-cells'],  &[class*='atk-cells-group']>[class*='atk-cells']>[class*='atk-cell'],
+      &[class*="atk-table"] table, &[class*="atk-table"] table thead, &[class*="atk-table"] table thead tr th,
+      &[class*="atk-table"] table tbody, &[class*="atk-table"] table tr, &[class*="atk-table"] table tbody tr td {
+        display: block;
+      }
+      &[class*="atk-table"] {
+        th, td {
+          padding-left: 0;
+          padding-right: 0;
+        }
+        tr td + td, tr:first-child td {
+          padding-top: 0 !important;
+        }
+        &[class*="-separated"] {
+          tr:not(:first-child) {
+            border-style: solid;
+            border-width: 1px 0 0 0;
+            td {
+              border-top-width: 0;
+            }
+          }
+        }
+        &, &[class*='spacing'] {
+          table td:not([class*=atk-padding--]):not([class*="atk-padding "]) {
+            padding-left: 0;
+            padding-right: 0;
+          }
+        }
+      }
+      &[class*="atk-items"]>* + * {
+        margin-left: 0 !important;
+      }
+      &[class*="atk-cells"]>.atk-cell {
+        &:not([class*="atk-padding-left"]):not([class*="atk-padding--"]) {
+          padding-left: 0 !important;  
+        }
+        &:not([class*="atk-padding-right"]):not([class*="atk-padding--"]) {
+          padding-right: 0 !important;  
+        }
+      }
+    }
+    .atk-@{c}-stack--xs>* + * {
+      margin-top: @space-xs;
+    }
+    .atk-@{c}-stack--s>* + * {
+      margin-top: @space-s;
+    }
+    .atk-@{c}-stack--m>* + *, .atk-@{c}-stack>* + * {
+      margin-top: @space;
+    }
+    .atk-@{c}-stack--l>* + * {
+      margin-top: @space-l;
+    }
+    .atk-@{c}-stack--xl>* + * {
+      margin-top: @space-xl;
+    }
+    .atk-@{c}-stack--none>* + * {
+      margin-top: 0;
+    }
+  }
+  & when (@b = true) {
+    .atk-layout {
+      &, >.atk-layoutColumn, .atk-layoutCell, .atk-layoutRow {
+        display: block;
+        height: auto;
+      }
+    }
+    *[class*="atk-menu"] {
+      >li {
+        >*[class*="atk-menu"] {
+          bottom: 0 !important;
+          left: 0 !important;
+          position: relative !important;
+          right: 0 !important;
+          top: 0 !important;
+          &[class*="-horizontal"]>li {
+            display: block;
+            float: none;
+          }
+        }
+        &:hover>*[class*="atk-menu"] {
+          display: none !important;
+        }
+        &:focus {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
+
+// Grid System Generator
+.createViewport(@class:false, @customStyles: false, @viewportMinWidth:false, @viewportMaxWidth:false, @cols:12, @colsGutter:20px, @stackLayout:false, @wrapperMinWidth:0, @wrapperMaxWidth:100%, @wrapperMargin:0, @windowMinWidth:false) {
+  & when (isnumber(@viewportMinWidth)) and (isnumber(@viewportMaxWidth)) {
+    & when not (@class = false) {
+      .showFeature(@class)
+    }
+    @media screen and (min-width: @viewportMinWidth) and (max-width: @viewportMaxWidth) {
+      .viewportFeatures();
+      .generateColumns();
+    }
+  }
+  & when (isnumber(@viewportMinWidth)) and (@viewportMaxWidth = false) {
+    & when not (@class = false) {
+      .showFeature(@class)
+    }
+    @media screen and (min-width: @viewportMinWidth) {
+      .viewportFeatures();
+      .generateColumns();
+    }
+  }
+  & when (isnumber(@viewportMaxWidth)) and (@viewportMinWidth = false) {
+    & when not (@class = false) {
+      .showFeature(@class)
+    }
+    @media screen and (max-width: @viewportMaxWidth) {
+      .viewportFeatures();
+      .generateColumns();
+    }
+  }
+}
