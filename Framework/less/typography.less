@@ -27,11 +27,11 @@ h1, h2, h3, h4, h5, h6 {
     text-rendering: optimizeLegibility; /*  voodoo to enable ligatures and kerning | https://developer.mozilla.org/en-US/docs/CSS/text-rendering */
     text-transform: @headingCase;
     margin: @space 0 round(@space/2,2) 0;
-    &:extend([class*="atk-text"][class*="-baseline--lead"]);
-    &:first-child:not([class*="atk-margin-top"]) {
+    &:extend([class*="s-text"][class*="-baseline--lead"]);
+    &:first-child:not([class*="s-margin-top"]) {
         margin-top: 0;
     }
-    &:last-child:not([class*="atk-margin-bottom"]) {
+    &:last-child:not([class*="s-margin-bottom"]) {
         margin-bottom: 0;
     }
 }
@@ -47,7 +47,7 @@ h6, small { .text-size--s; }
 // Text Styles
 // ==========================================================
 
-[class*="atk-text"] {
+[class*="s-text"] {
     &[class*="-heading"] {
       font-family: @headingFamily;
     }
@@ -176,7 +176,7 @@ ul, ol, dl {
   }
 }
 ul, ol {
-  &[class*="atk-list"] {
+  &[class*="s-list"] {
     &[class*="-nobullets"] {
       margin-left: 0;
       padding-left: 0;
@@ -218,7 +218,7 @@ p {
     }
 }
 blockquote {
-    &:extend([class*="atk-text"][class*="-size--l"]);
+    &:extend([class*="s-text"][class*="-size--l"]);
     font-style: italic;
     font-weight: 300;
     margin: 0 @margin @margin;
@@ -237,7 +237,7 @@ code, kbd, pre, samp {
 }
 pre {
     font-family: monospace, serif;
-    &:extend([class*="atk-text"][class*="-size--s"]);
+    &:extend([class*="s-text"][class*="-size--s"]);
     white-space: pre-wrap;
     word-wrap: break-word;
 }

@@ -2,38 +2,38 @@
 // Layouts
 // ==========================================================
 
-html, body, .atk-layout  {
+html, body, .s-layout  {
 	height: 100%;
 }
-.atk-layout {
+.s-layout {
 	.box-sizing;
 	display: table;
 	width: 100%;
-	>.atk-layoutRow, >.atk-layoutColumn, .atk-layoutRow>.atk-layoutColumn {
+	>.s-layoutRow, >.s-layoutColumn, .s-layoutRow>.s-layoutColumn {
 		height: 0.1%;
 		position: relative;
 	}
-	>.atk-layoutRow {
+	>.s-layoutRow {
 		display: table-row;
 		height: 0.01em;
-    >.atk-layoutCell:not(.atk-layout) {
+    >.s-layoutCell:not(.s-layout) {
       display: table-cell;
     }
-		&.atk-layoutExpand {
+		&.s-layoutExpand {
 			height: auto;
 		}
 	}
-	>.atk-layoutColumn, >.atk-layoutRow>.atk-layoutColumn {
+	>.s-layoutColumn, >.s-layoutRow>.s-layoutColumn {
 		display: table-cell;
 		height: auto;
 		vertical-align: top;
 		width: 0.01em;
-		&.atk-layoutExpand {
+		&.s-layoutExpand {
 			width: 100%;
 		}
 	}
 }
-.atk-wrapper {
+.s-wrapper {
     margin-left: auto;
     margin-right: auto;
 }
@@ -43,16 +43,16 @@ html, body, .atk-layout  {
 // Responsive Grid System
 // ==========================================================
 
-.atk-row {
+.s-row {
   .clear-fix;
-  >*[class*="atk-col"] {
+  >*[class*="s-col"] {
     float: left;
     min-height: 1px;
   }
 }
 .showFeature(@c) {
-  .atk-@{c}-show {
-    &, &[class*="atk-button"], &[class*="atk-cell"], &li {
+  .s-@{c}-show {
+    &, &[class*="s-button"], &[class*="s-cell"], &li {
       display: none;
     }
   }
@@ -62,19 +62,19 @@ html, body, .atk-layout  {
 .generateColumns(@n:@cols, @m:@colsGutter, @i:1) when (@i =< @n) {
   // Percentage Column Gutter
   & when (ispercentage(@m)) {
-    .atk-col-@{i} {
+    .s-col-@{i} {
       @colsSingleWidth: (100% - @m * (@n - 1)) / @n;
       @colsInnerGutter: @m * (@i - 1);
       width: @colsSingleWidth * @i + @colsInnerGutter;
-      &.atk-col-@{n} {
+      &.s-col-@{n} {
         width: 100%;
       }
     }
   }
   // Pixel/EM Column Gutter
   & when not (ispercentage(@m)) {
-    .atk-col-@{i} {
-      &, &[class*="atk-col"] {
+    .s-col-@{i} {
+      &, &[class*="s-col"] {
         width: (@i * 100% / @n);
       }
     }
@@ -94,7 +94,7 @@ html, body, .atk-layout  {
 
   // Layout
   .layoutCell(@w) {
-    .atk-layout>.atk-layoutRow>.atk-layoutCell {
+    .s-layout>.s-layoutRow>.s-layoutCell {
       min-width: @w;
     }
   }
@@ -106,7 +106,7 @@ html, body, .atk-layout  {
          (isunit(@wm,'rem')) and (isunit(@wmin,'rem')),
          (isunit(@wm,'%')) and (isunit(@wmin,'%'))
   {
-    .atk-wrapper {
+    .s-wrapper {
       .box-sizing(content-box);
     }
     & when (@winmin = false) {
@@ -117,7 +117,7 @@ html, body, .atk-layout  {
     .layoutCell(@winmin);
   }
 
-  .atk-wrapper {
+  .s-wrapper {
       min-width: @wmin;
       max-width: @wmax;
       padding-left: @wm;
@@ -126,69 +126,69 @@ html, body, .atk-layout  {
 
   // Grid System
   & when (ispercentage(@g)) {
-    .atk-row > *[class*="atk-col"] + *[class*="atk-col"] {
+    .s-row > *[class*="s-col"] + *[class*="s-col"] {
       margin-left: @g;
     }
   }
   & when not (ispercentage(@g)) {
-    .atk-row {
+    .s-row {
       margin-left: -@g;
-      > *[class*="atk-col"] {
+      > *[class*="s-col"] {
         border-left:0px solid rgba(0,0,0,0);
         border-right:0px solid rgba(0,0,0,0);
         border-left-width: @g;
       }
     }
-    *[class*="atk-col"] {
+    *[class*="s-col"] {
       width: 100%;
     }
   }
   & when (iskeyword(@c)) and not (@c = false) {
-    .atk-@{c}-hide {
-      &, &[class*="atk-button"] {
+    .s-@{c}-hide {
+      &, &[class*="s-button"] {
         display: none !important;
       }
     }
-    .atk-@{c}-show {
-      &[class*="icon"], &[class*="atk-button"], a&, span& {
+    .s-@{c}-show {
+      &[class*="icon"], &[class*="s-button"], a&, span& {
         display: inline-block !important;
       }
-      &, [class*="atk-@{c}-stack"]>& {
+      &, [class*="s-@{c}-stack"]>& {
         display: block !important;
       }
-      &[class*="atk-cell"] {
+      &[class*="s-cell"] {
         display: table-cell !important;
       }
     }
-    .atk-@{c}-expand {
+    .s-@{c}-expand {
       display: block !important;
       width: 100% !important;
     }
-    .atk-@{c}-align-center {
+    .s-@{c}-align-center {
       text-align: center !important;
     }
-    .atk-@{c}-align-left {
+    .s-@{c}-align-left {
       text-align: left !important;
     }
-    .atk-@{c}-align-right {
+    .s-@{c}-align-right {
       text-align: right !important;
     }
-    [class*="atk-@{c}-stack"] {
+    [class*="s-@{c}-stack"] {
       float: none !important;
       width: 100%;
-      &.atk-layout>.atk-layoutColumn {
+      &.s-layout>.s-layoutColumn {
         width: 100%;
       }
-      &[class*='atk-cells-group-spacing']>[class*='atk-cells']>[class*='atk-cell'] {
+      &[class*='s-cells-group-spacing']>[class*='s-cells']>[class*='s-cell'] {
         padding-top: 0;
       }
-      &, >*:not([class*="-hide"]), >*[class*="atk-button"],
-      &[class*='atk-cells-group'], &[class*='atk-cells-group']>[class*='atk-cells'],  &[class*='atk-cells-group']>[class*='atk-cells']>[class*='atk-cell'],
-      &[class*="atk-table"] table, &[class*="atk-table"] table thead, &[class*="atk-table"] table thead tr th,
-      &[class*="atk-table"] table tbody, &[class*="atk-table"] table tr, &[class*="atk-table"] table tbody tr td {
+      &, >*:not([class*="-hide"]), >*[class*="s-button"],
+      &[class*='s-cells-group'], &[class*='s-cells-group']>[class*='s-cells'],  &[class*='s-cells-group']>[class*='s-cells']>[class*='s-cell'],
+      &[class*="s-table"] table, &[class*="s-table"] table thead, &[class*="s-table"] table thead tr th,
+      &[class*="s-table"] table tbody, &[class*="s-table"] table tr, &[class*="s-table"] table tbody tr td {
         display: block;
       }
-      &[class*="atk-table"] {
+      &[class*="s-table"] {
         th, td {
           padding-left: 0;
           padding-right: 0;
@@ -206,53 +206,53 @@ html, body, .atk-layout  {
           }
         }
         &, &[class*='spacing'] {
-          table td:not([class*=atk-padding--]):not([class*="atk-padding "]) {
+          table td:not([class*=s-padding--]):not([class*="s-padding "]) {
             padding-left: 0;
             padding-right: 0;
           }
         }
       }
-      &[class*="atk-items"]>* + * {
+      &[class*="s-items"]>* + * {
         margin-left: 0 !important;
       }
-      &[class*="atk-cells"]>.atk-cell {
-        &:not([class*="atk-padding-left"]):not([class*="atk-padding--"]) {
+      &[class*="s-cells"]>.s-cell {
+        &:not([class*="s-padding-left"]):not([class*="s-padding--"]) {
           padding-left: 0 !important;  
         }
-        &:not([class*="atk-padding-right"]):not([class*="atk-padding--"]) {
+        &:not([class*="s-padding-right"]):not([class*="s-padding--"]) {
           padding-right: 0 !important;  
         }
       }
     }
-    .atk-@{c}-stack--xs>* + * {
+    .s-@{c}-stack--xs>* + * {
       margin-top: @space-xs;
     }
-    .atk-@{c}-stack--s>* + * {
+    .s-@{c}-stack--s>* + * {
       margin-top: @space-s;
     }
-    .atk-@{c}-stack--m>* + *, .atk-@{c}-stack>* + * {
+    .s-@{c}-stack--m>* + *, .s-@{c}-stack>* + * {
       margin-top: @space;
     }
-    .atk-@{c}-stack--l>* + * {
+    .s-@{c}-stack--l>* + * {
       margin-top: @space-l;
     }
-    .atk-@{c}-stack--xl>* + * {
+    .s-@{c}-stack--xl>* + * {
       margin-top: @space-xl;
     }
-    .atk-@{c}-stack--none>* + * {
+    .s-@{c}-stack--none>* + * {
       margin-top: 0;
     }
   }
   & when (@b = true) {
-    .atk-layout {
-      &, >.atk-layoutColumn, .atk-layoutCell, .atk-layoutRow {
+    .s-layout {
+      &, >.s-layoutColumn, .s-layoutCell, .s-layoutRow {
         display: block;
         height: auto;
       }
     }
-    *[class*="atk-menu"] {
+    *[class*="s-menu"] {
       >li {
-        >*[class*="atk-menu"] {
+        >*[class*="s-menu"] {
           bottom: 0 !important;
           left: 0 !important;
           position: relative !important;
@@ -263,7 +263,7 @@ html, body, .atk-layout  {
             float: none;
           }
         }
-        &:hover>*[class*="atk-menu"] {
+        &:hover>*[class*="s-menu"] {
           display: none !important;
         }
         &:focus {

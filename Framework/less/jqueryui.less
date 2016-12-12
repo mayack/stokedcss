@@ -98,7 +98,7 @@
         padding: 0;
         position: relative;
         .ui-datepicker-title {
-            &:extend([class*="atk-text"][class*="-size--l"]);
+            &:extend([class*="s-text"][class*="-size--l"]);
             font-weight: 300;
             line-height: 1;
             margin: 0;
@@ -220,9 +220,9 @@
         }
     }
     .ui-tabs-panel.ui-widget-content {
-        &:extend(.atk-box);
+        &:extend(.s-box);
         .border-radius(0 0 @cornerRadius @cornerRadius~'!important');
-        &:not([class*="atk-padding"]) {
+        &:not([class*="s-padding"]) {
             padding: round(@margin/2,2);
         }
     }
@@ -231,7 +231,7 @@
 // Accordion
 .ui-accordion {
     .ui-accordion-header {
-        &:extend([class*="atk-text"][class*="-size--default"]);
+        &:extend([class*="s-text"][class*="-size--default"]);
         border-width: 1px;
         margin: 0;
         padding-top: round(@margin/2,2);
@@ -258,10 +258,10 @@
 .ui-dialog {
     padding: 0;
     .ui-widget-header.ui-dialog-titlebar {
-        .atk-shape-rounded-top;
+        .s-shape-rounded-top;
         padding: @margin/2 @margin;
         .ui-dialog-title {
-            &:extend([class*="atk-text"][class*="-size--l"]);
+            &:extend([class*="s-text"][class*="-size--l"]);
             float: none;
             font-weight: @headingWeight;
             line-height: 1;
@@ -313,7 +313,7 @@
 
 // Tooltip
 .ui-tooltip.ui-widget-content {
-    &:extend([class*="atk-text"][class*="-size--s"]);
+    &:extend([class*="s-text"][class*="-size--s"]);
     .box-shadow(0 3px 7px rgba(0,0,0,0.5));
     .colorCheck(color, @tooltipColor, 100%);
     background: @tooltipColor;

@@ -1,0 +1,31 @@
+doctype html
+<!--[if lt IE 7]<html lang="en" class="oldie lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html lang="en" class="oldie lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html lang="en" class="oldie lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+html
+  <!--<![endif]-->
+  head
+    meta(charset='utf-8')
+    <!--[if IE]><!-->
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    <!--<![endif]-->
+    meta(name='description', content='')
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title Stoked CSS
+    link(rel='stylesheet', href='css/s-default.css')
+  body
+    .s-layout
+      .s-layoutRow
+        .s-layoutCell
+          .s-wrapper
+            | Header Area
+      .s-layoutRow.s-layoutExpand
+        .s-layout.s-layoutCell
+          .s-layoutColumn.s-layoutExpand
+            .s-wrapper
+              | Content Area
+      .s-layoutRow
+        .s-layoutCell
+          .s-wrapper
+            | Footer Area

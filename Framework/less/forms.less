@@ -16,10 +16,10 @@ input:not([type=submit]):not([type=button]):not([type=radio]):not([type=file]):n
     box-shadow: @inputInnerShadow;
     color: @inputText;
     line-height: @bodyBaseline;
-    &:not([class*="atk-text"][class*="size"]) {
+    &:not([class*="s-text"][class*="size"]) {
       font-size: @bodySize;
     }
-    &:not([class*="atk-shape"]) {
+    &:not([class*="s-shape"]) {
         .border-radius(@cornerRadius);
     }
     &:focus {
@@ -29,7 +29,7 @@ input:not([type=submit]):not([type=button]):not([type=radio]):not([type=file]):n
         outline: none;
     }
 }
-input:not([type=submit]):not([type=button]):not([type=radio]):not([type=file]):not([type=checkbox]), textarea, [class*="atk-inputLabel"], [class*="atk-inputPadding"] {
+input:not([type=submit]):not([type=button]):not([type=radio]):not([type=file]):not([type=checkbox]), textarea, [class*="s-inputLabel"], [class*="s-inputPadding"] {
     .createElementPadding(@inputPadding, @inputPaddingRatio);
 }
 input[readonly] {
@@ -49,7 +49,7 @@ input::-moz-focus-inner {
 }
 
 // Extras
-.atk-inputIcon {
+.s-inputIcon {
     display: inline-block;
     position: relative;
     input {
@@ -69,20 +69,20 @@ input::-moz-focus-inner {
         }
     }
 }
-[class*="atk-inputLabel"] {
+[class*="s-inputLabel"] {
     border-color: transparent;
     border-style: solid;
     border-bottom-width: 1px;
     border-top-width: 1px;
-    &:not([class*="atk-padding-left"]) {
+    &:not([class*="s-padding-left"]) {
       padding-left: 0 !important;
     }
-    &:not([class*="atk-padding-right"]) {
+    &:not([class*="s-padding-right"]) {
       padding-right: 0 !important;
     }
 }
-.atk-inputOption {
-    &:not([class*='atk-cells']) {
+.s-inputOption {
+    &:not([class*='s-cells']) {
         display: inline-block;
     }
     label {
@@ -94,18 +94,18 @@ input::-moz-focus-inner {
             + label {
                 border-color: @inputFocus !important;
                 cursor: default;
-                &, .atk-comment {
+                &, .s-comment {
                     color: @inputFocus !important;
                 }
             }
         }
-        + label:not([class*='atk-cells']) {
+        + label:not([class*='s-cells']) {
             cursor: pointer;
             display: inline-block;
         }
     }
 }
-.atk-checkbox, .atk-radiobox {
+.s-checkbox, .s-radiobox {
   display: inline;
   label {
     .position(relative, @t:0.12em);
@@ -146,7 +146,7 @@ input::-moz-focus-inner {
     }
   }
 }
-.atk-radiobox {
+.s-radiobox {
   label, input:checked + label {
     &:before {
       .position(@t:50%, @l:50%);
