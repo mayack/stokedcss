@@ -470,7 +470,7 @@ h4,
 h5,
 h6 {
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  font-weight: 400;
+  font-weight: 700;
   text-rendering: optimizeLegibility;
   /*  voodoo to enable ligatures and kerning | https://developer.mozilla.org/en-US/docs/CSS/text-rendering */
   text-transform: none;
@@ -762,13 +762,13 @@ hr {
   vertical-align: bottom;
 }
 [class*="s-align-middle"],
-[class*="s-align-middle"][class*=s-cells] > .s-cell,
+[class*="s-align-middle"][class*="s-cells"] > .s-cell,
 .s-cells [class*="s-align-middle"].s-cell,
 [class*="s-align-middle"].s-layoutColumn {
   vertical-align: middle;
 }
 [class*="s-align-top"],
-[class*="s-align-top"][class*=s-cells] > .s-cell,
+[class*="s-align-top"][class*="s-cells"] > .s-cell,
 .s-cells [class*="s-align-top"].s-cell,
 [class*="s-align-top"].s-layoutColumn {
   vertical-align: top;
@@ -1083,8 +1083,8 @@ input.s-shape-rectangle {
   border-width: 2px !important;
 }
 [class*="s-border"][class*="--outline"],
-[class*="s-border"][class*="--outline"][class*=button],
-[class*="s-border"][class*="--outline"][class*=swatch] {
+[class*="s-border"][class*="--outline"][class*="button"],
+[class*="s-border"][class*="--outline"][class*="swatch"] {
   background-color: rgba(255, 255, 255, 0);
 }
 [class*="s-border"][class*="--thick"][class*="s-popover"] .s-popoverArrow:before {
@@ -4409,12 +4409,12 @@ body,
  .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
 .s-swatch-default .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
 [class*="s-swatch"] .s-swatch-default .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
- .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-.s-swatch-default .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-[class*="s-swatch"] .s-swatch-default .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
- [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-.s-swatch-default [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-[class*="s-swatch"] .s-swatch-default [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]) {
+ .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+.s-swatch-default .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+[class*="s-swatch"] .s-swatch-default .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+ [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+.s-swatch-default [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+[class*="s-swatch"] .s-swatch-default [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]) {
   color: rgba(0, 0, 0, 0.5);
 }
  a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
@@ -4423,12 +4423,12 @@ body,
  .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]):hover,
 .s-swatch-default .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]):hover,
 [class*="s-swatch"] .s-swatch-default .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]):hover,
- .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
-.s-swatch-default .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
-[class*="s-swatch"] .s-swatch-default .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
- [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
-.s-swatch-default [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
-[class*="s-swatch"] .s-swatch-default [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover {
+ .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+.s-swatch-default .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+[class*="s-swatch"] .s-swatch-default .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+ [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+.s-swatch-default [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+[class*="s-swatch"] .s-swatch-default [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover {
   color: rgba(0, 0, 0, 0.6);
 }
  a:not([class*="s-button"]):not([class*="s-swatch"]),
@@ -4634,20 +4634,20 @@ a.s-swatch-ink[class*="s-swatch"]:not([class*="s-button"]):not([class*="--text"]
 [class*="s-swatch"] .s-swatch-ink a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
 .s-swatch-ink .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
 [class*="s-swatch"] .s-swatch-ink .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
-.s-swatch-ink .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-[class*="s-swatch"] .s-swatch-ink .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-.s-swatch-ink [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-[class*="s-swatch"] .s-swatch-ink [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]) {
+.s-swatch-ink .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+[class*="s-swatch"] .s-swatch-ink .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+.s-swatch-ink [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+[class*="s-swatch"] .s-swatch-ink [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]) {
   color: rgba(255, 255, 255, 0.5);
 }
 .s-swatch-ink a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
 [class*="s-swatch"] .s-swatch-ink a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
 .s-swatch-ink .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]):hover,
 [class*="s-swatch"] .s-swatch-ink .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]):hover,
-.s-swatch-ink .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
-[class*="s-swatch"] .s-swatch-ink .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
-.s-swatch-ink [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
-[class*="s-swatch"] .s-swatch-ink [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover {
+.s-swatch-ink .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+[class*="s-swatch"] .s-swatch-ink .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+.s-swatch-ink [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+[class*="s-swatch"] .s-swatch-ink [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover {
   color: rgba(255, 255, 255, 0.6);
 }
 .s-swatch-ink a:not([class*="s-button"]):not([class*="s-swatch"]),
@@ -4822,20 +4822,20 @@ a.s-swatch-gray[class*="s-swatch"]:not([class*="s-button"]):not([class*="--text"
 [class*="s-swatch"] .s-swatch-gray a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
 .s-swatch-gray .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
 [class*="s-swatch"] .s-swatch-gray .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
-.s-swatch-gray .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-[class*="s-swatch"] .s-swatch-gray .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-.s-swatch-gray [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-[class*="s-swatch"] .s-swatch-gray [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]) {
+.s-swatch-gray .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+[class*="s-swatch"] .s-swatch-gray .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+.s-swatch-gray [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+[class*="s-swatch"] .s-swatch-gray [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]) {
   color: rgba(0, 0, 0, 0.5);
 }
 .s-swatch-gray a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
 [class*="s-swatch"] .s-swatch-gray a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
 .s-swatch-gray .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]):hover,
 [class*="s-swatch"] .s-swatch-gray .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]):hover,
-.s-swatch-gray .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
-[class*="s-swatch"] .s-swatch-gray .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
-.s-swatch-gray [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
-[class*="s-swatch"] .s-swatch-gray [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover {
+.s-swatch-gray .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+[class*="s-swatch"] .s-swatch-gray .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+.s-swatch-gray [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+[class*="s-swatch"] .s-swatch-gray [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover {
   color: rgba(0, 0, 0, 0.6);
 }
 .s-swatch-gray a:not([class*="s-button"]):not([class*="s-swatch"]),
@@ -5010,20 +5010,20 @@ a.s-swatch-blue[class*="s-swatch"]:not([class*="s-button"]):not([class*="--text"
 [class*="s-swatch"] .s-swatch-blue a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
 .s-swatch-blue .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
 [class*="s-swatch"] .s-swatch-blue .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
-.s-swatch-blue .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-[class*="s-swatch"] .s-swatch-blue .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-.s-swatch-blue [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-[class*="s-swatch"] .s-swatch-blue [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]) {
+.s-swatch-blue .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+[class*="s-swatch"] .s-swatch-blue .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+.s-swatch-blue [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+[class*="s-swatch"] .s-swatch-blue [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]) {
   color: rgba(255, 255, 255, 0.5);
 }
 .s-swatch-blue a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
 [class*="s-swatch"] .s-swatch-blue a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
 .s-swatch-blue .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]):hover,
 [class*="s-swatch"] .s-swatch-blue .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]):hover,
-.s-swatch-blue .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
-[class*="s-swatch"] .s-swatch-blue .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
-.s-swatch-blue [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover,
-[class*="s-swatch"] .s-swatch-blue [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]):hover {
+.s-swatch-blue .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+[class*="s-swatch"] .s-swatch-blue .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+.s-swatch-blue [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover,
+[class*="s-swatch"] .s-swatch-blue [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]):hover {
   color: rgba(255, 255, 255, 0.6);
 }
 .s-swatch-blue a:not([class*="s-button"]):not([class*="s-swatch"]),

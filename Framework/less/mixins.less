@@ -99,12 +99,15 @@
 }
 
 // Transitions
-.transition(@arguments) {
-  -webkit-transition: @arguments;
-     -moz-transition: @arguments;
-      -ms-transition: @arguments;
-       -o-transition: @arguments;
-          transition: @arguments;
+.transition (@value1,@value2:X,...)
+{
+    @value: ~`"@{arguments}".replace(/[\[\]]|\,\sX/g, '')`;
+
+    -webkit-transition: @value;
+    -moz-transition: @value;
+    -ms-transition: @value;
+    -o-transition: @value;
+    transition: @value;
 }
 .transition-delay(@arguments) {
   -webkit-transition-delay: @arguments;
@@ -181,6 +184,17 @@
 .opacity(@opacity) {
   opacity: @opacity / 100;
   filter: ~"alpha(opacity=@{opacity})";
+}
+
+.lineLimit(@lines) {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  height: @headingBaseline * @lines * 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  -webkit-line-clamp: @lines;
+  -webkit-box-orient: vertical;
 }
 
 
@@ -382,7 +396,7 @@
 }
 
 // Layouts
-.flex() {
+.flex-box() {
   display:-moz-box;
   display:-webkit-box;
   display:-ms-flexbox;
@@ -393,6 +407,17 @@
   -webkit-box-flex: @value;
   -ms-flex: @value;
   box-flex: @value;
+}
+.flex() {
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
 }
 
 // Placeholder

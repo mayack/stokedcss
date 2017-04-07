@@ -250,6 +250,32 @@ hr {
     margin: @space 0;
     width: 100%;
 }
+.s-hr-label {
+  margin: @space 0;
+  overflow: hidden;
+  &:not([class*='s-align']) {
+    text-align: center;
+  }
+  >span {
+    position: relative;
+    &:before, &:after {
+      .position(@t:50%);
+      content: '';
+      border-top-style: solid;
+      border-top-width: 1px;
+      height: 0;
+      width: 9999px;
+    }
+    &:before {
+      margin-right: @space-xs;
+      right: 100%;
+    }
+    &:after {
+      margin-left: @space-xs;
+      left: 100%;
+    }
+  }
+}
 
 
 // ==========================================================

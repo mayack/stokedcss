@@ -49,24 +49,39 @@ input::-moz-focus-inner {
 }
 
 // Extras
-.s-inputIcon {
+[class*='s-inputIcon'] {
     display: inline-block;
     position: relative;
     input {
-        padding-right: 1.4em;
         width: 100%;
         &:focus ~ [class*="icon"] {
             color: @inputFocus !important;
         }
     }
     *[class*="icon"] {
-        .position(@t:50%, @r:0.5em);
+        .position(@t:50%);
         line-height: 1;
         margin-top: -0.5em;
         &:before {
             // margin: 1px 0 0 0;
             margin: 0;
         }
+    }
+    &[class*='s-inputIcon-left'] {
+      input:not([type=submit]):not([type=button]):not([type=radio]):not([type=file]):not([type=checkbox]):not([class*="s-padding--"]):not([class*="s-padding "]) {
+        padding-left: 1em * 1.5 + (@inputPadding*4/@inputPaddingRatio)*2;
+      }
+      *[class*="icon"] {
+        left: @inputPadding*4/@inputPaddingRatio;
+      }
+    }
+    &[class*='s-inputIcon-right'] {
+      input:not([type=submit]):not([type=button]):not([type=radio]):not([type=file]):not([type=checkbox]):not([class*="s-padding--"]):not([class*="s-padding "]) {
+        padding-right: 1em + @inputPadding*@inputPaddingRatio;
+      }
+      *[class*="icon"] {
+        right: @inputPadding;
+      } 
     }
 }
 [class*="s-inputLabel"] {

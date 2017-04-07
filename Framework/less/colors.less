@@ -2,7 +2,7 @@
 // Swatches
 // ==========================================================
 
-.createSwatch(@name, @fill:#fff, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false,  @jqueryUI:false) {
+.createSwatch(@name, @fill:#fff, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false,  @jQueryUI:false) {
 
     // Mixins
     .colorCheck (@property:color, @color:#fff, @intensity:100%) when (luma(@color) >= @swatchSensitivity) {
@@ -42,15 +42,15 @@
         }
         & when (@comment = auto) {
             .s-comment, a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
-            .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
-            .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-            [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]) {
+            // .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
+            [class*='s-inputIcon'] a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+            [class*='s-swatch'] [class*='s-inputIcon'] a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]) {
                 .colorCheck(color, @fill, 50%);
             }
             a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
-            .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
-            .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-            [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]) {
+            // .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
+            [class*='s-inputIcon'] a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+            [class*='s-swatch'] [class*='s-inputIcon'] a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]) {
               &:hover {
                 .colorCheck(color, @fill, 60%);
               }
@@ -58,15 +58,15 @@
         }
         & when not (@comment = auto) {
             .s-comment, a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
-            .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
-            .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-            [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]) {
+            // .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
+            [class*='s-inputIcon'] a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+            [class*='s-swatch'] [class*='s-inputIcon'] a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]) {
                 color: @comment;
             }
             a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
-            .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
-            .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]),
-            [class*='s-swatch'] .s-inputIcon a.s-comment:not([class*=s-button]):not([class*=s-swatch]) {
+            // .s-comment a:not([class*="s-button"]):not([class*="s-swatch"]),
+            [class*='s-inputIcon'] a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]),
+            [class*='s-swatch'] [class*='s-inputIcon'] a.s-comment:not([class*="s-button"]):not([class*="s-swatch"]) {
               &:hover {
                 color: darken(@comment, 10%);
               }
@@ -107,7 +107,7 @@
       @bActive: e('[class*="s-border"][class*="-active"]');
       @bOverlay: e('[class*="s-border"][class*="-overlay"]');
 
-      & @{bStatic}, &@{bStatic}, hr,
+      & @{bStatic}, &@{bStatic}, hr, .s-hr-label>span:before,  .s-hr-label>span:after,
       &@{bStatic}[class*="s-popover"] .s-popoverArrow:before,
       &[class*="s-menu"][class*="-separated"]>li+li:not([class*="s-border"]) {
         border-color: @border;
@@ -295,13 +295,13 @@
         body, .s-swatch-@{name}, [class*="s-swatch"] .s-swatch-@{name} {
           .createBodyColor();
         }
-        & when not (@jqueryUI = false) {
+        & when not (@jQueryUI = false) {
           .createjQueryUISingular();
         }
         @{void}, .s-swatch-@{name}, [class*="s-swatch"] .s-swatch-@{name} {
           .createTextColors();
           .createBorderColors();
-          & when not (@jqueryUI = false) {
+          & when not (@jQueryUI = false) {
             .createjQueryUI();
           }
         }
