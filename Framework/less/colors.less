@@ -156,6 +156,10 @@
             background-color: darken(@fill,@hoverIntensity);
             border-color: darken(@borderActive,@hoverIntensity);
           }
+          &:active {
+            background-color: darken(@fill,@hoverIntensity*1.5);
+            border-color: darken(@borderActive,@hoverIntensity*1.5);
+          }
           & when (@buttonText = auto) {
             .colorCheck(color, @fill);
           }
@@ -351,8 +355,8 @@
 // Effects
 // ==========================================================
 
-.createEffect(@name, @color, @customStyles:false) {
-  @bgColor: tint(@color, 95%);
+.createEffect(@name, @color, @tint:95%, @customStyles:false) {
+  @bgColor: tint(@color, @tint);
   .s-effect-@{name} {
     &:not(textarea) {
       background-color: @bgColor;
@@ -388,5 +392,8 @@
   }
   .s-effect-@{name}--text {
     color: @color !important;
+    a:not([class*="s-swatch"]):not([class*="s-button"])&:hover {
+      color: darken(@color, 10%) !important;
+    }
   }
 }

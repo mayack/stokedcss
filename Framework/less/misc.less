@@ -10,11 +10,13 @@
 @space-xl:              round(@margin*(1.5*@spaceRatio), 1);
 
 * { 
-   .box-sizing();
-   outline: none;
+  .box-sizing();
+  outline: none;
 }
 body {
-    background: @bodyBackground;
+  background: @bodyBackground;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -65,6 +67,9 @@ img::-moz-selection {
 }
 .s-block {
   display: block !important;
+}
+.s-invisible {
+  visibility: hidden;
 }
 .s-expand {
   width: 100% !important;

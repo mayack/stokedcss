@@ -2,6 +2,9 @@
 // Forms
 // ==========================================================
 
+// input, textarea, keygen, select, button {
+//   font-size: @bodySize;
+// }
 fieldset {
     border: none;
     margin: 0;
@@ -69,7 +72,7 @@ input::-moz-focus-inner {
     }
     &[class*='s-inputIcon-left'] {
       input:not([type=submit]):not([type=button]):not([type=radio]):not([type=file]):not([type=checkbox]):not([class*="s-padding--"]):not([class*="s-padding "]) {
-        padding-left: 1em * 1.5 + (@inputPadding*4/@inputPaddingRatio)*2;
+        padding-left: 1em + (@inputPadding * (4/@inputPaddingRatio)) + 0.5em;
       }
       *[class*="icon"] {
         left: @inputPadding*4/@inputPaddingRatio;
@@ -77,10 +80,11 @@ input::-moz-focus-inner {
     }
     &[class*='s-inputIcon-right'] {
       input:not([type=submit]):not([type=button]):not([type=radio]):not([type=file]):not([type=checkbox]):not([class*="s-padding--"]):not([class*="s-padding "]) {
-        padding-right: 1em + @inputPadding*@inputPaddingRatio;
+        padding-right: 1em + (@inputPadding * (4/@inputPaddingRatio)) + 0.5em;
       }
       *[class*="icon"] {
-        right: @inputPadding;
+        // right: @inputPadding;
+        right: @inputPadding*4/@inputPaddingRatio;
       } 
     }
 }

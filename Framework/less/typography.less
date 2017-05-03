@@ -3,17 +3,18 @@
 // ==========================================================
 
 html {
-    font-family: @bodyFamily;
-    font-size: 100%; /* 16px */ 
-    line-height: @bodyBaseline;
+  font-family: @bodyFamily;
+  font-size: 100%; /* 16px */ 
+  line-height: @bodyBaseline;
 }
-body {
+body, input, textarea, keygen, select, button {
   font-size: @bodySize;
+  font-family: @bodyFamily;
 }
 
 *, body, button, input, textarea, select {
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 
@@ -22,18 +23,18 @@ body {
 // ==========================================================
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: @headingFamily;
-    font-weight: @headingWeight;
-    text-rendering: optimizeLegibility; /*  voodoo to enable ligatures and kerning | https://developer.mozilla.org/en-US/docs/CSS/text-rendering */
-    text-transform: @headingCase;
-    margin: @space 0 round(@space/2,2) 0;
-    &:extend([class*="s-text"][class*="-baseline--lead"]);
-    &:first-child:not([class*="s-margin-top"]) {
-        margin-top: 0;
-    }
-    &:last-child:not([class*="s-margin-bottom"]) {
-        margin-bottom: 0;
-    }
+  font-family: @headingFamily;
+  font-weight: @headingWeight;
+  text-rendering: optimizeLegibility; /*  voodoo to enable ligatures and kerning | https://developer.mozilla.org/en-US/docs/CSS/text-rendering */
+  text-transform: @headingCase;
+  margin: @space 0 round(@space/2,2) 0;
+  &:extend([class*="s-text"][class*="-baseline--lead"]);
+  &:first-child:not([class*="s-margin-top"]) {
+      margin-top: 0;
+  }
+  &:last-child:not([class*="s-margin-bottom"]) {
+      margin-bottom: 0;
+  }
 }
 h1 { .text-size--7xl; }
 h2 { .text-size--5xl; }

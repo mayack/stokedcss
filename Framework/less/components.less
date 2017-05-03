@@ -243,7 +243,9 @@
     }
 }
 .s-shape-pill {
-  .border-radius(10em);
+  &, &.s-label {
+    .border-radius(9999em);
+  }
 }
 
 // Borders

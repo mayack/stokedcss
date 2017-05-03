@@ -366,26 +366,26 @@
     white-space: nowrap;
 }
 .createElementPadding(@padding, @ratio:2, @variations:true) {
-    & when (@variations = true) {
-        &:not([class*="s-padding--"]):not([class*="s-padding "]) {
-            padding: round(@padding,1) round(@padding*(4/@ratio),1);
-            &[class*="-spacing--xs"] {
-                padding: round(@padding*0.5,1) round(@padding*(2/@ratio),1);
-            }
-            &[class*="-spacing--s"] {
-                padding: round(@padding*0.75,1) round(@padding*(3/@ratio),1);
-            }
-            &[class*="-spacing--l"] {
-                padding: round(@padding*1.25,1) round(@padding*(5/@ratio),1);
-            }
-            &[class*="-spacing--xl"] {
-                padding: round(@padding*1.5,1) round(@padding*(6/@ratio),1);
-            }
-        }
+  & when (@variations = true) {
+    &:not([class*="s-padding--"]):not([class*="s-padding "]) {
+      padding: round(@padding,1) round(@padding*(4/@ratio),1);
+      &[class*="-spacing--xs"] {
+          padding: round(@padding*0.5,1) round(@padding*(2/@ratio),1);
+      }
+      &[class*="-spacing--s"] {
+          padding: round(@padding*0.75,1) round(@padding*(3/@ratio),1);
+      }
+      &[class*="-spacing--l"] {
+          padding: round(@padding*1.25,1) round(@padding*(5/@ratio),1);
+      }
+      &[class*="-spacing--xl"] {
+          padding: round(@padding*1.5,1) round(@padding*(6/@ratio),1);
+      }
     }
-    & when (@variations = false) {
-        padding: round(@padding,1) round(@padding*(4/@ratio),1);
-    }
+  }
+  & when (@variations = false) {
+    padding: round(@padding,1) round(@padding*(4/@ratio),1);
+  }
 }
 a, button, input {
   &[class*="s-button"], &.ui-button {
@@ -489,10 +489,21 @@ ul[class*="s-menu"] {
     border: 1px solid transparent;
     display: block;
     &:not([class*="s-shape-rounded"]):not([class*="s-shape-rectangle"]) {
-        .border-radius(@cornerRadius);
+      .border-radius(@cornerRadius);
     }
     &:not([class*="s-padding--"]) {
-        padding: @space;
+      &:not([class*="s-padding-bottom"]) {
+        padding-bottom: @space;
+      }
+      &:not([class*="s-padding-top"]) {
+        padding-top: @space;
+      }
+      &:not([class*="s-padding-left"]) {
+        padding-left: @space;
+      }
+      &:not([class*="s-padding-right"]) {
+        padding-right: @space;
+      }
     }
     &:last-child {
         margin-bottom: 0;
@@ -584,14 +595,18 @@ ul[class*="s-menu"] {
 [class*="spacing"] {
     &[class*="s-cells"]>.s-cell,
     &[class*="s-cells"][class*="-group"]>[class*="s-cells"]>.s-cell {
+      &:not([class*='s-padding-left']) {
         padding-left: @space/2;
+      }
+      &:not([class*='s-padding-right']) {
         padding-right: @space/2;
-        &:first-child {
-            padding-left: 0;
-        }
-        &:last-child {
-            padding-right: 0;
-        }
+      }
+      &:first-child:not([class*='s-padding-left']) {
+        padding-left: 0;
+      }
+      &:last-child:not([class*='s-padding-right']) {
+        padding-right: 0;
+      }
     }
     &[class*="s-cells-group"]>[class*="s-cells"]:first-child>.s-cell {
         padding-top: 0;
@@ -603,8 +618,12 @@ ul[class*="s-menu"] {
 [class*="-spacing--xl"] {
     &[class*="s-cells"]>.s-cell,
     &[class*="s-cells"][class*="-group"]>[class*="s-cells"]>.s-cell {
+      &:not([class*='s-padding-left']) {
         padding-left: @space-xl/2;
+      }
+      &:not([class*='s-padding-right']) {
         padding-right: @space-xl/2;
+      }
     }
     &[class*="s-cells-group"]>[class*="s-cells"]>.s-cell {
         padding-top: @space-xl;
@@ -613,8 +632,12 @@ ul[class*="s-menu"] {
 [class*="-spacing--l"] {
     &[class*="s-cells"]>.s-cell,
     &[class*="s-cells"][class*="-group"]>[class*="s-cells"]>.s-cell {
+      &:not([class*='s-padding-left']) {
         padding-left: @space-l/2;
+      }
+      &:not([class*='s-padding-right']) {
         padding-right: @space-l/2;
+      }
     }
     &[class*="s-cells-group"]>[class*="s-cells"]>.s-cell {
         padding-top: @space-l;
@@ -623,8 +646,12 @@ ul[class*="s-menu"] {
 [class*="-spacing--s"] {
     &[class*="s-cells"]>.s-cell,
     &[class*="s-cells"][class*="-group"]>[class*="s-cells"]>.s-cell {
+      &:not([class*='s-padding-left']) {
         padding-left: @space-s/2;
+      }
+      &:not([class*='s-padding-right']) {
         padding-right: @space-s/2;
+      }
     }
     &[class*="s-cells-group"]>[class*="s-cells"]>.s-cell {
         padding-top: @space-s;
@@ -633,8 +660,12 @@ ul[class*="s-menu"] {
 [class*="-spacing--xs"] {
     &[class*="s-cells"]>.s-cell,
     &[class*="s-cells"][class*="-group"]>[class*="s-cells"]>.s-cell {
+      &:not([class*='s-padding-left']) {
         padding-left: @space-xs/2;
+      }
+      &:not([class*='s-padding-right']) {
         padding-right: @space-xs/2;
+      }
     }
     &[class*="s-cells-group"]>[class*="s-cells"]>.s-cell {
         padding-top: @space-xs;
