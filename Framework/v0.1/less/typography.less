@@ -7,11 +7,13 @@ html {
   font-size: 100%; /* 16px */ 
   line-height: @bodyBaseline;
 }
-body, input, textarea, keygen, select, button {
+body {
   font-size: @bodySize;
+}
+body, input, textarea, keygen, select, button {
+  // font-size: @bodySize;
   font-family: @bodyFamily;
 }
-
 *, body, button, input, textarea, select {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -156,6 +158,9 @@ h6, small { .text-size--s; }
 // ==========================================================
 
 // Make images responsive
+figure {
+  margin: 0;
+}
 figure img {
     display:block;
 }

@@ -1,0 +1,130 @@
+// ==========================================================
+// General
+// ==========================================================
+
+@margin:                round(@bodyBaseline * 1rem, 1);
+@space-xxs:             round(@margin/(2.5*@spaceRatio), 1);
+@space-xs:              round(@margin/(1.5*@spaceRatio), 1);
+@space-s:               round(@margin/@spaceRatio, 1);
+@space-m:               round(@margin, 1);
+@space-l:               round(@margin*@spaceRatio, 1);
+@space-xl:              round(@margin*(1.5*@spaceRatio), 1);
+@space-xxl:             round(@margin*(2.5*@spaceRatio), 1);
+
+* {
+  .box-sizing();
+  outline: none;
+}
+body {
+  background: @bodyBackground;
+  margin: 0;
+  padding: 0;
+}
+
+
+// ==========================================================
+// Styles & Colors
+// ==========================================================
+
+[class*="s-background"][class*="--cover"] {
+  .background-cover(inherit);
+}
+[class*="s-background"][class*="--fixed"] {
+  .background-fixed;
+}
+::selection {
+    background: @textSelect;
+    .colorCheck(color, @textSelect);
+}
+::-moz-selection {
+    background: @textSelect;
+    .colorCheck(color, @textSelect);
+}
+img::selection {
+    background: transparent;
+}
+img::-moz-selection {
+    background: transparent;
+}
+
+
+// ==========================================================
+// Misc
+// ==========================================================
+
+.s-absolute {
+  position: absolute;
+}
+.s-relative {
+  position: relative;
+}
+.s-overflow--hidden {
+  overflow: hidden;
+}
+.s-overflow--auto {
+  overflow: auto;
+}
+.s-inline {
+  display: inline;
+}
+.s-inline--block {
+  display: inline-block;
+}
+.s-block {
+  &, &[class*="s-button"]:not([class*="s-flex"]) {
+    display: block;
+  }
+}
+.s-invisible {
+  visibility: hidden;
+}
+.s-width--expand {
+  width: 100%;
+}
+.s-height--expand {
+  height: 100%;
+}
+.s-width--auto {
+  width: auto;
+}
+.s-clear {
+  clear: both;
+}
+.s-clearFix {
+  .clear-fix;
+}
+.s-disabled {
+  pointer-events: none;
+}
+.s-filler {
+  .filler;
+}
+.s-hide {
+  display: none;
+}
+
+
+// ==========================================================
+// Fixes
+// ==========================================================
+
+a {
+  outline: none;
+}
+.s-row {
+  .clear-fix;
+}
+[class^="icon-"], [class*=" icon-"] {
+  &:before {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  &[class*="s-shape-circle"] {
+    box-sizing: content-box;
+    line-height: 1;
+    height: 1em;
+    &:before {
+      height: 1em;
+    }
+  }
+}

@@ -1,0 +1,448 @@
+// ==========================================================
+// Widgets
+// ==========================================================
+
+
+// Table
+[class*="s-table"] {
+    position: relative;
+    table {
+      border-spacing: 0;
+      border-collapse: separate;
+      width: 100%;
+      th, td {
+        padding: @space-m;
+      }
+      thead tr th {
+        text-align: left;
+      }
+      tbody tr {
+        td {
+          position: relative;
+          .s-tableAction {
+            .position(@t:50%);
+            opacity: 0;
+            transform: translate(0,-50%);
+            >* {
+              // Fix for Chrome (Chopped 1px at the bottom)
+              margin-top: -1px;
+              transform: translate(0, 1px);
+            }
+          }
+          &:first-child .s-tableAction {
+            padding-right: @space-m/2;
+            right: 100%;
+          }
+          &:last-child .s-tableAction {
+            left: 100%;
+            padding-left: @space-m/2;
+          }
+        }
+        &:hover td {
+          &:first-child, &:last-child {
+            .s-tableAction {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+    &[class*="-separated"] table {
+        thead tr th {
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+        }
+        tbody tr+tr td {
+            border-top-width: 1px;
+            border-top-style: solid;
+        }
+    }
+    &[class*="-separated--all"] table {
+        thead tr th, tbody tr td, tfoot tr td {
+            border-width: 1px;
+            border-style: solid;
+        }
+        thead + tbody tr td, tbody + tfoot tr td {
+          border-top-width: 0;
+        }
+        thead tr th + th, tbody tr td + td {
+          border-left-width: 0;
+        }
+    }
+    &[class*="-spacing--none"] table {
+      th, td {
+        padding: 0;
+      }
+    }
+    &[class*="-spacing--s"] table {
+        th, td {
+          padding: @space-s;
+        }
+    }
+    &[class*="-spacing--xs"] table {
+      th, td {
+        padding: @space-xs;
+      }
+    }
+    &[class*="-spacing--l"] table {
+      th, td {
+        padding: @space-l;
+      }
+    }
+    &[class*="-spacing--xl"] table {
+      th, td {
+        padding: @space-xl;
+      }
+    }
+    &[class*="-spacingSemi"] table {
+      th, td {
+        padding: @space-s @space-m;
+      }
+    }
+    &[class*="-spacingSemi--xs"] table {
+      th, td {
+        padding: @space-xs/2 @space-xs;
+      }
+    }
+    &[class*="-spacingSemi--s"] table {
+      th, td {
+        padding: @space-xs @space-s;
+      }
+    }
+    &[class*="-spacingSemi--l"] table {
+      th, td {
+        padding: @space-m @space-l;
+      }
+    }
+    &[class*="-spacingSemi--xl"] table {
+      th, td {
+        padding: @space-l @space-xl;
+      }
+    }
+    &[class*="-nosides"] table {
+      th, td {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+    &[class*="-hover"] {
+        table tbody tr:hover td {
+          @hue: hue(@inputFocus);
+          @saturation: saturation(@inputFocus);
+          background-color: hsl(@hue, @saturation, 97%);
+        }
+    }
+}
+
+// Popover
+[class*="s-popover"] {
+    @x: @popoverArrow;
+    @d: round((@x * sqrt(2)), 2) + 4px;
+    @s: (@d - @x)/2;
+    position: relative;
+    .s-popoverArrow {
+        background: none;
+        position: absolute;
+        overflow: hidden;
+        &:before {
+            .rotate(45deg);
+            .position(@t:@s,@l:@s);
+            border-width: 1px;
+            border-color: transparent;
+            border-style: solid;
+            content: '';
+            height: @x;
+            width: @x;
+        }
+    }
+    &[class*="s-popover-top"], &[class*="s-popover-bottom"] {
+        .s-popoverArrow {
+            height: @d/2;
+            width: @d;
+        }
+    }
+    &[class*="s-popover-left"], &[class*="s-popover-right"] {
+        .s-popoverArrow {
+            height: @d;
+            width: @d/2;
+        }
+    }
+    &[class*="s-popover-bottom"] .s-popoverArrow:before {
+        top: auto;
+        bottom: @s;
+    }
+    &, &[class*="s-popover-top"] {
+        .s-popoverArrow {
+            bottom: 100%;
+        }
+    }
+    &[class*="s-popover-bottom"] {
+        .s-popoverArrow {
+            top: 100%;
+        }
+    }
+    &[class*="s-popover-left"] .s-popoverArrow {
+        right: 100%;
+    }
+    &[class*="s-popover-right"] .s-popoverArrow {
+        left: 100%;
+        &:before {
+            margin-left: -@d/2;
+            transform: rotate(45deg) translate(-1px,0);
+        }
+    }
+    &[class*="s-popover-top-left"], &[class*="s-popover-bottom-left"] {
+        .s-popoverArrow {
+            left: @cornerRadius + 2px;
+            right: auto;
+        }
+    }
+    &[class*="s-popover-top-right"], &[class*="s-popover-bottom-right"] {
+        .s-popoverArrow {
+            left: auto;
+            right: @cornerRadius + 2px;
+        }
+    }
+    &[class*="s-popover-top-center"], &[class*="s-popover-bottom-center"] {
+        .s-popoverArrow {
+            left: 50%;
+            right: auto;
+            transform: translate(-50%,0);
+        }
+    }
+    &[class*="s-popover-left-top"], &[class*="s-popover-right-top"] {
+        .s-popoverArrow {
+            top: @cornerRadius + 2px;
+        }
+    }
+    &[class*="s-popover-left-bottom"], &[class*="s-popover-right-bottom"] {
+        .s-popoverArrow {
+            bottom: @cornerRadius + 2px;
+        }
+    }
+    &[class*="s-popover-left-center"], &[class*="s-popover-right-center"] {
+        .s-popoverArrow {
+            transform: translate(0,-50%);
+            top: 50%;
+        }
+    }
+}
+
+// Item List
+.createItemsSpacing(@size, @direction) {
+  @sizeFull: "space-@{size}";
+  & when (@direction = x) {
+    >* {
+      &:not(:last-child) {
+        margin-right: @@sizeFull/2;
+      }
+      + *:not([class*="s-margin-left"]) {
+        margin-left: @@sizeFull/2;
+      }
+    }
+  }
+  & when (@direction = y) {
+    >* {
+      &:not([class*="s-margin-bottom"]):not([class*="s-grid"]):not(:last-child) {
+        margin-bottom: @@sizeFull;
+      }
+      &[class*="s-grid"] {
+        + [class*="s-grid"] {
+          border-top: @@sizeFull solid transparent;
+        }
+        + *:not([class*="s-grid"]) {
+          margin-top: @@sizeFull;
+        }
+      }
+    }
+  }
+}
+.s-items-spacing--xxs {
+  .createItemsSpacing(xxs, x);  
+}
+.s-items-spacing--xs {
+  .createItemsSpacing(xs, x);  
+}
+.s-items-spacing--s {
+  .createItemsSpacing(s, x);  
+}
+.s-items-spacing--m, .s-items, .s-items-spacing {
+  .createItemsSpacing(m, x);  
+}
+.s-items-spacing--l {
+  .createItemsSpacing(l, x);  
+}
+.s-items-spacing--xl {
+  .createItemsSpacing(xl, x);  
+}
+.s-items-spacingVertical--xs {
+  .createItemsSpacing(xs, y);  
+}
+.s-items-spacingVertical--s {
+  .createItemsSpacing(s, y);  
+}
+.s-items-spacingVertical--m, .s-items-spacingVertical {
+  .createItemsSpacing(m, y);  
+}
+.s-items-spacingVertical--l {
+  .createItemsSpacing(l, y);  
+}
+.s-items-spacingVertical--xl {
+  .createItemsSpacing(xl, y);  
+}
+.createItemsGridSpacing(@size) {
+  @sizeFull: "space-@{size}";
+  [class*="s-items"]>[class*="s-grid"][class*="-spacing--@{size}"] {
+    + [class*="s-grid"] {
+      &[class*="-spacing--xs"] {
+        margin-top: (@@sizeFull/2 + @space-xs/2) * -1;
+      }
+      &[class*="-spacing--s"] {
+        margin-top: (@@sizeFull/2 + @space-s/2) * -1;
+      }
+      &, &[class*="-spacing--m"] {
+        margin-top: (@@sizeFull/2 + @space-m/2) * -1;
+      }
+      &[class*="-spacing--l"] {
+        margin-top: (@@sizeFull/2 + @space-l/2) * -1;
+      }
+      &[class*="-spacing--xl"] {
+        margin-top: (@@sizeFull/2 + @space-xl/2) * -1;
+      }
+    }
+  }  
+}
+.createItemsGridSpacing(xs);
+.createItemsGridSpacing(s);
+.createItemsGridSpacing(m);
+.createItemsGridSpacing(l);
+.createItemsGridSpacing(xl);
+
+// Buttons
+.createElementPadding(@padding, @ratio:2, @variations:true) {
+  & when (@variations = true) {
+    padding: round(@padding,1) round(@padding*(4/@ratio),1);
+    &[class*="-spacing--xs"] {
+        padding: round(@padding*0.5,1) round(@padding*(2/@ratio),1);
+    }
+    &[class*="-spacing--s"] {
+        padding: round(@padding*0.75,1) round(@padding*(3/@ratio),1);
+    }
+    &[class*="-spacing--l"] {
+        padding: round(@padding*1.25,1) round(@padding*(5/@ratio),1);
+    }
+    &[class*="-spacing--xl"] {
+        padding: round(@padding*1.5,1) round(@padding*(6/@ratio),1);
+    }
+  }
+  & when (@variations = false) {
+    padding: round(@padding,1) round(@padding*(4/@ratio),1);
+  }
+}
+[class*="s-button"] {
+  .createElementPadding(@buttonPadding, @buttonPaddingRatio);
+  border-radius: @cornerRadius;
+  border-style: solid;
+  border-width: 1px;
+  font-weight: bold;
+  line-height: @bodyBaseline;
+  text-align: center;
+  white-space: nowrap;
+  &:not([class*="s-flex"]) {
+    display: inline-block;
+  }
+}
+
+[class*="s-button"][class*="-blank"] {
+  &, &[class*="s-swatch"], &[class*="s-border"][class*="-outline"] {
+    background: none;
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
+
+// Box
+.s-box {
+    border: 1px solid transparent;
+    border-radius: @cornerRadius;
+    padding: @space-m;
+}
+
+// Label
+.s-label {
+    border-radius: @cornerRadius;
+    display: inline;
+    padding: 0.2em 0.5em;
+    white-space: nowrap;
+}
+
+// Lister
+[class*="s-lister"] {
+    > * {
+        padding-bottom: @space-m;
+        + * {
+            border-top-style: solid;
+            border-top-width: 1px;
+            padding-top: @space-m;
+        }
+        &:last-child:not([class*="s-padding--"]):not([class*="s-padding "]) {
+            padding-bottom: 0;
+        }
+    }
+    &[class*="-spacing--none"] {
+        > * {
+            padding-bottom: 0;
+            + * {
+                padding-top: 0;
+            }
+        }
+    }
+    &[class*="-spacing--xxs"] {
+        > * {
+            padding-bottom: @space-xxs;
+            + * {
+                padding-top: @space-xxs;
+            }
+        }
+    }
+    &[class*="-spacing--xs"] {
+        > * {
+            padding-bottom: @space-xs;
+            + * {
+                padding-top: @space-xs;
+            }
+        }
+    }
+    &[class*="-spacing--s"] {
+        > * {
+            padding-bottom: @space-s;
+            + * {
+                padding-top: @space-s;
+            }
+        }
+    }
+    &[class*="-spacing--l"] {
+        > * {
+            padding-bottom: @space-l;
+            + * {
+                padding-top: @space-l;
+            }
+        }
+    }
+    &[class*="-spacing--xl"] {
+        > * {
+            padding-bottom: @space-xl;
+            + * {
+                padding-top: @space-xl;
+            }
+        }
+    }
+    &[class*="-spacing--xxl"] {
+        > * {
+            padding-bottom: @space-xxl;
+            + * {
+                padding-top: @space-xxl;
+            }
+        }
+    }
+}

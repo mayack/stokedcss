@@ -2,7 +2,7 @@
 // Widgets
 // ==========================================================
 
- // Growl 
+ // Growl
 .s-growl {
     font-weight:bold;
     position:fixed;
@@ -29,7 +29,7 @@
       width: 100%;
       th, td {
         &:not([class*="s-padding--"]):not([class*="s-padding "]) {
-            padding: @space; 
+            padding: @space;
         }
       }
       thead tr th:not([class*='s-align']) {
@@ -98,21 +98,21 @@
     &[class*="-spacing--s"] table {
         th, td {
             &:not([class*="s-padding--"]):not([class*="s-padding "]) {
-                padding: @space-s;  
+                padding: @space-s;
             }
         }
     }
     &[class*="-spacing--xs"] table {
         th, td {
             &:not([class*="s-padding--"]):not([class*="s-padding "]) {
-                padding: @space-xs;  
+                padding: @space-xs;
             }
         }
     }
     &[class*="-spacing--l"] table {
         th, td {
             &:not([class*="s-padding--"]):not([class*="s-padding "]) {
-                padding: @space-l;  
+                padding: @space-l;
             }
         }
     }
@@ -126,28 +126,28 @@
     &[class*="-spacingSemi"] table {
         th, td {
             &:not([class*="s-padding--"]):not([class*="s-padding "]) {
-                padding: @space-s @space;  
+                padding: @space-s @space;
             }
         }
     }
     &[class*="-spacingSemi--xs"] table {
         th, td {
             &:not([class*="s-padding--"]):not([class*="s-padding "]) {
-                padding: @space-xs/2 @space-xs;  
+                padding: @space-xs/2 @space-xs;
             }
         }
     }
     &[class*="-spacingSemi--s"] table {
         th, td {
             &:not([class*="s-padding--"]):not([class*="s-padding "]) {
-                padding: @space-xs @space-s;  
+                padding: @space-xs @space-s;
             }
         }
     }
     &[class*="-spacingSemi--l"] table {
         th, td {
             &:not([class*="s-padding--"]):not([class*="s-padding "]) {
-                padding: @space @space-l;  
+                padding: @space @space-l;
             }
         }
     }
@@ -174,6 +174,9 @@
           @saturation: saturation(@inputFocus);
           background-color: hsl(@hue, @saturation, 97%);
         }
+    }
+    &[class*="-justified")] {
+      table-layout: fixed;
     }
 }
 
@@ -567,8 +570,10 @@ ul[class*="s-menu"] {
     >.s-cell {
         display: table-cell;
     }
-    >.s-cell:not([class*='s-align-top']):not([class*='s-align-bottom']) {
-        vertical-align: middle;
+    &:not([class*='s-align-top']):not([class*='s-align-bottom']) {
+        >.s-cell:not([class*='s-align-top']):not([class*='s-align-bottom']) {
+            vertical-align: middle;
+        }
     }
     &[class*="move"] {
         width: auto;
@@ -601,10 +606,10 @@ ul[class*="s-menu"] {
       &:not([class*='s-padding-right']) {
         padding-right: @space/2;
       }
-      &:first-child:not([class*='s-padding-left']) {
+      &:first-child:not([class*='s-padding-left']):not([class*='s-padding--']) {
         padding-left: 0;
       }
-      &:last-child:not([class*='s-padding-right']) {
+      &:last-child:not([class*='s-padding-right']):not([class*='s-padding--']) {
         padding-right: 0;
       }
     }

@@ -1,0 +1,307 @@
+// ==========================================================
+// Layouts
+// ==========================================================
+
+html, body {
+  height: 100%;
+}
+.s-layout {
+  min-height: 100%;
+}
+
+// Flex
+[class*="s-flex"] {
+  >* {
+    flex-grow: 0;
+    &.s-expand {
+      flex-grow: 1;
+    }
+  }
+  &[class*="--justified"]>* {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+  &, &[class*="-direction--row"] {
+    .flex();
+  }
+  &[class*="-direction--column"] {
+    .flex(column);
+  }
+}
+[class*="s-flex"], [class*="s-grid"] {
+  &[class*="-items--start"] {
+    align-items: flex-start;
+  }
+  &[class*="-items--center"] {
+    align-items: center;
+  }
+  &[class*="-items--end"] {
+    align-items: flex-end;
+  }
+  &[class*="-items--stretch"] {
+    align-items: stretch;
+  }
+  &[class*="-items--baseline"] {
+    align-items: baseline;
+  }
+  &[class*="-content--start"] {
+    justify-content: flex-start;
+  }
+  &[class*="-content--center"] {
+    justify-content: center;
+  }
+  &[class*="-content--end"] {
+    justify-content: flex-end;
+  }
+  &[class*="-content--stretch"] {
+    justify-content: stretch;
+  }
+  &[class*="-content--spaceBetween"] {
+    justify-content: space-between;
+  }
+}
+.s-align--start {
+  align-self: flex-start;
+}
+.s-align--center {
+  align-self: center;
+}
+.s-align--end {
+  align-self: flex-end;
+}
+.s-align--baseline {
+  align-self: baseline;
+}
+.s-valign--top {
+  vertical-align: top;
+}
+.s-valign--middle {
+  vertical-align: middle;
+}
+.s-valign--bottom {
+  vertical-align: bottom;
+}
+
+// Cells
+[class*="s-cells"] {
+  display: table;
+  >* {
+    display: table-cell;
+  }
+  [class*="s-cellsGroup"]>& {
+    display: table-row;
+  }
+}
+.createCellSpacing(@size) {
+  @sizeFull: "space-@{size}";
+  &[class*="s-cells"]>*, &[class*="s-cellsGroup"]>[class*="s-cells"]>* {
+    &:not(:last-child) {
+      padding-right: @@sizeFull/2;
+    }
+    + * {
+      padding-left: @@sizeFull/2;
+    }
+  }
+}
+[class*="s-cells-spacing--xs"]{
+  .createCellSpacing(xs);
+}
+[class*="s-cells-spacing--s"]{
+  .createCellSpacing(s);
+}
+[class*="s-cells-spacing--m"]{
+  .createCellSpacing(m);
+}
+[class*="s-cells-spacing--l"]{
+  .createCellSpacing(l);
+}
+[class*="s-cells-spacing--xl"]{
+  .createCellSpacing(xl);
+}
+
+
+// Grid System
+.createGrid(@n:@gridColumns, @i:1) when (@i =< @n) {
+  [class*="s-grid-cols--@{i}"] {
+    >* {
+      flex-basis: 100% / @i;
+    }
+  }
+  [class*="s-col-@{i}"] {
+    width: 100% / @gridColumns * @i;
+  }
+  .createGrid(@n, @i:@i + 1);
+}
+.createGridSpacing(@size) {
+  @sizeFull: "space-@{size}";
+  margin: -@@sizeFull/2;
+  >* {
+    padding: @@sizeFull/2;
+  }
+}
+.createGrid();
+
+[class*="s-grid"] {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  >[class*="s-col"] {
+    flex-grow: 0;
+  }
+  &[class*="-spacing--xs"]{
+    .createGridSpacing(xs);
+  }
+  &[class*="-spacing--s"]{
+    .createGridSpacing(s);
+  }
+  &, &[class*="-spacing--m"]{
+    .createGridSpacing(m);
+  }
+  &[class*="-spacing--l"]{
+    .createGridSpacing(l);
+  }
+  &[class*="-spacing--xl"]{
+    .createGridSpacing(xl);
+  }
+  &[class*="-spacing--none"]{
+    margin: 0;
+    >* {
+      padding: 0;
+    }
+  }
+}
+
+.s-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+// ==========================================================
+// Responsiveness
+// ==========================================================
+
+.createStackable() {
+  [class*="s-grid"][class*="-stackable"] {
+    margin-left: 0;
+    margin-right: 0;
+    >* {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  [class*="-stackable"] {
+    &[class*="s-grid"], &[class*="s-flex"] {
+      // display: block;
+      flex-direction: column;
+      &[class*="stackable--none"]>*+*,
+      &[class*="stackable--none"]>[class*="s-col"]+[class*="s-col"] {
+        margin-top: 0;
+      }
+      &[class*="stackable--xs"]>*+* {
+        margin-top: @space-xs;
+      }
+      &[class*="stackable--s"]>*+* {
+        margin-top: @space-s;
+      }
+      &[class*="stackable--m"]>*+* {
+        margin-top: @space-m;
+      }
+      &[class*="stackable--l"]>*+* {
+        margin-top: @space-l;
+      }
+      &[class*="stackable--xl"]>*+* {
+        margin-top: @space-xl;
+      }
+    }
+    &[class*="s-flex"] {
+      &[class*="s-items"]>* {
+        margin-left: 0;
+        margin-right: 0;
+      }
+      >* {
+        flex-basis: 100%;
+        width: 100%;
+      }
+    }
+    &[class*="s-grid"] {
+      margin: 0;
+      >* {
+        &, &[class*="s-col"] {
+          padding: 0;
+          width: 100%;
+          + [class*="s-col"] {
+            margin-top: @space-m;
+          }
+        }
+      }
+      &[class*="spacing--xs"]>* {
+        &, &[class*="s-col"] {
+          + * {
+            margin-top: @space-xs;
+          }
+        }
+      }
+      &[class*="spacing--s"]>* {
+        &, &[class*="s-col"] {
+          + * {
+            margin-top: @space-s;
+          }
+        }
+      }
+      &[class*="spacing--l"]>* {
+        &, &[class*="s-col"] {
+          + * {
+            margin-top: @space-l;
+          }
+        }
+      }
+      &[class*="spacing--xl"]>* {
+        &, &[class*="s-col"] {
+          + * {
+            margin-top: @space-xl;
+          }
+        }
+      }
+    }
+  }
+  [class*="-stackable"][class*="s-col"] {
+    width: 100%;
+  }
+}
+.createMediaQueryFeatures(@s: @stackable, @wmin: @wrapperMinWidth, @wmax: @wrapperMaxWidth, @wm: @wrapperMargin, @t: @viewportType, @vmin: @viewportMinWidth, @vmax: @viewportMaxWidth, @cs: @customStyles) {
+  & when (@s = true) {
+    .createStackable;
+  }
+  & when not (@cs = false) {
+    @customStyles();
+  }
+  & when not (@wmin = false) and not (@wmax = false) {
+    .s-wrapper {
+      padding-left: @wm;
+      padding-right: @wm;
+      min-width: @wmin;
+      max-width: @wmax;
+    }
+  }
+}
+.createMediaQuery(@stackable: false, @wrapperMinWidth: false, @wrapperMaxWidth: false, @wrapperMargin: false, @viewportType: screen, @viewportMinWidth: false, @viewportMaxWidth: false, @customStyles: false) {
+  & when not (@viewportMinWidth = false) and (@viewportMaxWidth = false)  {
+    @mediaQuery: ~"@{viewportType} and (min-width: @{viewportMinWidth})";
+    @media @mediaQuery {
+      .createMediaQueryFeatures;
+    }
+  }
+  & when not (@viewportMaxWidth = false) and (@viewportMinWidth = false) {
+    @mediaQuery: ~"@{viewportType} and (min-width: @{viewportMaxWidth})";
+    @media @mediaQuery {
+      .createMediaQueryFeatures;
+    }
+  }
+  & when not (@viewportMinWidth = false) and not (@viewportMaxWidth = false) {
+    @mediaQuery: ~"@{viewportType} and (min-width: @{viewportMinWidth}) and (max-width: @{viewportMaxWidth})";
+    @media @mediaQuery {
+      .createMediaQueryFeatures;
+    }
+  }
+}

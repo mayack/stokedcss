@@ -1,0 +1,399 @@
+// ==========================================================
+// Swatches
+// ==========================================================
+
+.createSwatch(@name, @fill:#fff, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false,  @jQueryUI:false) {
+
+    // Mixins
+    .colorCheck (@property:color, @color:#fff, @intensity:100%) when (luma(@color) >= @swatchSensitivity) {
+      & when (@property = color) {
+        @{property}: fade(black, @intensity);
+      }
+      & when (@property = background) {
+        @{property}-color: darken(@color, @intensity);
+      }
+    }
+    .colorCheck (@property:color, @color:#fff, @intensity:100%) when (luma(@color) < @swatchSensitivity) {
+      & when (@property = color) {
+        @{property}: fade(white, @intensity);
+      }
+      & when (@property = background) {
+        @{property}-color: darken(@color, @intensity);
+      }
+    }
+    .createBodyColor() {
+        & when (@text = auto) {
+          .colorCheck(color, @fill, 70%);
+        }
+        & when not (@text = auto) {
+          color: @text;
+        }
+    }
+    .createTextColors() {
+        & when (@heading = auto) {
+            h1, h2, h3, h4, h5, h6 {
+                .colorCheck(color, @fill, 70%);
+            }
+        }
+        & when not (@heading = auto) {
+            h1, h2, h3, h4, h5, h6 {
+                color: @heading;
+            }
+        }
+        & when (@link = auto) {
+          a:not([class*="s-button"]):not([class*="s-swatch"]), a&, [class*="s-swatch"] a&, [class*="s-swatch"] & a, .ui-widget-content a {
+            .colorCheck(color, @fill, 90%);
+            & when (@linkHover = auto) {
+              &:not([class*="s-effect"]):hover {
+                  .colorCheck(color, @fill, (90% + @hoverIntensity*4));
+              }
+            }
+          }
+        }
+        & when not (@link = auto) {
+          a:not([class*="s-button"]):not([class*="s-swatch"]), a&, [class*="s-swatch"] a&, [class*="s-swatch"] & a, .ui-widget-content a {
+            color: @link;
+            & when (@linkHover = auto) {
+              &:hover {
+                color: darken(@link, @hoverIntensity*4);
+              }
+            }
+          }
+        }
+        & when not (@linkHover = auto) {
+          a:not([class*="s-button"]):not([class*="s-swatch"]), a&, [class*="s-swatch"] a&, [class*="s-swatch"] & a, .ui-widget-content a {
+            &:hover {
+                color: @linkHover;
+            }
+          }
+        }
+        & when (@comment = auto) {
+            .s-comment, a.s-comment {
+              .colorCheck(color, @fill, 50%);
+            }
+            a.s-comment:hover {
+              .colorCheck(color, @fill, 70%);
+            }
+        }
+        & when not (@comment = auto) {
+            .s-comment, a.s-comment, [class*="s-swatch"] & .s-comment {
+              color: @comment;
+            }
+            a.s-comment:hover {
+              color: darken(@comment, 20%);
+            }
+        }
+    }
+    .createBorderColors() {
+
+      @bStatic: e('[class*="s-border"][class*="--static"]');
+      @bDisabled: e('[class*="s-border"][class*="--disabled"]');
+      @bActive: e('[class*="s-border"][class*="--active"]');
+      @bOverlay: e('[class*="s-border"][class*="--overlay"]');
+
+      & @{bStatic}, &@{bStatic}, hr,
+      &@{bStatic}[class*="s-popover"] .s-popoverArrow:before {
+        border-color: @border;
+      }
+      & @{bDisabled}, &@{bDisabled}, & hr@{bDisabled},
+      &@{bDisabled}[class*="s-popover"] .s-popoverArrow:before,
+      & [class*="s-lister"]>*:not([class*="s-border"]),
+      &[class*="s-lister"]>*:not([class*="s-border"]),
+      & [class*="s-table"][class*="-separated"] tbody>tr,
+      & [class*="s-table"][class*="-separated"] tbody>tr>td:not([class*="s-border"]),
+      & [class*="s-table"][class*="-separated"] thead>tr>th:not([class*="s-border"]) {
+        border-color: @borderDisabled;
+      }
+      & @{bActive}, &@{bActive}, & hr@{bActive},
+      &@{bActive}[class*="s-popover"] .s-popoverArrow:before,
+      input, textarea {
+        border-color: @borderActive;
+      }
+      & @{bOverlay}, &@{bOverlay}, & hr@{bOverlay},
+      &@{bOverlay}[class*="s-popover"] .s-popoverArrow:before {
+        border-color: @borderOverlay;
+      }
+      input[disabled], input.s-disabled,
+      textarea[disabled], textarea.s-disabled {
+        border-color: @border;
+        background-color: fade(@border, 25%);
+        & when (@text = auto) {
+          .colorCheck(color, @fill, 50%);
+        }
+        & when not (@text = auto) {
+          color: fade(@text, 50%);
+        }
+      }
+      .s-hr-label>*:before,  .s-hr-label>*:after {
+        background-color: @border;
+      }
+    }
+    .createWidgetColors() {
+        &.s-box {
+          background-color: @fill;
+          border-color: @border;
+        }
+        &.s-checkbox label, &.s-radiobox label {
+          background-color: @fill;
+        }
+        &[class*="s-button"], &.s-checkbox label, &.s-radiobox label {
+          border-color: @borderActive;
+        }
+        &[class*="s-button"] {
+          background-color: @fill;
+          &:hover {
+            background-color: darken(@fill,@hoverIntensity);
+            border-color: darken(@borderActive,@hoverIntensity);
+          }
+          &:active {
+            background-color: darken(@fill,@hoverIntensity*1.5);
+            border-color: darken(@borderActive,@hoverIntensity*1.5);
+          }
+          & when (@buttonText = auto) {
+            &, a&, a&:hover, &:hover {
+              .colorCheck(color, @fill);
+            }
+          }
+          & when not (@buttonText = auto) {
+            &, a&, a&:hover, &:hover {
+              color: @buttonText;
+            }
+          }
+        }
+        &[class*="s-button"][class*="-blank"]:not(:hover) {
+          color: @fill;
+        }
+        &[class*="s-border"][class*="--outline"] {
+          &, &[class*="s-button"] {
+            background-color: transparent;
+            border-color: @fill;
+            color: @fill;
+          }
+          h1, h2, h3, h4, h5, h6 {
+            color: @fill;
+          }
+        }
+        &[class*="s-border"][class*="--outline"][class*="s-button"]:hover {
+          .colorCheck(color, @fill);
+          background-color: darken(@fill,@hoverIntensity);
+          border-color: darken(@fill,@hoverIntensity);
+        }
+        &[class*="s-popover"].s-box .s-popoverArrow:before {
+          background-color: @fill;
+          border-color: @border;
+        }
+        a&[class*="s-swatch"] {
+          &:hover {
+            .colorCheck(background, @fill, @hoverIntensity);
+          }
+        }
+        [class*="s-table"][class*="-zebra"] tbody tr:nth-child(odd) td:not([class*="s-swatch"]) {
+          background-color: darken(@fill, 2%);
+        }
+    }
+    .createjQueryUI() {
+        .ui-widget {
+          color: @text;
+        }
+        .ui-widget-hover {
+          &.ui-state-hover {
+            background-color: darken(@fill, @hoverIntensity);
+          }
+        }
+        .ui-widget-content {
+          background-color: @fill;
+          border-color: @border;
+        }
+        .ui-tabs {
+          .ui-tabs-nav.ui-widget-header {
+              border-bottom: 1px solid @border;
+              .ui-state-default {
+                  a {
+                      & when (@text = auto) {
+                        .colorCheck(color, @fill, 50%);
+                        &:hover {
+                          .colorCheck(color, @fill, 70%);
+                        }
+                      }
+                      & when not (@text = auto) {
+                        color: fade(@text, 70%);
+                        &:hover {
+                          color: @text;
+                        }
+                      }
+                  }
+                  &.ui-state-active {
+                    background-color: @fill;
+                    border-color: @border;
+                    a {
+                      & when (@text = auto) {
+                        .colorCheck(color, @fill, 70%);
+                      }
+                      & when not (@text = auto) {
+                        color: @text;
+                      }
+                    }
+                  }
+              }
+          }
+          .ui-tabs-panel.ui-widget-content {
+            border: 1px solid @border;
+            border-top-width: none;
+          }
+        }
+        .ui-accordion {
+            .ui-accordion-header {
+                &.ui-state-active {
+                    background-color: @fill;
+                    border-color: @border;
+                    border-bottom-color: @fill;
+                }
+            }
+            .ui-accordion-content {
+                border-color: @border;
+            }
+        }
+        .ui-dialog {
+            border-color: @borderOverlay;
+            .ui-widget-header.ui-dialog-titlebar {
+                .ui-button.ui-dialog-titlebar-close {
+                    .colorCheck(color, @fill, 20%);
+                    &:hover {
+                        .colorCheck(color, @fill, 30%);
+                    }
+                }
+            }
+            .ui-widget-header.ui-dialog-titlebar {
+                border-bottom: 1px solid @border;
+            }
+            .ui-dialog-buttonset {
+                border-top: 1px solid @border;
+            }
+        }
+    }
+    .createjQueryUISingular() {
+        .ui-datepicker {
+            &.ui-widget-content {
+                border-color: @borderOverlay;
+            }
+            .ui-datepicker-header {
+                color: @text;
+            }
+            table.ui-datepicker-calendar tr {
+              a, a:hover {
+                  color: @text;
+              }
+            }
+        }
+        .ui-selectmenu-menu .ui-menu {
+            border: 1px solid @borderOverlay;
+        }
+    }
+    & when (@name = default) {
+        @void: e("");
+        body, .s-swatch-@{name} {
+          .createBodyColor();
+        }
+        & when not (@jQueryUI = false) {
+          .createjQueryUISingular();
+        }
+        @{void}, .s-swatch-@{name} {
+          .createTextColors();
+          .createBorderColors();
+          & when not (@jQueryUI = false) {
+            .createjQueryUI();
+          }
+        }
+        .createWidgetColors();
+        .s-swatch-@{name}, [class*="s-swatch"] .s-swatch-@{name} {
+          background-color: @fill;
+        }
+        .s-toggle label {
+          background-color: @borderActive;
+          border-color: @borderActive;
+        }
+        & when not (@customStyles = false) {
+          @{void}, .s-swatch-@{name} {
+            @customStyles();
+          }
+        }
+    }
+    & when not (@name = default) {
+        .s-swatch-@{name} {
+          .createTextColors();
+          .createBodyColor();
+          .createBorderColors();
+          .createWidgetColors();
+        }
+        & when not (@customStyles = false) {
+          .s-swatch-@{name} {
+            @customStyles();
+          }
+        }
+    }
+    .s-swatch-@{name}--text {
+      &, h1&, h2&, h3&, h4&, h5&, h6& {
+        color: @fill;
+      }
+    }
+    .s-swatch-@{name}--text a&:hover {
+      color: darken(@fill, @hoverIntensity*4);
+    }
+    .s-swatch-@{name},
+    .s-swatch-@{name}--fill {
+      background-color: @fill;
+      &, &[class*="s-popover"] .s-popoverArrow:before {
+        background-color: @fill;
+      }
+    }
+}
+
+
+// ==========================================================
+// Effects
+// ==========================================================
+
+.createEffect(@name, @color, @tint:95%, @customStyles:false) {
+  @bgColor: tint(@color, @tint);
+  .s-effect-@{name} {
+    &:not(textarea) {
+      background-color: @bgColor;
+    }
+    &:not(textarea), h1, h2, h3, h4, h5, h6, a {
+      color: @color;
+    }
+    a:hover {
+      color: darken(@color, 5%);
+    }
+    &[class*="s-button"], a& {
+      color: @color;
+    }
+    &.s-box {
+      background-color: @bgColor;
+      border-color: @color;
+    }
+    input&, textarea& {
+      &:not(:focus) {
+        border-color: @color;
+      }
+    }
+    & when not (@customStyles = false) {
+      @customStyles();
+    }
+    .s-popoverArrow:before {
+      background: @bgColor;
+      border-color: @color;
+    }
+  }
+  .s-effect-@{name}--fill {
+    background-color: @bgColor;
+  }
+  .s-effect-@{name}--text {
+    &, a& {
+      color: @color;
+    }
+    a&:hover {
+      color: darken(@color, 10%);
+    }
+  }
+}

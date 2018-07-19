@@ -1,0 +1,362 @@
+// ==========================================================
+// General
+// ==========================================================
+
+html {
+  font-family: @bodyFamily;
+  font-size: 100%; /* 16px */
+  line-height: @bodyBaseline;
+}
+body {
+  font-size: @bodySize;
+}
+body, input, textarea, keygen, select, button {
+  font-family: @bodyFamily;
+}
+*, body, button, input, textarea, select {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+// ==========================================================
+// Headings
+// ==========================================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: @headingFamily;
+  font-weight: @headingWeight;
+  text-rendering: optimizeLegibility; /*  voodoo to enable ligatures and kerning | https://developer.mozilla.org/en-US/docs/CSS/text-rendering */
+  text-transform: @headingCase;
+  margin: @space-m 0 round(@space-m/2,2) 0;
+  &:extend([class*="s-text"][class*="-baseline--lead"]);
+  &:first-child:not([class*="s-margin-top"]) {
+      margin-top: 0;
+  }
+  &:last-child:not([class*="s-margin-bottom"]) {
+      margin-bottom: 0;
+  }
+}
+h1 { .text-size--7xl; }
+h2 { .text-size--5xl; }
+h3 { .text-size--3xl; }
+h4 { .text-size--xl; }
+h5 { .text-size--default; }
+h6, small { .text-size--s; }
+
+
+// ==========================================================
+// Text Styles
+// ==========================================================
+
+[class*="s-text"] {
+    &[class*="-heading"] {
+      font-family: @headingFamily;
+    }
+    &[class*="--bold"] {
+      font-weight: 700;
+    }
+    &[class*="--semibold"] {
+      font-weight: 600;
+    }
+    &[class*="--regular"] {
+      font-weight: 400;
+    }
+    &[class*="--light"] {
+      font-weight: 300;
+    }
+    &[class*="--underline"] {
+      text-decoration: underline;
+    }
+    &[class*="--italic"] {
+      font-style: italic;
+    }
+    &[class*="--caps"] {
+      .text-caps;
+    }
+    &[class*="--wrap"] {
+      white-space: normal;
+    }
+    &[class*="--nowrap"] {
+      white-space: nowrap;
+    }
+    &[class*="-baseline"] {
+      line-height: @bodyBaseline;
+    }
+    &[class*="-baseline--lead"] {
+      line-height: @headingBaseline;
+    }
+    &[class*="-baseline--single"] {
+      line-height: 1;
+    }
+    &[class*='-align--left'] {
+      text-align: left;
+    }
+    &[class*='-align--center'] {
+      text-align: center;
+    }
+    &[class*='-align--right'] {
+      text-align: right;
+    }
+    &[class*="-ellipsis"] {
+      .text-ellipsis;
+    }
+    &[class*="-inherit"] {
+      color: inherit;
+    }
+    &[class*="-font--clear"] {
+      .text-clear;
+    }
+    &[class*="-font--reset"] {
+      .text-reset
+    }
+
+    // Size Chart
+    &[class*="-size--9xl"] {
+      .text-size--9xl;
+    }
+    &[class*="-size--8xl"] {
+      .text-size--8xl;
+    }
+    &[class*="-size--7xl"] {
+      .text-size--7xl;
+    }
+    &[class*="-size--6xl"] {
+      .text-size--6xl;
+    }
+    &[class*="-size--5xl"] {
+      .text-size--5xl;
+    }
+    &[class*="-size--4xl"] {
+      .text-size--4xl;
+    }
+    &[class*="-size--3xl"] {
+      .text-size--3xl;
+    }
+    &[class*="-size--xxl"] {
+      .text-size--xxl;
+    }
+    &[class*="-size--xl"] {
+      .text-size--xl;
+    }
+    &[class*="-size--l"] {
+      .text-size--l;
+    }
+    &[class*="-size--m"], &[class*="-size--default"] {
+      .text-size--default;
+    }
+    &[class*="-size--s"] {
+      .text-size--s;
+    }
+    &[class*="-size--xs"] {
+      .text-size--xs;
+    }
+    &[class*="-size--xxs"] {
+      .text-size--xxs;
+    }
+    &[class*="-size--3xs"] {
+      .text-size--3xs;
+    }
+}
+
+// ==========================================================
+// Images
+// ==========================================================
+
+// Make images responsive
+figure {
+  margin: 0;
+}
+figure img {
+    display:block;
+}
+
+// Figcaption styling
+figcaption {
+    font-style: italic;
+}
+
+
+// ==========================================================
+// Lists
+// ==========================================================
+
+ul, ol, dl {
+  margin: 0 0 @margin 0;
+  &:last-child {
+      margin-bottom: 0;
+  }
+}
+ul, ol {
+  &[class*="s-list"] {
+    &[class*="--nobullets"] {
+      margin-left: 0;
+      padding-left: 0;
+      &, li {
+        list-style-type: none;
+      }
+      ul, ol {
+          list-style-type: none;
+          padding-left: 1em;
+      }
+    }
+    &[class*="--inline"] {
+      li {
+          display: inline-block;
+          margin: 0;
+          padding: 0;
+      }
+    }
+    &[class*="--nospacing"] {
+      &, ul, ol {
+          padding-left: 1em;
+      }
+    }
+  }
+}
+
+
+// ==========================================================
+// Other elements
+// ==========================================================
+
+a {
+    text-decoration: none;
+}
+p {
+    margin: 0 0 @margin 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
+}
+blockquote {
+    &:extend([class*="s-text"][class*="-size--l"]);
+    font-style: italic;
+    font-weight: 300;
+    margin: 0 @margin @margin;
+}
+mark {
+    background: blue;
+    color: red;
+    line-height: @bodySize;
+}
+del {
+    color: red;
+}
+code, kbd, pre, samp {
+    cursor: text;
+    line-height: @bodyBaseline;
+}
+pre {
+    font-family: monospace, serif;
+    &:extend([class*="s-text"][class*="-size--s"]);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+hr {
+    background: none;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    clear: both;
+    height: 0;
+    margin: @space-m 0;
+    width: 100%;
+}
+.s-hr-label {
+  margin: @space-m 0;
+  overflow: hidden;
+  &:not([class*='s-align']) {
+    text-align: center;
+  }
+  >* {
+    display: inline-block;
+    position: relative;
+    &:before, &:after {
+      .position(@t:50%);
+      content: '';
+      height: 1px;
+      width: 9999px;
+    }
+    &:before {
+      margin-right: 1em;
+      right: 100%;
+    }
+    &:after {
+      margin-left: 1em;
+      left: 100%;
+    }
+  }
+}
+
+
+// ==========================================================
+// Mixins
+// ==========================================================
+
+
+.text-clear() {
+  font-size: 0;
+  line-height: 0;
+}
+.text-reset() {
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: normal;
+}
+.text-ellipsis() {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+.text-caps(@spacing:0.1em) {
+  letter-spacing: @spacing;
+  text-transform: uppercase;
+}
+.text-size--9xl() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*7), 2);
+}
+.text-size--8xl() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*5), 2);
+}
+.text-size--7xl() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*4), 2);
+}
+.text-size--6xl() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*3.5), 2);
+}
+.text-size--5xl() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*3), 2);
+}
+.text-size--4xl() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*2.5), 2);
+}
+.text-size--3xl() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*2), 2);
+}
+.text-size--xxl() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*1.5), 2);
+}
+.text-size--xl() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*1), 2);
+}
+.text-size--l() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*0.5), 2);
+}
+.text-size--default() {
+  font-size: @bodySize;
+}
+.text-size--s() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*-0.5), 2);
+}
+.text-size--xs() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*-1), 2);
+}
+.text-size--xxs() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*-1.5), 2);
+}
+.text-size--3xs() {
+  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*-2), 2);
+}

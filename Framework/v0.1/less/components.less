@@ -25,18 +25,18 @@
 .s-align-center, .s-align-bottom-center, .s-align-middle-center, .s-align-top-center {
   text-align: center;
 }
-[class*="s-align-bottom"] {
-  &, &.s-layoutColumn {
+[class*='s-align-bottom'] {
+  &, &.s-layoutColumn, &[class*='s-cells']>.s-cell {
     vertical-align: bottom;
   }
 }
-[class*="s-align-middle"] {
-  &, &.s-layoutColumn {
+[class*='s-align-middle'] {
+  &, &.s-layoutColumn, &[class*='s-cells']>.s-cell {
     vertical-align: middle;
   }
 }
-[class*="s-align-top"] {
-  &, &.s-layoutColumn {
+[class*='s-align-top'] {
+  &, &.s-layoutColumn, &[class*='s-cells']>.s-cell {
     vertical-align: top;
   }
 }
@@ -255,17 +255,17 @@
     &[class*="s-border-top--none"], &[class*="s-border-bottom--none"], &[class*="s-border-left--none"], &[class*="s-border-right--none"],
     &:not([class*="s-border-left"]):not([class*="s-border-right"]):not([class*="s-border-top"]):not([class*="s-border-bottom"]):not(hr):not([class*="s-border--none"]) {
       border-width: 1px;
-      &[class*="--thick"] {
+      &[class*="-thick"] {
         border-width: 2px !important;
       }
     }
 }
-[class*="s-border"][class*="--outline"] {
+[class*="s-border"][class*="-outline"] {
     &, &[class*="button"], &[class*="swatch"] {
         background-color: rgba(255,255,255,0);
     }
 }
-[class*="s-border"][class*="--thick"] {
+[class*="s-border"][class*="-thick"] {
   &[class*="s-popover"] .s-popoverArrow:before {
     border-width: 2px !important;
   }
@@ -273,27 +273,33 @@
     border-width: 2px 0 0 0 !important;
   }
 }
+[class*="s-border"][class*="-dashed"] {
+  border-style: dashed !important;
+}
+[class*="s-border"][class*="-dotted"] {
+  border-style: dotted !important;
+}
 [class*="s-border-bottom"] {
   border-bottom-width: 1px !important;
-  &[class*="--thick"] {
+  &[class*="-thick"] {
     border-bottom-width: 2px !important;
   }
 }
 [class*="s-border-left"] {
   border-left-width: 1px !important;
-  &[class*="--thick"] {
+  &[class*="-thick"] {
     border-left-width: 2px !important;
   }
 }
 [class*="s-border-right"] {
   border-right-width: 1px !important;
-  &[class*="--thick"] {
+  &[class*="-thick"] {
     border-right-width: 2px !important;
   }
 }
 [class*="s-border-top"] {
   border-top-width: 1px !important;
-  &[class*="--thick"] {
+  &[class*="-thick"] {
     border-top-width: 2px !important;
   }
 }

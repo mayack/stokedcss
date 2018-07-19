@@ -2,9 +2,9 @@
 // Forms
 // ==========================================================
 
-// input, textarea, keygen, select, button {
-//   font-size: @bodySize;
-// }
+input, textarea, keygen, select, button {
+  font-size: @bodySize;
+}
 fieldset {
     border: none;
     margin: 0;
@@ -19,7 +19,7 @@ input:not([type=submit]):not([type=button]):not([type=radio]):not([type=file]):n
     box-shadow: @inputInnerShadow;
     color: @inputText;
     line-height: @bodyBaseline;
-    &:not([class*="s-text"][class*="size"]) {
+    &:not([class*="s-text"][class*="size"]), *:not([class*="s-text"][class*="size"]) & {
       font-size: @bodySize;
     }
     &:not([class*="s-shape"]) {
@@ -93,6 +93,7 @@ input::-moz-focus-inner {
     border-style: solid;
     border-bottom-width: 1px;
     border-top-width: 1px;
+    display: inline-block;
     &:not([class*="s-padding-left"]) {
       padding-left: 0 !important;
     }

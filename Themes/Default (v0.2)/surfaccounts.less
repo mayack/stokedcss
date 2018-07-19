@@ -1,0 +1,106 @@
+// ==========================================================
+// Includes
+// ==========================================================
+
+
+@import 'less/stoked.less';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=cyrillic');
+
+
+
+// ==========================================================
+// Typography
+// ==========================================================
+
+
+@bodyFamily:           "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
+@bodySize:             0.8125rem;
+@bodyBaseline:         1.414;
+
+@headingCase:          none;
+@headingFamily:        "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
+@headingWeight:        400;
+@headingBaseline:      1.2;
+
+@fontScatter:          0.5;
+
+
+
+// ==========================================================
+// Swatches & Effects
+// ==========================================================
+
+
+// Variables
+
+@swatchAqua:           #00C1C7;
+
+
+// Swatches
+
+.createSwatch(
+    @name:             default,
+);
+.createSwatch(
+    @name:             blue,
+    @fill:             blue,
+);
+
+
+// Effects
+
+.createEffect(
+    @name:             info,
+    @color:            blue
+);
+.createEffect(
+    @name:             success,
+    @color:            green
+);
+
+
+
+// ==========================================================
+// Styles & Colors
+// ==========================================================
+
+
+@gridColumns:          16;
+@bodyBackground:       red;
+@cornerRadius:         4px;
+@textSelect:           red;
+@dialogOverlay:        red;
+@tooltipColor:         red;
+@popoverArrow:         12px;
+@buttonPadding:        0.65em;
+@buttonPaddingRatio:   2;
+@spaceRatio:           1.5;
+
+@inputColor:           red;
+@inputText:            red;
+@inputFocus:           red;
+@inputFocusGlow:       3px;
+@inputPadding:         0.65em;
+@inputPaddingRatio:    3;
+@inputPlaceholder:     red;
+@inputInnerShadow:     0 3px 0 red inset;
+
+
+
+// ==========================================================
+// Media Queries
+// ==========================================================
+
+
+.createMediaQuery(
+  @wrapperMinWidth:     960px,
+  @wrapperMaxWidth:     960px,
+  @wrapperMargin:       @space-l,
+  @viewportMinWidth:    0px
+);
+
+// ==========================================================
+// Custom
+// ==========================================================
+
+
