@@ -1,0 +1,43 @@
+.s-checkbox {
+  display: inline-block;
+  line-height: 1;
+  overflow: hidden;
+  position: relative;
+  input {
+    .position(@t:0, @l:0);
+    pointer-events: none;
+    visibility: hidden;
+    &:checked + label {
+      background: green;
+      border-color: green;
+      &:before {
+        .transform(scale(0.65, 0.65));
+        opacity: 1;
+      }
+    }
+  }
+  label {
+    background: #fff;
+    border-radius: @cornerRadius;
+    border: 1px solid violet;
+    display: inline-block;
+    float: left;
+    height: 1em;
+    position: relative;
+    width: 1em;
+    &:before {
+      &:extend(.icon-ok:before);
+      .position(@t:0px,@l:0px);
+      .transform(scale(0.1, 0.1));
+      .transition(all .3s);
+      color: #fff;
+      display: inline-block;
+      font-family: 'fontello';
+      font-size: 1em;
+      height: 100%;
+      opacity: 0;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
