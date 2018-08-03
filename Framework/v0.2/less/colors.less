@@ -2,7 +2,7 @@
 // Swatches
 // ==========================================================
 
-.createSwatch(@name, @fill:#fff, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false,  @jQueryUI:false) {
+.createSwatch(@name, @fill:#fff, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false,  @jQueryUI:false, @peekyFields:false) {
 
     // Mixins
     .colorCheck (@property:color, @color:#fff, @intensity:100%) when (luma(@color) >= @swatchSensitivity) {
@@ -41,7 +41,7 @@
             }
         }
         & when (@link = auto) {
-          a:not([class*="s-button"]):not([class*="s-swatch"]), a&, [class*="s-swatch"] a&, [class*="s-swatch"] & a, .ui-widget-content a {
+          a:not([class*="s-comment"]):not([class*="s-button"]):not([class*="s-swatch"]), a&, [class*="s-swatch"] a&, [class*="s-swatch"] & a, .ui-widget-content a {
             .colorCheck(color, @fill, 90%);
             & when (@linkHover = auto) {
               &:not([class*="s-effect"]):hover {
@@ -51,7 +51,7 @@
           }
         }
         & when not (@link = auto) {
-          a:not([class*="s-button"]):not([class*="s-swatch"]), a&, [class*="s-swatch"] a&, [class*="s-swatch"] & a, .ui-widget-content a {
+          a:not([class*="s-comment"]):not([class*="s-button"]):not([class*="s-swatch"]), a&, [class*="s-swatch"] a&, [class*="s-swatch"] & a, .ui-widget-content a {
             color: @link;
             & when (@linkHover = auto) {
               &:hover {
@@ -296,6 +296,24 @@
         }
         & when not (@jQueryUI = false) {
           .createjQueryUISingular();
+        }
+        & when not (@peekyFields = false) {
+          .s-peekyField {
+            select, input {
+              border-color: @borderActive;
+              color: @text;
+              &:focus {
+                border-color: @inputFocus;
+                color: @inputFocus;
+                ~ label {
+                  color: @inputFocus;
+                }
+              }
+            }
+            label {
+              color: @comment;
+            }
+          }
         }
         @{void}, .s-swatch-@{name} {
           .createTextColors();

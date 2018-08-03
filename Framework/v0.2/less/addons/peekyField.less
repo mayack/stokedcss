@@ -4,10 +4,6 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border-color: red;
-    &:focus {
-      border-color: blue;
-    }
     &::-ms-expand {
       display: none;
     }
@@ -19,8 +15,6 @@
     .position(@t:50%,@l:0%);
     .transform(translate(0, -50%));
     .transition(.2s);
-    .text-size--l;
-    font-weight: 300;
     line-height: 1;
   }
   a, [class*='icon'] {
@@ -30,23 +24,32 @@
     text-align: right;
   }
   [class*='icon'] {
-    pointer-events: none;
+    .flex;
+    align-items: center;
+    height: 100%;
+    padding: round(@inputPadding,1) + (@bodySize * @bodyBaseline) / 2 0 (@bodySize * @bodyBaseline) / 2 0 !important;
+    &:not(a) {
+      pointer-events: none;
+    }
   }
   input, select {
-    .text-size--l;
     .transition(.3s);
     background: none !important;
     border-radius: 0 !important;
     border-width: 0 0 1px 0 !important;
-    margin-top: 0.7em;
-    padding: 0.55em 0 !important;
+    line-height: @bodyBaseline;
+    margin-top: (@bodySize * @bodyBaseline) / 2;
+    padding: round(@inputPadding,1) 0 !important;
     width: 100%;
     &:focus, &.occupied {
       + label {
         .transform(translate(0, 0%));
-        .text-size--default;
+        .text-size--s;
         top: 0%;
       }
     }
+  }
+  input:not([type="submit"]):not([type="button"]):focus, textarea:focus {
+    box-shadow: none;
   }
 }

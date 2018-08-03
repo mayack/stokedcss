@@ -121,8 +121,12 @@
     }
     &[class*="-nosides"] table {
       th, td {
-        padding-left: 0;
-        padding-right: 0;
+        &:first-child {
+          padding-left: 0;
+        }
+        &:last-child {
+          padding-right: 0;
+        }
       }
     }
     &[class*="-hover"] {
@@ -258,37 +262,37 @@
   }
 }
 .s-items-spacing--xxs {
-  .createItemsSpacing(xxs, x);  
+  .createItemsSpacing(xxs, x);
 }
 .s-items-spacing--xs {
-  .createItemsSpacing(xs, x);  
+  .createItemsSpacing(xs, x);
 }
 .s-items-spacing--s {
-  .createItemsSpacing(s, x);  
+  .createItemsSpacing(s, x);
 }
 .s-items-spacing--m, .s-items, .s-items-spacing {
-  .createItemsSpacing(m, x);  
+  .createItemsSpacing(m, x);
 }
 .s-items-spacing--l {
-  .createItemsSpacing(l, x);  
+  .createItemsSpacing(l, x);
 }
 .s-items-spacing--xl {
-  .createItemsSpacing(xl, x);  
+  .createItemsSpacing(xl, x);
 }
 .s-items-spacingVertical--xs {
-  .createItemsSpacing(xs, y);  
+  .createItemsSpacing(xs, y);
 }
 .s-items-spacingVertical--s {
-  .createItemsSpacing(s, y);  
+  .createItemsSpacing(s, y);
 }
 .s-items-spacingVertical--m, .s-items-spacingVertical {
-  .createItemsSpacing(m, y);  
+  .createItemsSpacing(m, y);
 }
 .s-items-spacingVertical--l {
-  .createItemsSpacing(l, y);  
+  .createItemsSpacing(l, y);
 }
 .s-items-spacingVertical--xl {
-  .createItemsSpacing(xl, y);  
+  .createItemsSpacing(xl, y);
 }
 .createItemsGridSpacing(@size) {
   @sizeFull: "space-@{size}";
@@ -310,7 +314,7 @@
         margin-top: (@@sizeFull/2 + @space-xl/2) * -1;
       }
     }
-  }  
+  }
 }
 .createItemsGridSpacing(xs);
 .createItemsGridSpacing(s);
