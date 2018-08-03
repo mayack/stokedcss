@@ -1,0 +1,20 @@
+.s-floatingPopover {
+  .transform(translateZ(1000px) perspective(200px) rotate3d(1,0,0,-5deg));
+  .transition(ease-out transform .1s, ease-out opacity .1s);
+  left: 0;
+  max-width: 20em;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute !important;
+  top: 0;
+  transform-origin: 50% 0;
+  -webkit-transform-origin: 50% 0;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  z-index: 30;
+  &.visible {
+    .transform(translateZ(1000px) perspective(200px) rotate3d(0,0,0,0));
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

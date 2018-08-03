@@ -19,12 +19,22 @@
 		"oF": 0,
 		"oS": 3
 		},
-	"\/js\/addons\/peekyFields.js": {
+	"\/js\/addons\/peekyField.js": {
 		"ft": 64,
 		"ma": 0,
 		"mi": 1,
 		"oA": 1,
-		"oAP": "\/js\/addons\/peekyFields-min.js",
+		"oAP": "\/js\/addons\/peekyField-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/addons\/popover.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/js\/addons\/popover-min.js",
 		"oF": 0,
 		"sC": 1,
 		"tS": 0
@@ -56,6 +66,23 @@
 		"ma": 1,
 		"oA": 1,
 		"oAP": "\/less\/addons\/peekyField.css",
+		"oF": 0,
+		"oS": 0,
+		"rU": 0,
+		"sI": 0,
+		"sM": 0,
+		"sU": 0
+		},
+	"\/less\/addons\/popover.less": {
+		"aP": 0,
+		"bl": 0,
+		"dJ": 0,
+		"ft": 1,
+		"ie": 1,
+		"iI": 0,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "\/less\/addons\/popover.css",
 		"oF": 0,
 		"oS": 0,
 		"rU": 0,
