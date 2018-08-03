@@ -11,6 +11,11 @@ $(function(){
   $('.s-peekyField input, .s-peekyField select').blur(function(){
      blurCb(this);
   });
-  $('.s-peekyField select').prop("selectedIndex", -1);
+
+  $('.s-peekyField select').each(function() {
+    if ( $(this).siblings('label').length > 0 ) {
+      $(this).prop("selectedIndex", -1);
+    }
+  });
 
 });
