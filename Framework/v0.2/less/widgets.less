@@ -450,3 +450,13 @@
         }
     }
 }
+
+// blockWidth
+.blockWidth(@n:@blockWidthMax, @i:1) when (@i =< @n) {
+  [class*="s-blockWidth--@{i}"] {
+    min-width: ~'@{i}em';
+    width: ~'@{i}em';
+  }
+  .blockWidth(@n, @i:@i + 1);
+}
+.blockWidth();

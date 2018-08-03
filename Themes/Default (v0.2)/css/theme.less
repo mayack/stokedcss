@@ -31,11 +31,6 @@
 // ==========================================================
 
 
-// Variables
-
-@swatchAqua:           #00C1C7;
-
-
 // Swatches
 
 .createSwatch(
@@ -64,26 +59,28 @@
 // Styles & Colors
 // ==========================================================
 
+@swatchPrimary:         blue;
 
 @gridColumns:          16;
-@bodyBackground:       red;
+@bodyBackground:       rgba(255,255,255,1);
 @cornerRadius:         4px;
-@textSelect:           red;
-@dialogOverlay:        red;
-@tooltipColor:         red;
+@textSelect:           @swatchPrimary;
+@dialogOverlay:        rgba(0,0,0,0.1);
+@tooltipColor:         rgba(0,0,0,0.75);
 @popoverArrow:         12px;
 @buttonPadding:        0.65em;
 @buttonPaddingRatio:   2;
 @spaceRatio:           1.5;
+@blockWidthMax:        10;
 
-@inputColor:           red;
-@inputText:            red;
-@inputFocus:           red;
+@inputColor:           rgba(255,255,255,1);
+@inputText:            rgba(0,0,0,1);
+@inputFocus:           @swatchPrimary;
 @inputFocusGlow:       3px;
 @inputPadding:         0.65em;
 @inputPaddingRatio:    3;
-@inputPlaceholder:     red;
-@inputInnerShadow:     0 3px 0 red inset;
+@inputPlaceholder:     rgba(0,0,0,0.5);
+@inputInnerShadow:     0 3px 0 rgba(0,0,0,0.05) inset;
 
 
 
@@ -102,5 +99,3 @@
 // ==========================================================
 // Custom
 // ==========================================================
-
-
