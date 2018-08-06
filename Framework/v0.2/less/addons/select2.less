@@ -1,0 +1,83 @@
+// Select2
+
+.select2-hidden-accessible {
+  max-width: 1px;
+}
+.select2-container--default {
+  .select2-results__option {
+    padding: round(@inputPadding,1) round(@inputPadding*(4/@inputPaddingRatio),1);
+    padding-right: 2em;
+    white-space: nowrap;
+  }
+  .select2-results__option[aria-selected=true] {
+    background: none;
+    color: @inputFocus !important;
+  }
+  .select2-results__option--highlighted[aria-selected] {
+    background-color: @inputColor;
+    position: relative;
+  }
+  .select2-selection--single {
+    border-radius: @cornerRadius;
+    height: auto;
+    .select2-selection__rendered {
+      line-height: @bodyBaseline;
+      padding: round(@inputPadding,1) round(@inputPadding*(4/@inputPaddingRatio),1);
+      text-align: center;
+      .select2-selection__placeholder {
+        color: @inputPlaceholder;
+      }
+    }
+    .select2-selection__arrow {
+      height: 100%;
+      right: 0;
+      top: 0;
+      width: 3em;
+      b {
+        .position(@t:0.05em, @l:0);
+        border: none;
+        // color: @swatchBlueAlt;
+        height: 100%;
+        margin: 0;
+        position: absolute !important;
+        width: 100%;
+        &:before {
+          &:extend(.icon-arrow-bottom:before);
+          .position(@t:50%, @l:50%);
+          .text-size--xs;
+          .translate(-50%, -50%);
+          font-family: fontello;
+        }
+      }
+    }
+  }
+  .s-width--expand + & {
+    width: 100% !important;
+  }
+  &.select2-container--open {
+    .select2-dropdown {
+      overflow: hidden;
+      &.select2-dropdown--below {
+        &:extend(.s-shape-rounded--bottom);
+      }
+      &.select2-dropdown--above {
+        &:extend(.s-shape-rounded--top);
+      }
+    }
+    .select2-selection--single {
+      border-color: @inputFocus;
+    }
+    &.select2-container--above .select2-selection--single, &.select2-container--above .select2-selection--multiple {
+      &:extend(.s-shape-rounded--bottom);
+    }
+    &.select2-container--below .select2-selection--single, &.select2-container--below .select2-selection--multiple {
+      &:extend(.s-shape-rounded--top);
+    }
+  }
+}
+.select2-container--default .select2-search--dropdown {
+  padding: @space-xs;
+  .select2-search__field {
+    padding: round(@inputPadding,1) round(@inputPadding*(4/@inputPaddingRatio),1);
+  }
+}

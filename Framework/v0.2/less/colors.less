@@ -2,7 +2,7 @@
 // Swatches
 // ==========================================================
 
-.createSwatch(@name, @fill:#fff, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false,  @jQueryUI:false, @peekyFields:false) {
+.createSwatch(@name, @fill:#fff, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false,  @jQueryUI:false, @peekyFields:false, @select2:false) {
 
     // Mixins
     .colorCheck (@property:color, @color:#fff, @intensity:100%) when (luma(@color) >= @swatchSensitivity) {
@@ -312,6 +312,31 @@
             }
             label {
               color: @comment;
+            }
+          }
+        }
+        & when not (@select2 = false) {
+
+          .select2-container--default {
+            &.select2-container--open {
+              .select2-dropdown {
+                border-color: @borderActive;
+              }
+            }
+            .select2-results__option--highlighted[aria-selected] {
+              color: @text;
+              position: relative;
+            }
+            .select2-selection--single {
+              border-color: @borderActive;
+              .select2-selection__rendered {
+                color: @text;
+              }
+            }
+          }
+          .select2-container--default .select2-search--dropdown {
+            .select2-search__field {
+              border-color: @borderActive;
             }
           }
         }
