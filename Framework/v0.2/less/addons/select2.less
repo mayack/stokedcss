@@ -36,7 +36,6 @@
       b {
         .position(@t:0.05em, @l:0);
         border: none;
-        // color: @swatchBlueAlt;
         height: 100%;
         margin: 0;
         position: absolute !important;
@@ -56,12 +55,15 @@
   }
   &.select2-container--open {
     .select2-dropdown {
+      border-radius: @cornerRadius !important;
       overflow: hidden;
       &.select2-dropdown--below {
         &:extend(.s-shape-rounded--bottom);
+        .translate(0, @space-xs);
       }
       &.select2-dropdown--above {
         &:extend(.s-shape-rounded--top);
+        .translate(0, -@space-xs);
       }
     }
     .select2-selection--single {

@@ -1,6 +1,7 @@
 .s-peekyField {
+  @topPadding: round(@bodySize * pow(@bodyBaseline,@fontScatter*-0.5), 2) + round(@inputPadding, 1);
   position: relative;
-  select {
+  >select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -12,10 +13,9 @@
     }
   }
   label {
-    .position(@t:50%,@l:0%);
-    .transform(translate(0, -50%));
+    .position(@t:@topPadding, @l:0);
     .transition(.2s);
-    line-height: 1;
+    pointer-events: none;
   }
   a, [class*='icon'] {
     .position(@t:50%, @r:0);
@@ -27,29 +27,50 @@
     .flex;
     align-items: center;
     height: 100%;
-    padding: round(@inputPadding,1) + (@bodySize * @bodyBaseline) / 2 0 (@bodySize * @bodyBaseline) / 2 0 !important;
+    line-height: @bodyBaseline;
+    margin-top: 0.1em;
+    padding: (@bodySize * @bodyBaseline)/2 0;
     &:not(a) {
       pointer-events: none;
     }
   }
-  input, select {
+  >input, >select {
     .transition(.3s);
     background: none !important;
     border-radius: 0 !important;
-    border-width: 0 0 1px 0 !important;
+    box-shadow: none;
     line-height: @bodyBaseline;
-    margin-top: (@bodySize * @bodyBaseline) / 2;
-    padding: round(@inputPadding,1) 0 !important;
     width: 100%;
-    &:focus, &.occupied {
-      + label {
-        .transform(translate(0, 0%));
-        .text-size--s;
-        top: 0%;
-      }
+  }
+  >input:focus + label, >select:focus + label, >input.occupied + label, >select.occupied + label,
+  >select.occupied + .select2 + label, .select2-container--focus + label, .select2-container--open + label, .select2-container--below + label,  .select2-container--above + label {
+    .text-size--s;
+    top: 0%;
+  }
+
+  >input:not([type="submit"]):not([type="button"]):focus, >textarea:focus {
+    box-shadow: none;
+  }
+  >input, >select, >.select2-container--default .select2-selection--single .select2-selection__rendered, [class*='icon'] {
+    padding: @topPadding 0 round(@inputPadding, 1) 0 !important;
+  }
+  >input, >select, >.select2-container--default .select2-selection--single {
+    border-width: 0 0 1px 0 !important;
+  }
+
+  .select2-hidden-accessible {
+    margin-top: 0;
+  }
+  .select2-container--default .select2-selection--single .select2-selection__rendered {
+    text-align: left;
+    &:not([title]):before {
+      content: '\00a0';
     }
   }
-  input:not([type="submit"]):not([type="button"]):focus, textarea:focus {
-    box-shadow: none;
+  .select2-container--default .select2-selection--single,
+  .select2-container--default.select2-container--open .select2-dropdown.select2-dropdown--below,
+  .select2-container--default.select2-container--open.select2-container--above .select2-selection--single,
+  .select2-container--default.select2-container--open.select2-container--above .select2-selection--multiple {
+    border-radius: 0;
   }
 }
