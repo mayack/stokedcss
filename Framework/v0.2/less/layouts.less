@@ -29,6 +29,9 @@ html, body {
   }
 }
 [class*="s-flex"], [class*="s-grid"] {
+  &[class*="-wrap"] {
+    flex-wrap: wrap;
+  }
   &[class*="-items--start"] {
     align-items: flex-start;
   }
@@ -176,41 +179,55 @@ html, body {
   margin-right: auto;
 }
 
+[class*="s-show-"] {
+  display: none !important;
+}
+
 
 // ==========================================================
 // Responsiveness
 // ==========================================================
 
-.createStackable() {
-  [class*="s-grid"][class*="-stackable"] {
-    margin-left: 0;
-    margin-right: 0;
+.createResponsiveness(@name) {
+  [class*="s-grid"][class*="-stackable-@{name}"] {
     >* {
       padding-left: 0;
       padding-right: 0;
     }
+    &, &[class*="s-grid-spacing"] {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    &[class*="s-grid-spacing"] {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
   }
-  [class*="-stackable"] {
+  [class*="-stackable-@{name}"] {
     &[class*="s-grid"], &[class*="s-flex"] {
-      // display: block;
       flex-direction: column;
-      &[class*="stackable--none"]>*+*,
-      &[class*="stackable--none"]>[class*="s-col"]+[class*="s-col"] {
+      &[class*="stackable-@{n}--none"]>*+*,
+      &[class*="stackable-@{n}--none"]>[class*="s-col"]+[class*="s-col"] {
         margin-top: 0;
       }
-      &[class*="stackable--xs"]>*+* {
+      &[class*="stackable-@{n}--xs"]>*+*,
+      &[class*="stackable-@{n}--xs"]>[class*="s-col"]+[class*="s-col"] {
         margin-top: @space-xs;
       }
-      &[class*="stackable--s"]>*+* {
+      &[class*="stackable-@{n}--s"]>*+*,
+      &[class*="stackable-@{n}--s"]>[class*="s-col"]+[class*="s-col"] {
         margin-top: @space-s;
       }
-      &[class*="stackable--m"]>*+* {
+      &[class*="stackable-@{n}--m"]>*+*,
+      &[class*="stackable-@{n}--m"]>[class*="s-col"]+[class*="s-col"] {
         margin-top: @space-m;
       }
-      &[class*="stackable--l"]>*+* {
+      &[class*="stackable-@{n}--l"]>*+*,
+      &[class*="stackable-@{n}--l"]>[class*="s-col"]+[class*="s-col"] {
         margin-top: @space-l;
       }
-      &[class*="stackable--xl"]>*+* {
+      &[class*="stackable-@{n}--xl"]>*+*,
+      &[class*="stackable-@{n}--xl"]>[class*="s-col"]+[class*="s-col"] {
         margin-top: @space-xl;
       }
     }
@@ -264,14 +281,29 @@ html, body {
         }
       }
     }
+    &[class*="s-blockWidth"] {
+      min-width: 100%;
+      width: 100%;
+    }
   }
-  [class*="-stackable"][class*="s-col"] {
-    width: 100%;
+  .s-align-@{name}--left {
+    text-align: left !important;
+  }
+  .s-align-@{name}--right {
+    text-align: right !important;
+  }
+  .s-align-@{name}--center {
+    text-align: center !important;
+  }
+  .s-expand-@{name} {
+    &[class*="s-col"] {
+      width: 100%;
+    }
   }
 }
-.createMediaQueryFeatures(@s: @stackable, @wmin: @wrapperMinWidth, @wmax: @wrapperMaxWidth, @wm: @wrapperMargin, @t: @viewportType, @vmin: @viewportMinWidth, @vmax: @viewportMaxWidth, @cs: @customStyles) {
+.createMediaQueryFeatures(@n: @name, @s: @stackable, @wmin: @wrapperMinWidth, @wmax: @wrapperMaxWidth, @wm: @wrapperMargin, @t: @viewportType, @vmin: @viewportMinWidth, @vmax: @viewportMaxWidth, @cs: @customStyles) {
   & when (@s = true) {
-    .createStackable;
+    .createResponsiveness(@n);
   }
   & when not (@cs = false) {
     @customStyles();
@@ -284,8 +316,21 @@ html, body {
       max-width: @wmax;
     }
   }
+  & when not (@n = default) {
+    .s-show-@{n} {
+      &:not([class*="s-flex"]) {
+        display: block !important;
+      }
+      &[class*="s-flex"] {
+        display: flex !important;
+      }
+    }
+    .s-hide-@{n} {
+      display: none !important;
+    }
+  }
 }
-.createMediaQuery(@stackable: false, @wrapperMinWidth: false, @wrapperMaxWidth: false, @wrapperMargin: false, @viewportType: screen, @viewportMinWidth: false, @viewportMaxWidth: false, @customStyles: false) {
+.createMediaQuery(@name: default, @stackable: false, @wrapperMinWidth: false, @wrapperMaxWidth: false, @wrapperMargin: false, @viewportType: screen, @viewportMinWidth: false, @viewportMaxWidth: false, @customStyles: false) {
   & when not (@viewportMinWidth = false) and (@viewportMaxWidth = false)  {
     @mediaQuery: ~"@{viewportType} and (min-width: @{viewportMinWidth})";
     @media @mediaQuery {
