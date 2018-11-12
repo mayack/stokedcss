@@ -290,14 +290,15 @@
         }
     }
     & when (@name = default) {
-        @void: e("");
+        // @void: e(" ");
+        @void: ~"";
         body, .s-swatch-@{name} {
           .createBodyColor();
         }
         & when not (@jQueryUI = false) {
           .createjQueryUISingular();
         }
-        & when not (@peekyFields = false) {
+      & when not (@peekyFields = false) {
           .s-peekyField {
             select, input {
               border-color: @borderActive;

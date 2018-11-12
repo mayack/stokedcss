@@ -281,10 +281,6 @@ html, body {
         }
       }
     }
-    &[class*="s-blockWidth"] {
-      min-width: 100%;
-      width: 100%;
-    }
   }
   .s-align-@{name}--left {
     text-align: left !important;
@@ -296,8 +292,11 @@ html, body {
     text-align: center !important;
   }
   .s-expand-@{name} {
-    &[class*="s-col"] {
+    &, &[class*="s-col"] {
       width: 100%;
+    }
+    &[class*="s-blockWidth"] {
+      min-width: 100%;
     }
   }
 }
