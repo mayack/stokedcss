@@ -364,6 +364,19 @@
     box-shadow: none;
   }
 }
+[class*="s-button"][class*="-icon--"] {
+  position: relative;
+  [class*="icon"] {
+    .position(@t:50%);
+    .translate(0, -50%);
+  }
+  &[class*="-icon--left"] [class*="icon"] {
+    left: @space-s;
+  }
+  &[class*="-icon--right"] [class*="icon"] {
+    right: @space-s;
+  }
+}
 
 // Box
 .s-box {

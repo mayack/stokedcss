@@ -2,7 +2,7 @@
 // Swatches
 // ==========================================================
 
-.createSwatch(@name, @fill:#fff, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false,  @jQueryUI:false, @peekyFields:false, @select2:false) {
+.createSwatch(@name, @fill:#fff, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false,  @jQueryUI:false, @peekyFields:false, @select2:false, @lightContrast:40%) {
 
     // Mixins
     .colorCheck (@property:color, @color:#fff, @intensity:100%) when (luma(@color) >= @swatchSensitivity) {
@@ -394,6 +394,9 @@
       &, &[class*="s-popover"] .s-popoverArrow:before {
         background-color: @fill;
       }
+    }
+    .s-swatch-@{name}--light {
+      color: @fill;
     }
 }
 
