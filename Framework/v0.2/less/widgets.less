@@ -371,10 +371,10 @@
     .translate(0, -50%);
   }
   &[class*="-icon--left"] [class*="icon"] {
-    left: @space-s;
+    left: round(@buttonPadding*(4/@buttonPaddingRatio),1);
   }
   &[class*="-icon--right"] [class*="icon"] {
-    right: @space-s;
+    right: round(@buttonPadding*(4/@buttonPaddingRatio),1);
   }
 }
 
