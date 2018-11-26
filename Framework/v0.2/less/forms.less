@@ -90,7 +90,7 @@ input::-moz-focus-inner {
   padding-left: 0;
   padding-right: 0;
 }
-[class*="s-inputOption"] {
+.s-inputOption {
   &:not([class*="s-cells"]):not([class*="s-flex"]):not([class*="s-grid"]) {
     display: inline-block;
   }
@@ -135,7 +135,7 @@ input::-moz-focus-inner {
     &:before {
       &:extend(.icon-ok:before);
       .position(@t:0px,@l:0px);
-      .transform(scale(0.1, 0.1));
+      .scale(0.1, 0.1);
       .transition(all .2s);
       color: #fff;
       display: inline-block;
@@ -146,6 +146,14 @@ input::-moz-focus-inner {
       width: 100%;
     }
   }
+  input {
+    display: none;
+    &:checked + label {
+
+    }
+  }
+}
+.s-checkbox {
   input {
     display: none;
     &:checked + label {
@@ -170,17 +178,20 @@ input::-moz-focus-inner {
   label {
     border-radius: 50%;
     &:before {
-      background-color: #fff;
+      background-color: @inputFocus;
       border-radius: 50%;
-      text-indent: -9999px;
+      content: '';
       height: 10%;
+      text-indent: 0;
       width: 10%;
     }
   }
   input:checked + label:before {
     .translate(-50%, -50%);
-    height: 50%;
-    width: 50%;
+    content: '';
+    height: 0.5em;
+    opacity: 1 !important;
+    width: 0.5em;
   }
 }
 .s-toggle {

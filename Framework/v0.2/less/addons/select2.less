@@ -23,7 +23,6 @@
     .select2-selection__rendered {
       line-height: @bodyBaseline;
       padding: round(@inputPadding,1) round(@inputPadding*(4/@inputPaddingRatio),1);
-      text-align: center;
       .select2-selection__placeholder {
         color: @inputPlaceholder;
       }
@@ -55,15 +54,15 @@
   }
   &.select2-container--open {
     .select2-dropdown {
-      border-radius: @cornerRadius !important;
+      border-radius: @cornerRadius;
       overflow: hidden;
       &.select2-dropdown--below {
         &:extend(.s-shape-rounded--bottom);
-        .translate(0, @space-xs);
+        .translate(0, 0);
       }
       &.select2-dropdown--above {
         &:extend(.s-shape-rounded--top);
-        .translate(0, -@space-xs);
+        .translate(0, 0);
       }
     }
     .select2-selection--single {

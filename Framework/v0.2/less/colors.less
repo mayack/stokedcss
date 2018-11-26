@@ -441,11 +441,14 @@
   .s-effect-@{name}--fill {
     background-color: @bgColor;
   }
+  .s-effect-@{name}--fillInv {
+    background-color: @color;
+  }
   .s-effect-@{name}--text {
-    &, a& {
+    &, a:not([class*="s-comment"]):not([class*="s-button"]):not([class*="s-swatch"])& {
       color: @color;
     }
-    a&:hover {
+    a:not([class*="s-comment"]):not([class*="s-button"]):not([class*="s-swatch"])&:hover {
       color: darken(@color, 10%);
     }
   }
