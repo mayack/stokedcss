@@ -32,6 +32,16 @@ body {
 [class*="s-background"][class*="--fixed"] {
   .background-fixed;
 }
+.s-shadow--s {
+  box-shadow: @shadowSmall;
+}
+.s-shadow, .s-shadow--m {
+  box-shadow: @shadowMedium;
+}
+.s-shadow--l {
+  box-shadow: @shadowLarge;
+}
+
 ::selection {
     background: @textSelect;
     .colorCheck(color, @textSelect);

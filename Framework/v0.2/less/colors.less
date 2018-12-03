@@ -132,6 +132,9 @@
         &.s-box {
           background-color: @fill;
           border-color: @border;
+          &[class*="s-shadow"] {
+            border-color: @fill;
+          }
         }
         &.s-checkbox label, &.s-radiobox label {
           background-color: @fill;
