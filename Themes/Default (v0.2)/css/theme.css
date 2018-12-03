@@ -4057,9 +4057,6 @@ a.s-swatch-default:not([class*="s-effect"]):hover,
   background-color: #fff;
   border-color: #f0f0f0;
 }
-.s-box[class*="s-shadow"] {
-  border-color: #fff;
-}
 .s-checkbox label,
 .s-radiobox label {
   background-color: #fff;
@@ -4117,6 +4114,13 @@ a[class*="s-swatch"]:hover {
 }
 [class*="s-table"][class*="-zebra"] tbody tr:nth-child(odd) td:not([class*="s-swatch"]) {
   background-color: #fafafa;
+}
+[class*="s-button"][class*="s-shadow"],
+.s-box[class*="s-shadow"] {
+  border-color: #fff;
+}
+[class*="s-popover"][class*="s-shadow"] .s-popoverArrow:before {
+  border-color: #fff;
 }
 .s-swatch-default,
 [class*="s-swatch"] .s-swatch-default {
@@ -4231,9 +4235,6 @@ a.s-swatch-blue:not([class*="s-effect"]):hover,
   background-color: blue;
   border-color: #0000e0;
 }
-.s-swatch-blue.s-box[class*="s-shadow"] {
-  border-color: blue;
-}
 .s-swatch-blue.s-checkbox label,
 .s-swatch-blue.s-radiobox label {
   background-color: blue;
@@ -4291,6 +4292,13 @@ a.s-swatch-blue[class*="s-swatch"]:hover {
 }
 .s-swatch-blue [class*="s-table"][class*="-zebra"] tbody tr:nth-child(odd) td:not([class*="s-swatch"]) {
   background-color: #0000f5;
+}
+.s-swatch-blue[class*="s-button"][class*="s-shadow"],
+.s-swatch-blue.s-box[class*="s-shadow"] {
+  border-color: blue;
+}
+.s-swatch-blue [class*="s-popover"][class*="s-shadow"] .s-popoverArrow:before {
+  border-color: blue;
 }
 .s-swatch-blue--text,
 h1.s-swatch-blue--text,

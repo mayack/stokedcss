@@ -132,9 +132,6 @@
         &.s-box {
           background-color: @fill;
           border-color: @border;
-          &[class*="s-shadow"] {
-            border-color: @fill;
-          }
         }
         &.s-checkbox label, &.s-radiobox label {
           background-color: @fill;
@@ -192,6 +189,14 @@
         }
         [class*="s-table"][class*="-zebra"] tbody tr:nth-child(odd) td:not([class*="s-swatch"]) {
           background-color: darken(@fill, 2%);
+        }
+        &[class*="s-button"], &.s-box {
+          &[class*="s-shadow"] {
+            border-color: @fill;
+          }
+        }
+        [class*="s-popover"][class*="s-shadow"] .s-popoverArrow:before {
+          border-color: @fill;
         }
     }
     .createjQueryUI() {
