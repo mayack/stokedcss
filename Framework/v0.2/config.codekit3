@@ -19,6 +19,26 @@
 		"oF": 0,
 		"oS": 3
 		},
+	"/css/select2.min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/css/select2.min-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"/js/addons/dialog.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/js/addons/dialog-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"/js/addons/peekyField.js": {
 		"ft": 64,
 		"ma": 0,
@@ -39,6 +59,16 @@
 		"sC": 1,
 		"tS": 0
 		},
+	"/js/addons/tooltip.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/js/addons/tooltip-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"/less/addons/checkbox.less": {
 		"aP": 0,
 		"bl": 0,
@@ -50,6 +80,23 @@
 		"mS": 0,
 		"oA": 1,
 		"oAP": "/less/addons/checkbox.css",
+		"oF": 0,
+		"oS": 0,
+		"rwU": 0,
+		"sI": 0,
+		"sU": 0
+		},
+	"/less/addons/header.less": {
+		"aP": 0,
+		"bl": 0,
+		"eJ": 0,
+		"ft": 1,
+		"ie": 1,
+		"iI": 0,
+		"ma": 1,
+		"mS": 0,
+		"oA": 1,
+		"oAP": "/less/addons/header.css",
 		"oF": 0,
 		"oS": 0,
 		"rwU": 0,

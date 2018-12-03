@@ -25,7 +25,7 @@ input, textarea {
   line-height: @bodyBaseline;
 }
 input:not([type="submit"]):not([type="button"]):focus, textarea:focus {
-  @shadow: 0 0 @inputFocusGlow fadeout(@inputFocus,30%), 0 0 @inputFocusGlow*2 fadeout(@inputFocus,70%);
+  @shadow: 0 0 @inputFocusGlow @inputFocusStroke @inputFocus;
   box-shadow: @shadow;
   border-color: @inputFocus !important;
   outline: none;

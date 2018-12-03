@@ -1,0 +1,105 @@
+.s-header {
+  .position(relative, @z:90);
+  padding-top: @headerHeight + @headerTopMargin;
+  &:not(.hovering) {
+    padding-bottom: @headerTopMargin;
+    .s-headerBar {
+      bottom: @headerTopMargin;
+    }
+  }
+  &, .s-headerBar {
+    width: 100%;
+  }
+  .s-headerBar {
+    .position(@b:0, @l:0);
+    .transition(box-shadow .2s);
+    background: fade(@swatchWhite, 0%);
+    box-shadow: 0px 0px 0px transparent;
+    height: @headerHeight;
+    .s-wrapper, .s-relative {
+      height: @headerHeight;
+    }
+    a {
+      &:not([class*=s-comment]):not([class*=s-button]):not([class*=s-swatch]).active {
+        color: @swatchPrimary;
+      }
+    }
+    .s-headerLogo {
+      .position(@t:0, @l:0);
+      .s-headerLogoDark {
+        .position(@t:50%, @l:0);
+        .translate(0, -50%);
+        opacity: 1;
+      }
+      .s-headerLogo {
+        opacity: 0;
+      }
+    }
+    .s-headerBurger {
+      .position(@t:50%, @l:0, @z:2);
+      .transition(color .2s, background .2s);
+      .translate(0, -50%);
+      display: none;
+      margin-top: -@headerTopMargin;
+      [class*="icon"] {
+        .transition(opacity .2s);
+        &.icon-burger {
+          opacity: 1;
+        }
+        &.icon-close {
+          .position(@t:50%, @l:50%);
+          .translate(-50%, -50%);
+          opacity: 0;
+        }
+      }
+    }
+    .s-headerInner {
+      min-height: @headerHeight;
+    }
+  }
+  &:not(.inverted) a:not([class*=s-comment]):not([class*=s-button]):not([class*=s-swatch]) {
+    // color: @swatchInk;
+  }
+  &.hovering {
+    position: absolute;
+  }
+  &.inverted:not(.navMobileVisible):not(.floating) {
+    a:not([class*=s-comment]):not([class*=s-button]):not([class*=s-swatch]):not(.active) {
+      color: @swatchWhite;
+    }
+    .s-headerLogo {
+      .s-headerLogoDark {
+        opacity: 0;
+      }
+      .s-headerLogoLight {
+        opacity: 1;
+      }
+    }
+  }
+  &.floating, &.floating.inverted, &.inverted.navMobileVisible {
+    a:not(.active) {
+      // color: @swatchInk;
+    }
+  }
+  &.floating {
+    .s-headerBar {
+      .position(fixed, @t:0, @l:0, @z:100);
+      background: fade(@swatchWhite, 95%);
+      // box-shadow: @dropShadow;
+      .s-headerBurger {
+        margin-top: 0;
+      }
+      .s-headerLogo {
+        .s-headerLogoDark {
+          opacity: 1;
+        }
+        .s-headerLogoLight {
+          opacity: 0;
+        }
+      }
+    }
+  }
+  &.hovering + main section:first-child .s-wrapper {
+    padding-top: @headerHeight + @headerTopMargin;
+  }
+}

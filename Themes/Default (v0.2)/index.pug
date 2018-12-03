@@ -1,25 +1,18 @@
-doctype html
-html
-  head
-    meta(charset='utf-8')
-    meta(name='description', content='')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    //- meta(property='og:url', content='http://www.your-domain.com')
-    //- meta(property='og:type', content='Theme Name')
-    //- meta(property='og:title', content='Theme Title')
-    //- meta(property='og:description', content='Theme Description')
-    //- meta(property='og:image', content='http://www.your-domain.com/path/image.jpg')
-    title My Theme
-    link(rel='stylesheet', href='css/theme.css')
-  body
-    .s-layout.s-flex-direction--column
-      header
-        .s-wrapper
-          | Header
-      main.s-expand
-        .s-wrapper
-          | Content
-      footer
-        .s-wrapper
-          | Footer
-    include includes/scripts
+extend includes/page
+
+block page
+  - var pageTitle = 'Landing';
+  - var pageClass = 'landing';
+  - var headerInverted = true;
+  - var headerHovering = true;
+
+block content
+  section.s-swatch-blue.s-padding-top--xl.s-padding-bottom--xl
+    .s-wrapper
+      | This is Landing
+  section.s-padding-top--xl.s-padding-bottom--xl
+    .s-wrapper
+      h1 Suspendisse ac porttitor lectus.
+      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce molestie ante mi, vel maximus metus accumsan at. Donec vel est massa. Aenean in magna lacus. Duis placerat scelerisque mauris, nec dignissim velit congue a. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce maximus ligula risus, ut elementum sapien mattis et. Morbi tincidunt placerat dolor sit amet faucibus. Morbi eget elit mauris. Fusce nec purus tincidunt, lacinia ipsum ut, rhoncus sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi dictum sem sem, eget ornare est posuere sed. Phasellus iaculis tellus in augue consequat venenatis. Duis vitae nulla id est sollicitudin pellentesque.
+      p Nunc viverra turpis faucibus cursus tincidunt. Pellentesque vitae tincidunt tellus. Sed accumsan enim ac dapibus pulvinar. Nunc eget libero mauris. Mauris et eros mattis, ultricies nunc venenatis, lacinia mi. Etiam placerat sem elit, ac varius sapien rutrum quis. Nullam consectetur consectetur finibus. Duis porta, elit ut interdum aliquam, turpis orci laoreet ligula, quis lobortis orci purus non dolor. Donec posuere felis dui, in lacinia est sollicitudin eget. Nullam sodales, nulla at rutrum luctus, velit nisi convallis nisl, in pharetra libero erat venenatis eros. Aenean vulputate, lectus consequat varius imperdiet, leo mi efficitur quam, id congue tortor ipsum a ex. Donec eget tempor urna. Nunc vitae elit a quam congue venenatis id sit amet urna.
+      p Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur eleifend ex interdum dolor pretium, nec efficitur magna vestibulum. Phasellus pulvinar ligula quam, malesuada maximus eros pulvinar ac. Ut eu auctor risus. Proin placerat turpis tellus, ac hendrerit erat consequat vitae. Ut vel eros aliquam risus pharetra cursus. Aliquam eu rutrum nisi. Suspendisse nec vestibulum lectus, a ultricies est.

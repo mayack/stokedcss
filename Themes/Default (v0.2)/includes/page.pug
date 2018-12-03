@@ -1,0 +1,47 @@
+block page
+  - var pageTitle = 'Landing';
+  - var pageClass = 'landing';
+
+-
+  var navItems = [
+    { label: 'Home', value: '/' },
+    { label: 'About', value: 'about' },
+    { label: 'Pricing', value: 'pricing' },
+    { label: 'Contacts', value: 'contacts' }
+  ]
+  
+  
+doctype html
+html
+  include head
+  body
+    .s-layout.s-flex-direction--column
+      header.s-header(class=headerInverted? 'inverted':undefined)(class=headerHovering? 'hovering':undefined)
+        .s-headerBar
+          .s-wrapper
+            .s-relative
+              a.s-headerBurger.s-padding--xs.s-text-baseline--single(href='javascript:void(0)')
+                .icon-burger
+                .icon-close
+              .s-headerLogo.s-padding-top--s.s-padding-bottom--s
+                a.s-block.s-text-baseline--single.s-width--expand.s-headerLogoLight(href='/') Logo Light
+                a.s-block.s-text-baseline--single.s-width--expand.s-headerLogoDark(href='/') Logo Dark
+              .s-headerInner.s-flex-items--center.s-items-spacing--l
+                nav.s-text-align--right--nowrap.s-items.s-width--expand
+                  for navItem in navItems
+                    if pageClass === navItem.value
+                      a.active(href=navItem.value)
+                        = navItem.label
+                    else
+                      a(href=navItem.value)
+                        = navItem.label
+                nav.s-text--nowrap.s-items
+                  a(href='javascript:void(0)') Log in
+                  a(href='javascript:void(0)') Sign up
+      main.s-expand
+        block page
+        block content
+      footer
+        .s-wrapper.s-padding-top--s.s-padding-bottom--s
+          | Footer
+    include scripts

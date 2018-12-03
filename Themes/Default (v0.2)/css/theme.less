@@ -4,6 +4,7 @@
 
 
 @import 'less/stoked.less';
+@import 'less/addons/header.less';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=cyrillic');
 
 
@@ -59,7 +60,8 @@
 // Styles & Colors
 // ==========================================================
 
-@swatchPrimary:         blue;
+@swatchPrimary:        blue;
+@swatchWhite:          #ffffff;
 
 @gridColumns:          16;
 @bodyBackground:       rgba(255,255,255,1);
@@ -72,11 +74,15 @@
 @buttonPaddingRatio:   2;
 @spaceRatio:           1.5;
 @blockWidthMax:        10;
+@circleIconSize:       2em;
+@headerHeight:         50px;
+@headerTopMargin:      25px;
 
 @inputColor:           rgba(255,255,255,1);
 @inputText:            rgba(0,0,0,1);
 @inputFocus:           @swatchPrimary;
 @inputFocusGlow:       3px;
+@inputFocusStroke:     0px;
 @inputPadding:         0.65em;
 @inputPaddingRatio:    3;
 @inputPlaceholder:     rgba(0,0,0,0.5);
@@ -90,12 +96,106 @@
 
 
 .createMediaQuery(
+  @wrapperMinWidth:     0%,
+  @wrapperMaxWidth:     100%,
+  @wrapperMargin:       @space-l,
+  @viewportMinWidth:    0px,
+  @viewportMaxWidth:    960px,
+  @customStyles:        {
+    .s-header {
+      .transition(all .1s);
+      .s-headerBar {
+        .s-wrapper {
+          padding: 0 @space-xs;
+        }
+        .s-headerLogo {
+          text-align: center;
+          width: 100%;
+        }
+        .s-headerBurger {
+          display: block;
+        }
+        .s-headerInner {
+          .position(fixed, @t:0, @l:0);
+          .transition(all .2s);
+          background: transparent;
+          flex-direction: column;
+          justify-content: center;
+          height: 100%;
+          pointer-events: none;
+          width: 100%;
+          nav {
+            .flex(column);
+            .transition(opacity .2s);
+            font-size: 4vw;
+            margin: 0;
+            opacity: 0;
+            &[class*='s-col'] {
+              max-width: 400px;
+              width: 80vw;
+            }
+            a {
+              display: inline-block;
+              text-align: center;
+              + a {
+                margin-top: @space-xs;
+              }
+              &, + a {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+              }
+            }
+            + nav {
+              border-top: 1px solid gray;
+              margin: @space-s 0 0 0;
+              padding-top: @space-s;
+            }
+          }
+        }
+      }
+      &.navMobileVisible {
+        position: fixed;
+        .s-headerBar {
+          .s-headerBurger {
+            .icon-burger {
+              opacity: 0;
+            }
+            .icon-close {
+              opacity: 1;
+            }
+          }
+          .s-headerInner {
+            background: @swatchWhite;
+            pointer-events: auto;
+            nav {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+);
+.createMediaQuery(
   @wrapperMinWidth:     960px,
   @wrapperMaxWidth:     960px,
   @wrapperMargin:       @space-l,
-  @viewportMinWidth:    0px
+  @viewportMinWidth:    961px
 );
+
+
 
 // ==========================================================
 // Custom
 // ==========================================================
+
+
+// Your custom code here
+.icon-burger, .icon-close {
+  background: red;
+  height: 16px;
+  width: 16px;
+}
+.icon-close {
+  background: green;
+}
