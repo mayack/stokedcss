@@ -1,1 +1,0 @@
-$(function(){$(".s-headerBurger").click(function(){$(this).parents(".s-header").toggleClass("navMobileVisible")})}),$(document).scroll(function(){var e=$(document).scrollTop(),i=$(".s-header"),o=$(window).outerWidth();25<e&&0<o?i.addClass("floating"):i.removeClass("floating")}),$(window).resize(function(){960<$(window).width()&&$(".s-header").removeClass("navMobileVisible")});

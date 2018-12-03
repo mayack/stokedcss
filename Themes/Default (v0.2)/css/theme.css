@@ -3811,6 +3811,7 @@ a {
   position: absolute;
   top: 0;
   left: 0;
+  height: 50px;
 }
 .s-header .s-headerBar .s-headerLogo .s-headerLogoDark {
   position: absolute;
