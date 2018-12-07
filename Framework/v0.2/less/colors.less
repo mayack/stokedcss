@@ -41,29 +41,32 @@
             }
         }
         & when (@link = auto) {
-          a:not([class*="s-comment"]):not([class*="s-button"]):not([class*="s-swatch"]), a&, [class*="s-swatch"] a&, [class*="s-swatch"] & a, .ui-widget-content a {
+          a {
             .colorCheck(color, @fill, 90%);
             & when (@linkHover = auto) {
-              &:not([class*="s-effect"]):hover {
-                  .colorCheck(color, @fill, (90% + @hoverIntensity*4));
+              &:hover {
+                .colorCheck(color, @fill, (90% + @hoverIntensity*4));
+              }
+            }
+            & when not (@linkHover = auto) {
+              &:hover {
+                color: @linkHover;
               }
             }
           }
         }
         & when not (@link = auto) {
-          a:not([class*="s-comment"]):not([class*="s-button"]):not([class*="s-swatch"]), a&, [class*="s-swatch"] a&, [class*="s-swatch"] & a, .ui-widget-content a {
+          a {
             color: @link;
             & when (@linkHover = auto) {
               &:hover {
                 color: darken(@link, @hoverIntensity*4);
               }
             }
-          }
-        }
-        & when not (@linkHover = auto) {
-          a:not([class*="s-button"]):not([class*="s-swatch"]), a&, [class*="s-swatch"] a&, [class*="s-swatch"] & a, .ui-widget-content a {
-            &:hover {
+            & when not (@linkHover = auto) {
+              &:hover {
                 color: @linkHover;
+              }
             }
           }
         }

@@ -20,7 +20,7 @@
       height: @headerHeight;
     }
     a {
-      &:not([class*=s-comment]):not([class*=s-button]):not([class*=s-swatch]).active {
+      &.active {
         color: @swatchPrimary;
       }
     }
@@ -58,14 +58,14 @@
       min-height: @headerHeight;
     }
   }
-  &:not(.inverted) a:not([class*=s-comment]):not([class*=s-button]):not([class*=s-swatch]) {
+  &:not(.inverted) a {
     // color: @swatchInk;
   }
   &.hovering {
     position: absolute;
   }
   &.inverted:not(.navMobileVisible):not(.floating) {
-    a:not([class*=s-comment]):not([class*=s-button]):not([class*=s-swatch]):not(.active) {
+    a:not(.active) {
       color: @swatchWhite;
     }
     .s-headerLogo {

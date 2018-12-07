@@ -1,7 +1,10 @@
 .s-peekyField {
-  @topPadding: round(@bodySize * pow(@bodyBaseline,@fontScatter*-0.5), 2) + round(@inputPadding, 1);
+  @topPadding: round(@bodySize * pow(@bodyBaseline,@fontScatter*-0.5), 2) + round(@inputPadding, 1) * 1rem;
   position: relative;
-  >select {
+  >textarea {
+    display: none !important;
+  }
+  >select, >input, >textarea {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -17,7 +20,7 @@
     .transition(.2s);
     pointer-events: none;
   }
-  a, [class*='icon'] {
+  >a, >[class*='icon'] {
     .position(@t:50%, @r:0);
     .text-size--l;
     .transform(translate(0, -50%));
@@ -34,7 +37,7 @@
       pointer-events: none;
     }
   }
-  >input, >select {
+  >input, >select, >textarea {
     .transition(.3s);
     background: none !important;
     border-radius: 0 !important;
@@ -42,7 +45,7 @@
     line-height: @bodyBaseline;
     width: 100%;
   }
-  >input:focus + label, >select:focus + label, >input.occupied + label, >select.occupied + label,
+  >input:focus + label, >select:focus + label, >input.occupied + label, >select.occupied + label, >textarea.occupied + label, >textarea:focus + label,
   >select.occupied + .select2 + label, .select2-container--focus + label, .select2-container--open + label, .select2-container--below + label,  .select2-container--above + label {
     .text-size--s;
     top: 0%;
@@ -51,10 +54,10 @@
   >input:not([type="submit"]):not([type="button"]):focus, >textarea:focus {
     box-shadow: none;
   }
-  >input, >select, >.select2-container--default .select2-selection--single .select2-selection__rendered, [class*='icon'] {
+  >input, >textarea, >select, >.select2-container--default .select2-selection--single .select2-selection__rendered, [class*='icon'] {
     padding: @topPadding 0 round(@inputPadding, 1) 0 !important;
   }
-  >input, >select, >.select2-container--default .select2-selection--single {
+  >input, >textarea, >select, >.select2-container--default .select2-selection--single {
     border-width: 0 0 1px 0 !important;
   }
 
