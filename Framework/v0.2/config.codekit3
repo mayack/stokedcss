@@ -69,6 +69,16 @@
 		"sC": 1,
 		"tS": 0
 		},
+	"/js/addons/select2.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/js/addons/select2-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"/js/addons/tooltip.js": {
 		"ft": 64,
 		"ma": 0,
@@ -107,6 +117,23 @@
 		"mS": 0,
 		"oA": 1,
 		"oAP": "/less/addons/header.css",
+		"oF": 0,
+		"oS": 0,
+		"rwU": 0,
+		"sI": 0,
+		"sU": 0
+		},
+	"/less/addons/peekyField.less": {
+		"aP": 0,
+		"bl": 0,
+		"eJ": 0,
+		"ft": 1,
+		"ie": 1,
+		"iI": 0,
+		"ma": 1,
+		"mS": 0,
+		"oA": 1,
+		"oAP": "/less/addons/peekyField.css",
 		"oF": 0,
 		"oS": 0,
 		"rwU": 0,

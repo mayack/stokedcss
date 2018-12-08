@@ -309,7 +309,7 @@
         & when not (@jQueryUI = false) {
           .createjQueryUISingular();
         }
-      & when not (@peekyFields = false) {
+        & when not (@peekyFields = false) {
           .s-peekyField {
             select, input {
               border-color: @borderActive;
@@ -357,14 +357,16 @@
             }
           }
         }
-        @{void}, .s-swatch-@{name} {
+        @{void}, *:not([class*="s-swatch"]) .s-swatch-@{name} {
           .createTextColors();
           .createBorderColors();
           & when not (@jQueryUI = false) {
             .createjQueryUI();
           }
         }
-        .createWidgetColors();
+        @{void}, &.s-swatch-@{name} {
+          .createWidgetColors();
+        }
         .s-swatch-@{name}, [class*="s-swatch"] .s-swatch-@{name} {
           background-color: @fill;
         }
