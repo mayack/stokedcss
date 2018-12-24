@@ -1,5 +1,5 @@
 .s-header {
-  .position(relative, @z:90);
+  .position(relative, @z:20);
   padding-top: @headerHeight + @headerTopMargin;
   &:not(.hovering) {
     padding-bottom: @headerTopMargin;
@@ -82,21 +82,23 @@
       // color: @swatchInk;
     }
   }
+  &, &.floating {
+    .s-headerBar .s-headerLogo {
+      .s-headerLogoDark {
+        opacity: 1;
+      }
+      .s-headerLogoLight {
+        opacity: 0;
+      }
+    }
+  }
   &.floating {
     .s-headerBar {
-      .position(fixed, @t:0, @l:0, @z:100);
+      .position(fixed, @t:0, @l:0, @z:21);
       background: fade(@swatchWhite, 95%);
       box-shadow: @shadowSmall;
       .s-headerBurger {
         margin-top: 0;
-      }
-      .s-headerLogo {
-        .s-headerLogoDark {
-          opacity: 1;
-        }
-        .s-headerLogoLight {
-          opacity: 0;
-        }
       }
     }
   }

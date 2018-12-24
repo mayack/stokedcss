@@ -9,11 +9,11 @@
     padding-right: 2em;
     white-space: nowrap;
   }
-  .select2-results__option[aria-selected=true] {
+  .select2-results__option[aria-selected=true], .select2-results__option--highlighted[aria-selected] {
     background: none;
-    color: @inputFocus !important;
+    color: @inputFocus;
   }
-  .select2-results__option--highlighted[aria-selected] {
+  .select2-results__option--highlighted[aria-selected], .select2-results__option--highlighted[aria-selected=true] {
     background-color: @inputColor;
     position: relative;
   }
@@ -40,7 +40,7 @@
         position: absolute !important;
         width: 100%;
         &:before {
-          &:extend(.icon-arrow-bottom:before);
+          &:extend(.icon-angle-bottom:before);
           .position(@t:50%, @l:50%);
           .text-size--xs;
           .translate(-50%, -50%);

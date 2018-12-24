@@ -396,10 +396,14 @@
 // Lister
 [class*="s-lister"] {
     > * {
-        padding-bottom: @space-m;
+        &:not([class*="s-padding-bottom"]) {
+          padding-bottom: @space-m;
+        }
         + * {
             border-top-style: solid;
             border-top-width: 1px;
+        }
+        + *:not([class*="s-padding-top"]) {
             padding-top: @space-m;
         }
         &:last-child:not([class*="s-padding--"]):not([class*="s-padding "]) {
@@ -408,56 +412,70 @@
     }
     &[class*="-spacing--none"] {
         > * {
+          &:not([class*="s-padding-bottom"]) {
             padding-bottom: 0;
-            + * {
+          }
+            + *:not([class*="s-padding-top"]) {
                 padding-top: 0;
             }
         }
     }
     &[class*="-spacing--xxs"] {
         > * {
+          &:not([class*="s-padding-bottom"]) {
             padding-bottom: @space-xxs;
-            + * {
+          }
+            + *:not([class*="s-padding-top"]) {
                 padding-top: @space-xxs;
             }
         }
     }
     &[class*="-spacing--xs"] {
         > * {
-            padding-bottom: @space-xs;
-            + * {
+            &:not([class*="s-padding-bottom"]) {
+              padding-bottom: @space-xs;
+            }
+            + *:not([class*="s-padding-top"]) {
                 padding-top: @space-xs;
             }
         }
     }
     &[class*="-spacing--s"] {
         > * {
+          &:not([class*="s-padding-bottom"]) {
             padding-bottom: @space-s;
-            + * {
+          }
+            + *:not([class*="s-padding-top"]) {
                 padding-top: @space-s;
             }
         }
     }
     &[class*="-spacing--l"] {
         > * {
+          &:not([class*="s-padding-bottom"]) {
             padding-bottom: @space-l;
-            + * {
+          }
+            + *:not([class*="s-padding-top"]) {
                 padding-top: @space-l;
             }
         }
     }
     &[class*="-spacing--xl"] {
         > * {
+          &:not([class*="s-padding-bottom"]) {
             padding-bottom: @space-xl;
-            + * {
+          }
+            + *:not([class*="s-padding-top"]) {
                 padding-top: @space-xl;
             }
         }
     }
     &[class*="-spacing--xxl"] {
         > * {
+          &:not([class*="s-padding-bottom"]) {
             padding-bottom: @space-xxl;
-            + * {
+          }
+            + *:not([class*="s-padding-top"]) {
                 padding-top: @space-xxl;
             }
         }

@@ -2,7 +2,7 @@
 // Swatches
 // ==========================================================
 
-.createSwatch(@name, @fill:#fff, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false,  @jQueryUI:false, @peekyFields:false, @select2:false, @lightContrast:40%) {
+.createSwatch(@name, @fill:#fff, @fill2:darken(@fill, 10%), @gradientAngle: 0deg, @gradientStop1: 0%, @gradientStop2: 100%, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false,  @jQueryUI:false, @peekyFields:false, @select2:false, @lightContrast:40%) {
 
     // Mixins
     .colorCheck (@property:color, @color:#fff, @intensity:100%) when (luma(@color) >= @swatchSensitivity) {
@@ -22,23 +22,27 @@
       }
     }
     .createBodyColor() {
-        & when (@text = auto) {
-          .colorCheck(color, @fill, 70%);
-        }
-        & when not (@text = auto) {
-          color: @text;
-        }
+      & when (@text = auto) {
+        .colorCheck(color, @fill, 70%);
+      }
+      & when not (@text = auto) {
+        color: @text;
+      }
     }
     .createTextColors() {
         & when (@heading = auto) {
+          & {
             h1, h2, h3, h4, h5, h6 {
                 .colorCheck(color, @fill, 70%);
             }
+          }
         }
         & when not (@heading = auto) {
+          & {
             h1, h2, h3, h4, h5, h6 {
                 color: @heading;
             }
+          }
         }
         & when (@link = auto) {
           a {
@@ -71,20 +75,24 @@
           }
         }
         & when (@comment = auto) {
+          & {
             .s-comment, a.s-comment {
               .colorCheck(color, @fill, 50%);
             }
             a.s-comment:hover {
               .colorCheck(color, @fill, 70%);
             }
+          }
         }
         & when not (@comment = auto) {
-            .s-comment, a.s-comment, [class*="s-swatch"] & .s-comment {
+          & {
+            .s-comment, a.s-comment {
               color: @comment;
             }
             a.s-comment:hover {
               color: darken(@comment, 20%);
             }
+          }
         }
     }
     .createBorderColors() {
@@ -209,7 +217,11 @@
         .ui-widget-hover {
           &.ui-state-hover {
             background-color: darken(@fill, @hoverIntensity);
+            .colorCheck(color, @inputFocus);
           }
+        }
+        .ui-state-hover {
+          .colorCheck(color, @inputFocus);
         }
         .ui-widget-content {
           background-color: @fill;
@@ -289,6 +301,9 @@
             }
             .ui-datepicker-header {
                 color: @text;
+                a.ui-datepicker-next, a.ui-datepicker-prev {
+                  color: @link;
+                }
             }
             table.ui-datepicker-calendar tr {
               a, a:hover {
@@ -338,10 +353,14 @@
             &.select2-container--open {
               .select2-dropdown {
                 border-color: @borderActive;
+                .select2-results__option--highlighted {
+                  background-color: @inputFocus;
+                  color: @swatchWhite;
+                }
               }
             }
             .select2-results__option--highlighted[aria-selected] {
-              color: @text;
+              color: @inputFocus;
               position: relative;
             }
             .select2-selection--single {
@@ -357,15 +376,13 @@
             }
           }
         }
-        @{void}, *:not([class*="s-swatch"]) .s-swatch-@{name} {
+        @{void}, .s-swatch-@{name}, [class*="s-swatch"] .s-swatch-@{name} {
           .createTextColors();
           .createBorderColors();
+          .createWidgetColors();
           & when not (@jQueryUI = false) {
             .createjQueryUI();
           }
-        }
-        @{void}, &.s-swatch-@{name} {
-          .createWidgetColors();
         }
         .s-swatch-@{name}, [class*="s-swatch"] .s-swatch-@{name} {
           background-color: @fill;
@@ -381,7 +398,7 @@
         }
     }
     & when not (@name = default) {
-        .s-swatch-@{name} {
+        .s-swatch-@{name}, [class*="s-swatch"] .s-swatch-@{name} {
           .createTextColors();
           .createBodyColor();
           .createBorderColors();
@@ -411,6 +428,20 @@
     .s-swatch-@{name}--light {
       background-color: lighten(@fill, @lightContrast);
       color: @fill;
+    }
+    .s-swatch-@{name}--gradient {
+      background-color: @fill;
+      background-image: linear-gradient(@gradientAngle, @fill @gradientStop1, @fill2 @gradientStop2);
+      &, a&, [class*="s-button"]&, .s-box& {
+        .colorCheck(color, @fill);
+      }
+      a&:hover, [class*="s-button"]&:hover {
+        background-image: linear-gradient(@gradientAngle, darken(@fill,@hoverIntensity) @gradientStop1, darken(@fill2,@hoverIntensity) @gradientStop2);
+        .colorCheck(color, @fill);
+      }
+      a&, .s-box& {
+        border: none;
+      }
     }
 }
 

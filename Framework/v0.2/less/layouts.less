@@ -284,12 +284,21 @@ html, body {
   }
   .s-align-@{name}--left {
     text-align: left !important;
+    &[class*="s-flex"] {
+      justify-content: left;
+    }
   }
   .s-align-@{name}--right {
     text-align: right !important;
+    &[class*="s-flex"] {
+      justify-content: right;
+    }
   }
   .s-align-@{name}--center {
     text-align: center !important;
+    &[class*="s-flex"] {
+      justify-content: center;
+    }
   }
   .s-expand-@{name} {
     &, &[class*="s-col"] {

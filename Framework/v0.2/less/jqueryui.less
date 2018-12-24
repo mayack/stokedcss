@@ -17,7 +17,7 @@
     .border-top-left-radius(@cornerRadius);
 }
 .ui-state-hover,
-.ui-widget-content .ui-state-hover,
+.ui-widget-content .ui-state-hover,g
 .ui-widget-header .ui-state-hover,
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
@@ -185,7 +185,7 @@
                 &.ui-datepicker-today a {
                     color: @inputFocus;
                 }
-                &.ui-datepicker-current-day a {
+                a.ui-state-hover, &.ui-datepicker-current-day a {
                     .colorCheck(color, @inputFocus);
                     background: @inputFocus;
                 }
@@ -317,10 +317,14 @@
 // Tooltip
 .ui-tooltip.ui-widget-content {
     &:extend([class*="s-text"][class*="-size--s"]);
-    .box-shadow(0 3px 7px rgba(0,0,0,0.5));
+    box-shadow: none;
+    & when not (@tooltipShadow = false) {
+      .box-shadow(0 3px 10px @tooltipShadow);
+    }
     .colorCheck(color, @tooltipColor, 100%);
     background: @tooltipColor;
     border: none;
+    opacity: 1;
     padding: round(@margin/4,2) round(@margin/3,2) round(@margin/6,2) round(@margin/3,2);
 }
 
@@ -330,7 +334,7 @@
     background-position: 0;
     height: auto;
     line-height: 1;
-    overflow: hidden;
+    overflow: inherit;
     text-align: center;
     text-indent: 0;
     width: 1em;
