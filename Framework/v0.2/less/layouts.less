@@ -13,9 +13,6 @@ html, body {
 [class*="s-flex"] {
   >* {
     flex-grow: 0;
-    &.s-expand {
-      flex-grow: 1;
-    }
   }
   &[class*="--justified"]>* {
     flex-basis: 0;
@@ -24,11 +21,22 @@ html, body {
   &, &[class*="-direction--row"] {
     .flex();
   }
+  &[class*="direction-rowReverse"] {
+    .flex(row-reverse);
+  }
   &[class*="-direction--column"] {
     .flex(column);
   }
+  &[class*="direction-columnReverse"] {
+    .flex(column-reverse);
+  }
 }
 [class*="s-flex"], [class*="s-grid"] {
+  >.s-expand {
+    &, &[class*="s-col"] {
+      flex-grow: 1;
+    }
+  }
   &[class*="-wrap"] {
     flex-wrap: wrap;
   }
@@ -203,32 +211,51 @@ html, body {
       margin-top: 0;
     }
   }
-  [class*="-stackable-@{name}"] {
+  [class*="stackable-@{name}"] {
     &[class*="s-grid"], &[class*="s-flex"] {
       flex-direction: column;
-      &[class*="stackable-@{n}--none"]>*+*,
-      &[class*="stackable-@{n}--none"]>[class*="s-col"]+[class*="s-col"] {
-        margin-top: 0;
+      &[class*="stackable-@{name}--none"]>* {
+        &, &[class*="s-col"] {
+          margin-top: 0;
+        }
       }
-      &[class*="stackable-@{n}--xs"]>*+*,
-      &[class*="stackable-@{n}--xs"]>[class*="s-col"]+[class*="s-col"] {
-        margin-top: @space-xs;
+      &[class*="stackable-@{name}--xs"]>* {
+        &, &[class*="s-col"] {
+          margin-top: @space-xs;
+        }
       }
-      &[class*="stackable-@{n}--s"]>*+*,
-      &[class*="stackable-@{n}--s"]>[class*="s-col"]+[class*="s-col"] {
-        margin-top: @space-s;
+      &[class*="stackable-@{name}--s"]>* {
+        &, &[class*="s-col"] {
+          margin-top: @space-s;
+        }
       }
-      &[class*="stackable-@{n}--m"]>*+*,
-      &[class*="stackable-@{n}--m"]>[class*="s-col"]+[class*="s-col"] {
-        margin-top: @space-m;
+      &[class*="stackable-@{name}--m"]>* {
+        &, &[class*="s-col"] {
+          margin-top: @space-m;
+        }
       }
-      &[class*="stackable-@{n}--l"]>*+*,
-      &[class*="stackable-@{n}--l"]>[class*="s-col"]+[class*="s-col"] {
-        margin-top: @space-l;
+      &[class*="stackable-@{name}--l"]>* {
+        &, &[class*="s-col"] {
+          margin-top: @space-l;
+        }
       }
-      &[class*="stackable-@{n}--xl"]>*+*,
-      &[class*="stackable-@{n}--xl"]>[class*="s-col"]+[class*="s-col"] {
-        margin-top: @space-xl;
+      &[class*="stackable-@{name}--xl"]>* {
+        &, &[class*="s-col"] {
+          margin-top: @space-xl;
+        }
+      }
+      &:not([class*="--reverse"])>* {
+        &, &[class*="s-col"] {
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+      }
+      &[class*="--reverse"] {
+        flex-direction: column-reverse;
+        >*:last-child {
+          margin-top: 0;
+        }
       }
     }
     &[class*="s-flex"] {
@@ -281,6 +308,66 @@ html, body {
         }
       }
     }
+    &[class*="halfstackable-@{name}"] {
+      flex-direction: row;
+      &[class*="s-grid"]>* {
+        flex-basis: 50%;
+        width: 50%;
+        &:nth-child(2) {
+          margin-top: 0 !important;
+        }
+      }
+    }
+    &[class*="halfstackable-@{name}"]>*, &[class*="halfstackable-@{name}--m"]>* {
+      &[class*="s-col"] {
+        &:nth-child(odd) {
+          padding-right: @space-m/2;
+        }
+        + *:nth-child(even) {
+          padding-left: @space-m/2;
+        }
+      }
+    }
+    &[class*="halfstackable-@{name}--xs"]>* {
+      &[class*="s-col"] {
+        &:nth-child(odd) {
+          padding-right: @space-xs/2;
+        }
+        + *:nth-child(even) {
+          padding-left: @space-xs/2;
+        }
+      }
+    }
+    &[class*="halfstackable-@{name}--s"]>* {
+      &[class*="s-col"] {
+        &:nth-child(odd) {
+          padding-right: @space-s/2;
+        }
+        + *:nth-child(even) {
+          padding-left: @space-s/2;
+        }
+      }
+    }
+    &[class*="halfstackable-@{name}--l"]>* {
+      &[class*="s-col"] {
+        &:nth-child(odd) {
+          padding-right: @space-l/2;
+        }
+        + *:nth-child(even) {
+          padding-left: @space-l/2;
+        }
+      }
+    }
+    &[class*="halfstackable-@{name}--xl"]>* {
+      &[class*="s-col"] {
+        &:nth-child(odd) {
+          padding-right: @space-xl/2;
+        }
+        + *:nth-child(even) {
+          padding-left: @space-xl/2;
+        }
+      }
+    }
   }
   .s-align-@{name}--left {
     text-align: left !important;
@@ -302,6 +389,7 @@ html, body {
   }
   .s-expand-@{name} {
     &, &[class*="s-col"] {
+      flex-basis: 100%;
       width: 100%;
     }
     &[class*="s-blockWidth"] {
@@ -309,7 +397,7 @@ html, body {
     }
   }
 }
-.createMediaQueryFeatures(@n: @name, @r: @responsive, @rh: @responsiveHeader, @wmin: @wrapperMinWidth, @wmax: @wrapperMaxWidth, @wm: @wrapperMargin, @t: @viewportType, @vmin: @viewportMinWidth, @vmax: @viewportMaxWidth, @cs: @customStyles) {
+.createMediaQueryFeatures(@n: @name, @r: @responsive, @rh: @responsiveHeader, @wmin: @wrapperMinWidth, @wmax: @wrapperMaxWidth, @wm: @wrapperMargin, @t: @viewportType, @vmin: @viewportMinWidth, @vmax: @viewportMaxWidth, @fs: @fontSize, @fb: @fontBaseline, @cs: @customStyles) {
   & when (@r = true) {
     .createResponsiveness(@n);
   }
@@ -403,7 +491,7 @@ html, body {
     }
   }
   & when not (@n = default) {
-    .s-show-@{n} {
+    .s-show-@{name} {
       &:not([class*="s-flex"]) {
         display: block !important;
       }
@@ -411,12 +499,22 @@ html, body {
         display: flex !important;
       }
     }
-    .s-hide-@{n} {
+    .s-hide-@{name} {
       display: none !important;
     }
   }
+  & when not (@fs = false) {
+    html {
+      font-size: @fs;
+    }
+  }
+  & when not (@fb = false) {
+    html, body {
+      line-height: @fb;
+    }
+  }
 }
-.createMediaQuery(@name: default, @responsive: false, @responsiveHeader: false, @wrapperMinWidth: false, @wrapperMaxWidth: false, @wrapperMargin: false, @viewportType: screen, @viewportMinWidth: false, @viewportMaxWidth: false, @customStyles: false) {
+.createMediaQuery(@name: default, @responsive: false, @responsiveHeader: false, @wrapperMinWidth: false, @wrapperMaxWidth: false, @wrapperMargin: false, @viewportType: screen, @viewportMinWidth: false, @viewportMaxWidth: false, @fontSize: false, @fontBaseline: false, @customStyles: false) {
   & when not (@viewportMinWidth = false) and (@viewportMaxWidth = false)  {
     @mediaQuery: ~"@{viewportType} and (min-width: @{viewportMinWidth})";
     @media @mediaQuery {

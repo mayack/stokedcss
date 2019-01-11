@@ -4,11 +4,11 @@
 
 html {
   font-family: @bodyFamily;
-  font-size: 100%; /* 16px */
+  font-size: @bodySize;
   line-height: @bodyBaseline;
 }
 body {
-  font-size: @bodySize;
+  // font-size: 1rem;
 }
 body, input, textarea, keygen, select, button {
   font-family: @bodyFamily;
@@ -156,6 +156,15 @@ h6, small { .text-size--s; }
     }
     &[class*="-size--3xs"] {
       .text-size--3xs;
+    }
+    &[class*="-size--4xs"] {
+      .text-size--4xs;
+    }
+    &[class*="-size--5xs"] {
+      .text-size--5xs;
+    }
+    &[class*="-size--6xs"] {
+      .text-size--6xs;
     }
 }
 
@@ -316,47 +325,56 @@ hr {
   text-transform: uppercase;
 }
 .text-size--9xl() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*7), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*7), 2);
 }
 .text-size--8xl() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*5), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*5), 2);
 }
 .text-size--7xl() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*4), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*4), 2);
 }
 .text-size--6xl() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*3.5), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*3.5), 2);
 }
 .text-size--5xl() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*3), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*3), 2);
 }
 .text-size--4xl() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*2.5), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*2.5), 2);
 }
 .text-size--3xl() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*2), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*2), 2);
 }
 .text-size--xxl() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*1.5), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*1.5), 2);
 }
 .text-size--xl() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*1), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*1), 2);
 }
 .text-size--l() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*0.5), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*0.5), 2);
 }
 .text-size--default() {
-  font-size: @bodySize;
+  font-size: 1rem;
 }
 .text-size--s() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*-0.5), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*-0.5), 2);
 }
 .text-size--xs() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*-1), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*-1), 2);
 }
 .text-size--xxs() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*-1.5), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*-1.5), 2);
 }
 .text-size--3xs() {
-  font-size: round(@bodySize * pow(@bodyBaseline,@fontScatter*-2), 2);
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*-2), 2);
+}
+.text-size--4xs() {
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*-2.5), 2);
+}
+.text-size--5xs() {
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*-3), 2);
+}
+.text-size--6xs() {
+  font-size: round(1rem * pow(@bodyBaseline,@fontScatter*-3.5), 2);
 }

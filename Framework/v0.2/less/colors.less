@@ -2,7 +2,8 @@
 // Swatches
 // ==========================================================
 
-.createSwatch(@name, @fill:#fff, @fill2:darken(@fill, 10%), @gradientAngle: 0deg, @gradientStop1: 0%, @gradientStop2: 100%, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false,  @jQueryUI:false, @peekyFields:false, @select2:false, @lightContrast:40%) {
+
+.createSwatch(@name, @fill:#fff, @gradientColor1: @fill, @gradientColor2:darken(@fill, 10%), @gradientAngle: 180deg, @gradientStop1: 0%, @gradientStop2: 100%, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false, @jQueryUI:false, @peekyFields:false, @select2:false, @lightContrast:40%) {
 
     // Mixins
     .colorCheck (@property:color, @color:#fff, @intensity:100%) when (luma(@color) >= @swatchSensitivity) {
@@ -201,7 +202,7 @@
         [class*="s-table"][class*="-zebra"] tbody tr:nth-child(odd) td:not([class*="s-swatch"]) {
           background-color: darken(@fill, 2%);
         }
-        &[class*="s-button"], &.s-box {
+        &[class*="s-button"] {
           &[class*="s-shadow"] {
             border-color: @fill;
           }
@@ -431,12 +432,12 @@
     }
     .s-swatch-@{name}--gradient {
       background-color: @fill;
-      background-image: linear-gradient(@gradientAngle, @fill @gradientStop1, @fill2 @gradientStop2);
+      background-image: linear-gradient(@gradientAngle, @gradientColor1 @gradientStop1, @gradientColor2 @gradientStop2);
       &, a&, [class*="s-button"]&, .s-box& {
         .colorCheck(color, @fill);
       }
       a&:hover, [class*="s-button"]&:hover {
-        background-image: linear-gradient(@gradientAngle, darken(@fill,@hoverIntensity) @gradientStop1, darken(@fill2,@hoverIntensity) @gradientStop2);
+        background-image: linear-gradient(@gradientAngle, darken(@gradientColor1,@hoverIntensity) @gradientStop1, darken(@gradientColor2,@hoverIntensity) @gradientStop2);
         .colorCheck(color, @fill);
       }
       a&, .s-box& {

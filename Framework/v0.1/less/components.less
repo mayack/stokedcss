@@ -234,13 +234,15 @@
     }
 }
 .s-shape-circle {
+  &:not([class*="s-flex"]) {
     display: inline-block;
-    & {
-        .border-radius(50%);
-    }
-    &[class*="s-button"] {
-        &:extend([class*="s-text"][class*="-baseline--single"]);
-    }
+  }
+  & {
+      .border-radius(50%);
+  }
+  &[class*="s-button"] {
+      &:extend([class*="s-text"][class*="-baseline--single"]);
+  }
 }
 .s-shape-pill {
   &, &.s-label {

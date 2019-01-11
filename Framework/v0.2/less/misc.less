@@ -50,6 +50,9 @@ body {
 .s-shadow--xl {
   box-shadow: @shadowXLarge
 }
+.s-box[class*="s-shadow"] {
+  border: none;
+}
 ::selection {
     background: @textSelect;
     .colorCheck(color, @textSelect);
@@ -137,10 +140,12 @@ a {
     margin-left: 0;
     margin-right: 0;
   }
-  &.s-shape-circle {
-    line-height: @circleIconSize;
-    height: @circleIconSize;
-    text-align: center;
-    width: @circleIconSize;
+  &[class*="s-shape-circle"] {
+    box-sizing: content-box;
+    line-height: 1;
+    height: 1em;
+    &:before {
+      height: 1em;
+    }
   }
 }
