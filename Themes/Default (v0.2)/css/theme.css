@@ -2651,7 +2651,7 @@ textarea,
 keygen,
 select,
 button {
-  font-size: 0.8125rem;
+  font-size: 1rem;
 }
 [class*="s-text"][class*="-size"] input,
 [class*="s-text"][class*="-size"] textarea,
@@ -3829,8 +3829,10 @@ a {
 [class^="icon-"][class*="s-shape-circle"],
 [class*=" icon-"][class*="s-shape-circle"] {
   box-sizing: content-box;
-  line-height: 1;
-  height: 1em;
+  line-height: 1.25rem;
+  height: 1.25rem;
+  text-align: center;
+  width: 1.25rem;
 }
 [class^="icon-"][class*="s-shape-circle"]:before,
 [class*=" icon-"][class*="s-shape-circle"]:before {
@@ -4156,7 +4158,7 @@ body,
 .s-radiobox label,
 .s-swatch-default.s-radiobox label,
 [class*="s-swatch"] .s-swatch-default.s-radiobox label {
-  border-color: #e0e0e0;
+  border-color: #fff;
 }
 [class*="s-button"],
 .s-swatch-default[class*="s-button"],
@@ -4167,13 +4169,13 @@ body,
 .s-swatch-default[class*="s-button"]:hover,
 [class*="s-swatch"] .s-swatch-default[class*="s-button"]:hover {
   background-color: #f5f5f5;
-  border-color: #d6d6d6;
+  border-color: #f5f5f5;
 }
 [class*="s-button"]:active,
 .s-swatch-default[class*="s-button"]:active,
 [class*="s-swatch"] .s-swatch-default[class*="s-button"]:active {
   background-color: #f0f0f0;
-  border-color: #d1d1d1;
+  border-color: #f0f0f0;
 }
 [class*="s-button"],
 .s-swatch-default[class*="s-button"],
@@ -4435,7 +4437,7 @@ a.s-swatch-default--gradient,
 [class*="s-swatch"] .s-swatch-blue.s-checkbox label,
 .s-swatch-blue.s-radiobox label,
 [class*="s-swatch"] .s-swatch-blue.s-radiobox label {
-  border-color: #0000c2;
+  border-color: blue;
 }
 .s-swatch-blue[class*="s-button"],
 [class*="s-swatch"] .s-swatch-blue[class*="s-button"] {
@@ -4444,12 +4446,12 @@ a.s-swatch-default--gradient,
 .s-swatch-blue[class*="s-button"]:hover,
 [class*="s-swatch"] .s-swatch-blue[class*="s-button"]:hover {
   background-color: #0000eb;
-  border-color: #0000ad;
+  border-color: #0000eb;
 }
 .s-swatch-blue[class*="s-button"]:active,
 [class*="s-swatch"] .s-swatch-blue[class*="s-button"]:active {
   background-color: #0000e0;
-  border-color: #0000a3;
+  border-color: #0000e0;
 }
 .s-swatch-blue[class*="s-button"],
 [class*="s-swatch"] .s-swatch-blue[class*="s-button"],
@@ -4867,7 +4869,6 @@ a:not([class*="s-comment"]):not([class*="s-button"]):not([class*="s-swatch"]).s-
     -ms-transition: opacity 0.2s;
     -o-transition: opacity 0.2s;
     transition: opacity 0.2s;
-    font-size: 5vw;
     margin: 0;
     opacity: 0;
   }

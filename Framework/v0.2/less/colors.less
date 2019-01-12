@@ -3,7 +3,7 @@
 // ==========================================================
 
 
-.createSwatch(@name, @fill:#fff, @gradientColor1: @fill, @gradientColor2:darken(@fill, 10%), @gradientAngle: 180deg, @gradientStop1: 0%, @gradientStop2: 100%, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false, @jQueryUI:false, @peekyFields:false, @select2:false, @lightContrast:40%) {
+.createSwatch(@name, @fill:#fff, @gradientColor1: @fill, @gradientColor2:darken(@fill, 10%), @gradientAngle: 180deg, @gradientStop1: 0%, @gradientStop2: 100%, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false, @jQueryUI:false, @peekyFields:false, @select2:false, @lightContrast:40%, @buttonBorders:false) {
 
     // Mixins
     .colorCheck (@property:color, @color:#fff, @intensity:100%) when (luma(@color) >= @swatchSensitivity) {
@@ -148,18 +148,35 @@
         &.s-checkbox label, &.s-radiobox label {
           background-color: @fill;
         }
-        &[class*="s-button"], &.s-checkbox label, &.s-radiobox label {
-          border-color: @borderActive;
+        & when not (@buttonBorders = true) {
+          &[class*="s-button"], &.s-checkbox label, &.s-radiobox label {
+            border-color: @fill;
+          }
+        }
+        & when (@buttonBorders = true) {
+          &[class*="s-button"], &.s-checkbox label, &.s-radiobox label {
+            border-color: @borderActive;
+          }
         }
         &[class*="s-button"] {
           background-color: @fill;
           &:hover {
             background-color: darken(@fill,@hoverIntensity);
-            border-color: darken(@borderActive,@hoverIntensity);
+            & when not (@buttonBorders = true) {
+              border-color: darken(@fill,@hoverIntensity);
+            }
+            & when (@buttonBorders = true) {
+              border-color: darken(@borderActive,@hoverIntensity);
+            }
           }
           &:active {
             background-color: darken(@fill,@hoverIntensity*1.5);
-            border-color: darken(@borderActive,@hoverIntensity*1.5);
+            & when not (@buttonBorders = true) {
+              border-color: darken(@fill,@hoverIntensity*1.5);
+            }
+            & when (@buttonBorders = true) {
+              border-color: darken(@borderActive,@hoverIntensity*1.5);
+            }
           }
           & when (@buttonText = auto) {
             &, a&, a&:hover, &:hover {
