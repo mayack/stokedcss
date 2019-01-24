@@ -351,13 +351,15 @@
 }
 [class*="s-button"] {
   .createElementPadding(@buttonPadding, @buttonPaddingRatio);
-  border-radius: @cornerRadius;
   border-style: solid;
   border-width: 1px;
   font-weight: bold;
   line-height: @bodyBaseline;
   text-align: center;
   white-space: nowrap;
+  &:not([class*="s-button"]) {
+    border-radius: @cornerRadius;
+  }
   &:not([class*="s-flex"]) {
     display: inline-block;
   }
@@ -394,22 +396,25 @@
 // Label
 .s-label {
     border-radius: @cornerRadius;
-    display: inline;
     padding: 0.2em 0.5em;
+    text-align: center;
     white-space: nowrap;
+    &:not([class*="s-blockWidth"]) {
+      display: inline;
+    }
 }
 
 // Lister
 [class*="s-lister"] {
     > * {
-        &:not([class*="s-padding-bottom"]) {
+        &:not([class*="s-padding"]) {
           padding-bottom: @space-m;
         }
         + * {
             border-top-style: solid;
             border-top-width: 1px;
         }
-        + *:not([class*="s-padding-top"]) {
+        + *:not([class*="s-padding"]) {
             padding-top: @space-m;
         }
         &:last-child:not([class*="s-padding--"]):not([class*="s-padding "]) {
@@ -418,70 +423,70 @@
     }
     &[class*="-spacing--none"] {
         > * {
-          &:not([class*="s-padding-bottom"]) {
+          &:not([class*="s-padding"]) {
             padding-bottom: 0;
           }
-            + *:not([class*="s-padding-top"]) {
+            + *:not([class*="s-padding"]) {
                 padding-top: 0;
             }
         }
     }
     &[class*="-spacing--xxs"] {
         > * {
-          &:not([class*="s-padding-bottom"]) {
+          &:not([class*="s-padding"]) {
             padding-bottom: @space-xxs;
           }
-            + *:not([class*="s-padding-top"]) {
+            + *:not([class*="s-padding"]) {
                 padding-top: @space-xxs;
             }
         }
     }
     &[class*="-spacing--xs"] {
         > * {
-            &:not([class*="s-padding-bottom"]) {
+            &:not([class*="s-padding"]) {
               padding-bottom: @space-xs;
             }
-            + *:not([class*="s-padding-top"]) {
+            + *:not([class*="s-padding"]) {
                 padding-top: @space-xs;
             }
         }
     }
     &[class*="-spacing--s"] {
         > * {
-          &:not([class*="s-padding-bottom"]) {
+          &:not([class*="s-padding"]) {
             padding-bottom: @space-s;
           }
-            + *:not([class*="s-padding-top"]) {
+            + *:not([class*="s-padding"]) {
                 padding-top: @space-s;
             }
         }
     }
     &[class*="-spacing--l"] {
         > * {
-          &:not([class*="s-padding-bottom"]) {
+          &:not([class*="s-padding"]) {
             padding-bottom: @space-l;
           }
-            + *:not([class*="s-padding-top"]) {
+            + *:not([class*="s-padding"]) {
                 padding-top: @space-l;
             }
         }
     }
     &[class*="-spacing--xl"] {
         > * {
-          &:not([class*="s-padding-bottom"]) {
+          &:not([class*="s-padding"]) {
             padding-bottom: @space-xl;
           }
-            + *:not([class*="s-padding-top"]) {
+            + *:not([class*="s-padding"]) {
                 padding-top: @space-xl;
             }
         }
     }
     &[class*="-spacing--xxl"] {
         > * {
-          &:not([class*="s-padding-bottom"]) {
+          &:not([class*="s-padding"]) {
             padding-bottom: @space-xxl;
           }
-            + *:not([class*="s-padding-top"]) {
+            + *:not([class*="s-padding"]) {
                 padding-top: @space-xxl;
             }
         }

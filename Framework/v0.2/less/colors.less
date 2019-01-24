@@ -344,7 +344,7 @@
         }
         & when not (@peekyFields = false) {
           .s-peekyField {
-            select, input {
+            select, input, textarea {
               border-color: @borderActive;
               color: @text;
               &:focus {
@@ -450,15 +450,16 @@
     .s-swatch-@{name}--gradient {
       background-color: @fill;
       background-image: linear-gradient(@gradientAngle, @gradientColor1 @gradientStop1, @gradientColor2 @gradientStop2);
+      border-image: linear-gradient(@gradientAngle, @gradientColor1 @gradientStop1, @gradientColor2 @gradientStop2);
+      border-image-slice: 1;
       &, a&, [class*="s-button"]&, .s-box& {
         .colorCheck(color, @fill);
       }
       a&:hover, [class*="s-button"]&:hover {
         background-image: linear-gradient(@gradientAngle, darken(@gradientColor1,@hoverIntensity) @gradientStop1, darken(@gradientColor2,@hoverIntensity) @gradientStop2);
+        border-image: linear-gradient(@gradientAngle, @gradientColor1 @gradientStop1, @gradientColor2 @gradientStop2);
+        border-image-slice: 1;
         .colorCheck(color, @fill);
-      }
-      a&, .s-box& {
-        border: none;
       }
     }
 }

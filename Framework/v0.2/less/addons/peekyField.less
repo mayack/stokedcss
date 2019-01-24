@@ -1,6 +1,9 @@
 .s-peekyField {
-  @topPadding: round(@bodySize * pow(@bodyBaseline,@fontScatter*-0.5), 2) + round(@inputPadding, 1) * 1rem;
+  @topPadding: round(1rem * pow(@bodyBaseline,@fontScatter), 2) + round(@inputPadding, 1) * 1rem;
   position: relative;
+  &:not([class*="s-text"][class*="size--"]) {
+    .text-size--default;
+  }
   >textarea {
     display: none !important;
   }
@@ -32,7 +35,7 @@
     height: 100%;
     line-height: @bodyBaseline;
     margin-top: 0.1em;
-    padding: (@bodySize * @bodyBaseline)/2 0;
+    padding: (1rem * @bodyBaseline)/2 0;
     &:not(a) {
       pointer-events: none;
     }
