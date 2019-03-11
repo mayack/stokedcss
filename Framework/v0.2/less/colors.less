@@ -46,7 +46,7 @@
           }
         }
         & when (@link = auto) {
-          a {
+          a, a& {
             .colorCheck(color, @fill, 90%);
             & when (@linkHover = auto) {
               &:hover {
@@ -61,7 +61,7 @@
           }
         }
         & when not (@link = auto) {
-          a {
+          a, a& {
             color: @link;
             & when (@linkHover = auto) {
               &:hover {
@@ -452,7 +452,7 @@
       background-image: linear-gradient(@gradientAngle, @gradientColor1 @gradientStop1, @gradientColor2 @gradientStop2);
       border-image: linear-gradient(@gradientAngle, @gradientColor1 @gradientStop1, @gradientColor2 @gradientStop2);
       border-image-slice: 1;
-      &, a&, [class*="s-button"]&, .s-box& {
+      &, h1, h2, h3, h4, h5, h6, a&, [class*="s-button"]&, .s-box& {
         .colorCheck(color, @fill);
       }
       a&:hover, [class*="s-button"]&:hover {
@@ -493,12 +493,14 @@
         border-color: @color;
       }
     }
-    & when not (@customStyles = false) {
-      @customStyles();
-    }
     .s-popoverArrow:before {
       background: @bgColor;
       border-color: @color;
+    }
+  }
+  [class*="s-effect-@{name}"] {
+    & when not (@customStyles = false) {
+      @customStyles();
     }
   }
   .s-effect-@{name}--fill {

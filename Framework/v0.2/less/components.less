@@ -36,18 +36,44 @@
     top: 50%;
   }
   &[class*="s-position--leftCenter"], &[class*="s-position--rightCenter"] {
-    .translate(0, -50%);
     top: 50%;
+    .translate(0, -50%);
   }
   &[class*="s-position--topLeft"], &[class*="s-position--bottomLeft"] {
     left: 0;
+    &[class*="--outer"] {
+      transform: translateX(-50%);
+    }
   }
   &[class*="s-position--topRight"], &[class*="s-position--bottomRight"] {
     right: 0;
+    &[class*="--outer"] {
+      transform: translateX(50%);
+    }
   }
   &[class*="s-position--topCenter"], &[class*="s-position--bottomCenter"] {
     .translate(-50%, 0);
     left: 50%;
+  }
+  &[class*="--outer"] {
+    &[class*="s-position--topLeft"], &[class*="s-position--topCenter"] {
+      .translate(-50%, -50%);
+    }
+    &[class*="s-position--topRight"] {
+      .translate(-50%, -50%);
+    }
+    &[class*="s-position--leftCenter"] {
+      .translate(-50%, 0);
+    }
+    &[class*="s-position--rightCenter"] {
+      .translate(50%, 0);
+    }
+    &[class*="s-position--bottomLeft"], &[class*="s-position--bottomCenter"] {
+      .translate(-50%, 50%);
+    }
+    &[class*="s-position--bottomRight"] {
+      .translate(50%, 50%);
+    }
   }
 }
 .s-relative {

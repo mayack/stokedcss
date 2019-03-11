@@ -274,39 +274,39 @@ html, body {
         &, &[class*="s-col"] {
           padding: 0;
           width: 100%;
-          + [class*="s-col"] {
-            margin-top: @space-m;
-          }
+          // + [class*="s-col"] {
+          //   margin-top: @space-m;
+          // }
         }
       }
-      &[class*="spacing--xs"]>* {
-        &, &[class*="s-col"] {
-          + * {
-            margin-top: @space-xs;
-          }
-        }
-      }
-      &[class*="spacing--s"]>* {
-        &, &[class*="s-col"] {
-          + * {
-            margin-top: @space-s;
-          }
-        }
-      }
-      &[class*="spacing--l"]>* {
-        &, &[class*="s-col"] {
-          + * {
-            margin-top: @space-l;
-          }
-        }
-      }
-      &[class*="spacing--xl"]>* {
-        &, &[class*="s-col"] {
-          + * {
-            margin-top: @space-xl;
-          }
-        }
-      }
+      // &[class*="spacing--xs"]>* {
+      //   &, &[class*="s-col"] {
+      //     + * {
+      //       margin-top: @space-xs;
+      //     }
+      //   }
+      // }
+      // &[class*="spacing--s"]>* {
+      //   &, &[class*="s-col"] {
+      //     + * {
+      //       margin-top: @space-s;
+      //     }
+      //   }
+      // }
+      // &[class*="spacing--l"]>* {
+      //   &, &[class*="s-col"] {
+      //     + * {
+      //       margin-top: @space-l;
+      //     }
+      //   }
+      // }
+      // &[class*="spacing--xl"]>* {
+      //   &, &[class*="s-col"] {
+      //     + * {
+      //       margin-top: @space-xl;
+      //     }
+      //   }
+      // }
     }
     &[class*="halfstackable-@{name}"] {
       flex-direction: row;
@@ -431,7 +431,7 @@ html, body {
           nav {
             .flex(column);
             .transition(opacity .2s);
-            // font-size: 5vw;
+            font-size: 5vw;
             margin: 0;
             opacity: 0;
             &[class*='s-col'] {

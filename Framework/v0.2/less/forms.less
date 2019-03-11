@@ -25,7 +25,7 @@ input, textarea {
   line-height: @bodyBaseline;
 }
 input:not([type="submit"]):not([type="button"]):focus, textarea:focus {
-  @shadow: 0 0 @inputFocusGlow @inputFocusStroke @inputFocus;
+  @shadow: 0 0 @inputFocusGlow fadeout(@inputFocus,30%), 0 0 @inputFocusGlow*2 fadeout(@inputFocus,70%);
   box-shadow: @shadow;
   border-color: @inputFocus !important;
   outline: none;
@@ -69,7 +69,7 @@ input::-moz-focus-inner {
   }
   &[class*="s-inputIcon--left"] {
     input {
-      padding-left: round((@inputPadding * (4/@inputPaddingRatio) * 2) + 1em,1);
+      padding-left: round((@inputPadding * (4/@inputPaddingRatio)) + 1em,1);
     }
     *[class*="icon"] {
       left: round(@inputPadding*4/@inputPaddingRatio,1);
@@ -77,7 +77,7 @@ input::-moz-focus-inner {
   }
   &[class*="s-inputIcon--right"] {
     input {
-      padding-right: round((@inputPadding * (4/@inputPaddingRatio) * 2) + 1em,1);
+      padding-right: round((@inputPadding * (4/@inputPaddingRatio)) + 1em,1);
     }
     *[class*="icon"] {
       right: round(@inputPadding*4/@inputPaddingRatio,1);
@@ -90,7 +90,7 @@ input::-moz-focus-inner {
   padding-left: 0;
   padding-right: 0;
 }
-.s-inputOption {
+[class*="s-inputOption"] {
   &:not([class*="s-cells"]):not([class*="s-flex"]):not([class*="s-grid"]) {
     display: inline-block;
   }
@@ -120,40 +120,36 @@ input::-moz-focus-inner {
 }
 .s-checkbox, .s-radiobox {
   display: inline;
+  height: 1em;
+  position: relative;
+  width: 1em;
   label {
-    .position(relative, @t:0.12em);
-    border-radius: @cornerRadius;
+    .position(@t:50%, @l:50%);
+    .translate(-50%, -50%);
+    border-radius: @cornerRadius/2;
     border-style: solid;
     border-width: 1px;
     cursor: pointer;
     display: inline-block;
     height: 1em;
     line-height: 1;
-    position: relative;
     text-align: center;
     width: 1em;
     &:before {
-      &:extend(.icon-ok:before);
-      .position(@t:0px,@l:0px);
-      .scale(0.1, 0.1);
+      &:extend(.icon-ok-thick:before);
+      .position(@t:50%, @l:50%);
+      .transform(translate(-50%, -50%));
       .transition(all .2s);
       color: #fff;
       display: inline-block;
       font-family: 'fontello';
-      font-size: 1em;
-      height: 100%;
+      font-size: 0.55em;
+      height: auto;
+      line-height: 1;
       opacity: 0;
-      width: 100%;
+      width: auto;
     }
   }
-  input {
-    display: none;
-    &:checked + label {
-
-    }
-  }
-}
-.s-checkbox {
   input {
     display: none;
     &:checked + label {
@@ -161,7 +157,7 @@ input::-moz-focus-inner {
       border-color: @inputFocus;
       cursor: default;
       &:before {
-        .transform(scale(0.65, 0.65));
+        .transform(translate(-50%, -50%));
         opacity: 1;
       }
     }
@@ -178,20 +174,17 @@ input::-moz-focus-inner {
   label {
     border-radius: 50%;
     &:before {
-      background-color: @inputFocus;
+      background-color: #fff;
       border-radius: 50%;
-      content: '';
+      text-indent: -9999px;
       height: 10%;
-      text-indent: 0;
       width: 10%;
     }
   }
   input:checked + label:before {
     .translate(-50%, -50%);
-    content: '';
-    height: 0.5em;
-    opacity: 1 !important;
-    width: 0.5em;
+    height: 50%;
+    width: 50%;
   }
 }
 .s-toggle {
@@ -204,7 +197,7 @@ input::-moz-focus-inner {
       border-color: @inputFocus;
       &:before {
         border-color: #FFF;
-        left: 0em;
+        right: 0em;
       }
     }
   }
@@ -222,9 +215,9 @@ input::-moz-focus-inner {
     width: @size * 2;
     &:before {
       .border-radius(50%);
-      .position(@t:0, @l:@size);
+      .position(@t:0, @r:@size);
       .scale(0.7, 0.7);
-      .transition(left .2s);
+      .transition(right .2s);
       background: #FFF;
       content: '';
       height: @size;

@@ -8,7 +8,7 @@ function popoverFloat() {
       offsetX = $(this).data('popover-offset-x'),
       offsetY = $(this).data('popover-offset-y'),
       position = $(this).data('popover-position'),
-      popover = $('.s-floatingPopover.visible');
+      popover = $('.s-floatingPopover.popoverVisible');
 
   if (position === undefined) {
     position = 'center';
@@ -29,8 +29,8 @@ function popoverFloat() {
     collision: "flip",
     using: function(obj, info){
       var item_top = (info.vertical!== "top"? "bottom" : "top");
-      $(this).addClass("s-popover-" + item_top + "-" + position);
-      $(this).removeClass("s-popover-" + (item_top === "top"? "bottom" : "top") + "-" + position);
+      $(this).addClass("s-popover--" + item_top + position);
+      $(this).removeClass("s-popover--" + (item_top === "top"? "bottom" : "top") + position);
       $(this).css({
         left: obj.left + 'px',
         top: obj.top + 'px'
@@ -38,21 +38,21 @@ function popoverFloat() {
     }
   });
 
-  if ($(popover).length && $(popover).attr('id') === targetId && $(this).hasClass('active')) {
-    $(target).removeClass('visible');
-    $(this).removeClass('active');
-  } else if ($(popover).length && $(popover).attr('id') === targetId && $(this).hasClass('active') === false) {
+  if ($(popover).length && $(popover).attr('id') === targetId && $(this).hasClass('popoverActive')) {
+    $(target).removeClass('popoverVisible');
+    $(this).removeClass('popoverActive');
+  } else if ($(popover).length && $(popover).attr('id') === targetId && $(this).hasClass('popoverActive') === false) {
     // This case exists because timeline actions' popover is not unique.
-    $('[data-popover].active').removeClass('active');
-    $(this).addClass('active');
+    $('[data-popover].popoverActive').removeClass('popoverActive');
+    $(this).addClass('popoverActive');
   } else if ($(popover).length && $(popover).attr('id') !== targetId) {
-    $(popover).removeClass('visible');
-    $('[data-popover].active').removeClass('active');
-    $(target).addClass('visible');
-    $(this).addClass('active');
+    $(popover).removeClass('popoverVisible');
+    $('[data-popover].popoverActive').removeClass('popoverActive');
+    $(target).addClass('popoverVisible');
+    $(this).addClass('popoverActive');
   } else {
-    $(target).addClass('visible');
-    $(this).addClass('active');
+    $(target).addClass('popoverVisible');
+    $(this).addClass('popoverActive');
   }
 
 }
@@ -73,7 +73,7 @@ $(function(){
 
 function ClickOutsideCheck(e) {
   var el = e.target,
-      popup = $('.s-floatingPopover.visible')[0];
+      popup = $('.s-floatingPopover.popoverVisible')[0];
   if (popup === undefined) {
     return true;
   }
@@ -81,8 +81,8 @@ function ClickOutsideCheck(e) {
     if (el === popup || $(el).attr('data-popover') !== undefined) {
       return true;
     } else if (el === document) {
-      $('.s-floatingPopover.visible').removeClass('visible');
-      $('.active[data-popover]').removeClass('active');
+      $('.s-floatingPopover.popoverVisible').removeClass('popoverVisible');
+      $('.popoverActive[data-popover]').removeClass('popoverActive');
       return false;
     } else {
       el = $(el).parent()[0];
