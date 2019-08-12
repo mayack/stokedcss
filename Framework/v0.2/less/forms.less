@@ -4,7 +4,7 @@
 
 input, textarea, keygen, select, button {
   font-size: 1rem;
-  [class*="s-text"][class*="-size"] & {
+  [class*="s-text"][class*="-size"] &:not([class*="s-text-size"]) {
     font-size: inherit;
   }
 }
@@ -97,7 +97,7 @@ input::-moz-focus-inner {
   label {
     cursor: pointer;
   }
-  input[type=radio] {
+  >input[type=radio] {
     display: none;
     &:checked {
       + label {
@@ -112,7 +112,7 @@ input::-moz-focus-inner {
         }
       }
     }
-    + label:not([class*="s-cells"]) {
+    + label:not([class*="s-cells"]):not([class*="s-flex"]) {
       cursor: pointer;
       display: inline-block;
     }
@@ -130,7 +130,7 @@ input::-moz-focus-inner {
     border-style: solid;
     border-width: 1px;
     cursor: pointer;
-    display: inline-block;
+    // display: inline-block;
     height: 1em;
     line-height: 1;
     text-align: center;
