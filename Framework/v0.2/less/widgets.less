@@ -353,9 +353,10 @@
   }
 }
 [class*="s-button"] {
-  &:not(.s-shape-circle) {
-    .createElementPadding(@buttonPadding, @buttonPaddingRatio);
-  }
+  // &:not(.s-shape-circle) {
+  //   .createElementPadding(@buttonPadding, @buttonPaddingRatio);
+  // }
+  .createElementPadding(@buttonPadding, @buttonPaddingRatio);
   border-style: solid;
   border-width: 1px;
   font-weight: bold;
