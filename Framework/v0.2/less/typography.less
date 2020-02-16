@@ -20,7 +20,7 @@ body, input, textarea, keygen, select, button {
 // Headings
 // ==========================================================
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .s-title {
   font-family: @headingFamily;
   font-weight: @headingWeight;
   text-rendering: optimizeLegibility; /*  voodoo to enable ligatures and kerning | https://developer.mozilla.org/en-US/docs/CSS/text-rendering */
@@ -40,6 +40,9 @@ h3 { .text-size--3xl; }
 h4 { .text-size--xl; }
 h5 { .text-size--default; }
 h6, small { .text-size--s; }
+.s-title {
+  .text-size--9xl;
+}
 
 
 // ==========================================================
@@ -55,6 +58,9 @@ h6, small { .text-size--s; }
     }
     &[class*="--semibold"] {
       font-weight: 600;
+    }
+    &[class*="--medium"] {
+      font-weight: 500;
     }
     &[class*="--regular"] {
       font-weight: 400;

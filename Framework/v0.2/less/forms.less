@@ -20,9 +20,11 @@ input, textarea {
   border-radius: @cornerRadius;
   border-style: solid;
   border-width: 1px;
-  box-shadow: @inputInnerShadow;
   color: @inputText;
   line-height: @bodyBaseline;
+  &:not([type=submit]) {
+    box-shadow: @inputInnerShadow;
+  }
 }
 input:not([type="submit"]):not([type="button"]):focus, textarea:focus {
   @shadow: 0 0 @inputFocusGlow fadeout(@inputFocus,30%), 0 0 @inputFocusGlow*2 fadeout(@inputFocus,70%);

@@ -428,6 +428,14 @@
     -ms-flex-direction: column;
     flex-direction: column;
   }
+  & when (@layout = columnReverse) {
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+  }
+  & when (@layout = rowReverse) {
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-row-reverse;
+  }
 }
 
 // Placeholder

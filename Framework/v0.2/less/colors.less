@@ -212,18 +212,18 @@
           border-color: @border;
         }
         a&[class*="s-swatch"] {
-          &:hover {
+          &:hover:not([class*="--text"]) {
             .colorCheck(background, @fill, @hoverIntensity);
           }
         }
         [class*="s-table"][class*="-zebra"] tbody tr:nth-child(odd) td:not([class*="s-swatch"]) {
           background-color: darken(@fill, 2%);
         }
-        &[class*="s-button"] {
-          &[class*="s-shadow"] {
-            border-color: @fill;
-          }
-        }
+        // &[class*="s-button"] {
+        //   &[class*="s-shadow"] {
+        //     border-color: @fill;
+        //   }
+        // }
         [class*="s-popover"][class*="s-shadow"] .s-popoverArrow:before {
           border-color: @fill;
         }
@@ -430,7 +430,9 @@
     }
     .s-swatch-@{name}--text {
       &, h1&, h2&, h3&, h4&, h5&, h6& {
-        color: @fill;
+        &, [class*="s-swatch"] & {
+          color: @fill;
+        }
       }
     }
     .s-swatch-@{name}--text a&:hover {

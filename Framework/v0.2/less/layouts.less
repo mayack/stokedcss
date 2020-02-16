@@ -24,14 +24,14 @@ html, body {
   &, &[class*="-direction--row"] {
     .flex();
   }
-  &[class*="direction-rowReverse"] {
-    .flex(row-reverse);
+  &[class*="-direction--rowReverse"] {
+    .flex(rowReverse);
   }
   &[class*="-direction--column"] {
     .flex(column);
   }
-  &[class*="direction-columnReverse"] {
-    .flex(column-reverse);
+  &[class*="-direction--columnReverse"] {
+    .flex(columnReverse);
   }
 }
 [class*="s-flex"], [class*="s-grid"] {
@@ -176,6 +176,9 @@ html, body {
   }
   &[class*="-spacing--xl"]{
     .createGridSpacing(xl);
+  }
+  &[class*="-spacing--xxl"]{
+    .createGridSpacing(xxl);
   }
   &[class*="-spacing--none"]{
     margin: 0;
@@ -375,13 +378,13 @@ html, body {
   .s-align-@{name}--left {
     text-align: left !important;
     &[class*="s-flex"] {
-      justify-content: left;
+      justify-content: flex-start;
     }
   }
   .s-align-@{name}--right {
     text-align: right !important;
     &[class*="s-flex"] {
-      justify-content: right;
+      justify-content: flex-end;
     }
   }
   .s-align-@{name}--center {
