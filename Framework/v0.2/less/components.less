@@ -20,6 +20,9 @@
   position: absolute;
   &[class*="s-position--top"] {
     top: 0;
+    // &[class*="--outer"] {
+    //   transform: translateY(-50%);
+    // }
   }
   &[class*="s-position--bottom"] {
     bottom: 0;
@@ -41,15 +44,15 @@
   }
   &[class*="s-position--topLeft"], &[class*="s-position--bottomLeft"] {
     left: 0;
-    &[class*="--outer"] {
-      transform: translateX(-50%);
-    }
+    // &[class*="--outer"] {
+    //   transform: translateX(-50%);
+    // }
   }
   &[class*="s-position--topRight"], &[class*="s-position--bottomRight"] {
     right: 0;
-    &[class*="--outer"] {
-      transform: translateX(50%);
-    }
+    // &[class*="--outer"] {
+    //   transform: translateX(50%);
+    // }
   }
   &[class*="s-position--topCenter"], &[class*="s-position--bottomCenter"] {
     .translate(-50%, 0);
@@ -60,7 +63,7 @@
       .translate(-50%, -50%);
     }
     &[class*="s-position--topRight"] {
-      .translate(-50%, -50%);
+      .translate(50%, -50%);
     }
     &[class*="s-position--leftCenter"] {
       .translate(-50%, 0);
@@ -203,6 +206,66 @@
         @{property}-top: @space-xxl;
     }
 
+    // X
+    [class*='s-@{property}-x'] {
+        @{property}-left: @space-m;
+        @{property}-right: @space-m;
+    }
+    [class*='s-@{property}-x--xxs'] {
+      @{property}-left: @space-xxs;
+      @{property}-right: @space-xxs;
+    }
+    [class*='s-@{property}-x--xs'] {
+      @{property}-left: @space-xs;
+      @{property}-right: @space-xs;
+    }
+    [class*='s-@{property}-x--s'] {
+      @{property}-left: @space-s;
+      @{property}-right: @space-s;
+    }
+    [class*='s-@{property}-x--l'] {
+      @{property}-left: @space-l;
+      @{property}-right: @space-l;
+    }
+    [class*='s-@{property}-x--xl'] {
+      @{property}-left: @space-xl;
+      @{property}-right: @space-xl;
+    }
+    [class*='s-@{property}-x--xxl'] {
+      @{property}-left: @space-xxl;
+      @{property}-right: @space-xxl;
+    }
+
+    // Y
+    [class*='s-@{property}-y'] {
+        @{property}-bottom: @space-m;
+        @{property}-top: @space-m;
+    }
+    [class*='s-@{property}-y--xxs'] {
+      @{property}-bottom: @space-xxs;
+      @{property}-top: @space-xxs;
+    }
+    [class*='s-@{property}-y--xs'] {
+      @{property}-bottom: @space-xs;
+      @{property}-top: @space-xs;
+    }
+    [class*='s-@{property}-y--s'] {
+      @{property}-bottom: @space-s;
+      @{property}-top: @space-s;
+    }
+    [class*='s-@{property}-y--l'] {
+      @{property}-bottom: @space-l;
+      @{property}-top: @space-l;
+    }
+    [class*='s-@{property}-y--xl'] {
+      @{property}-bottom: @space-xl;
+      @{property}-top: @space-xl;
+    }
+    [class*='s-@{property}-y--xxl'] {
+      @{property}-bottom: @space-xxl;
+      @{property}-top: @space-xxl;
+    }
+
     // Reset
     [class*='s-@{property}--none'] {
         @{property}: 0;
@@ -284,9 +347,9 @@
   & {
       .border-radius(50%);
   }
-  &[class*="s-button"] {
-      &:extend([class*="s-text"][class*="-baseline--single"]);
-  }
+  // &[class*="s-button"] {
+  //     &:extend([class*="s-text"][class*="-baseline--single"]);
+  // }
 }
 .s-shape-pill {
   &, &.s-label {
@@ -304,6 +367,9 @@
       &[class*="--thick"] {
         border-width: 2px;
       }
+    }
+    hr& {
+      border-top-width: 1px;
     }
 }
 [class*="s-border"][class*="--outline"] {

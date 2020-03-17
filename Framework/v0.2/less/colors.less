@@ -49,12 +49,12 @@
           a, a& {
             .colorCheck(color, @fill, 90%);
             & when (@linkHover = auto) {
-              &:hover {
+              &:hover, &[class*="s-text"][class*="--body"]:hover {
                 .colorCheck(color, @fill, (90% + @hoverIntensity*4));
               }
             }
             & when not (@linkHover = auto) {
-              &:hover {
+              &:hover, a[class*="s-text"][class*="--body"]:hover {
                 color: @linkHover;
               }
             }
@@ -64,12 +64,12 @@
           a, a& {
             color: @link;
             & when (@linkHover = auto) {
-              &:hover {
+              &:hover, &[class*="s-text"][class*="--body"]:hover {
                 color: darken(@link, @hoverIntensity*4);
               }
             }
             & when not (@linkHover = auto) {
-              &:hover {
+              &:hover, &[class*="s-text"][class*="--body"]:hover {
                 color: @linkHover;
               }
             }
@@ -138,6 +138,9 @@
       }
       .s-hr-label>*:before,  .s-hr-label>*:after {
         background-color: @border;
+      }
+      .s-avatar:not([class*="s-swatch"]) {
+        background-color: @borderDisabled;
       }
     }
     .createWidgetColors() {
@@ -402,6 +405,12 @@
             .createjQueryUI();
           }
         }
+        a[class*="s-text"][class*="--body"] {
+          color: @text;
+        }
+        &.s-box[class*="s-shadow"] {
+          border-color: @fill;
+        }
         .s-swatch-@{name}, [class*="s-swatch"] .s-swatch-@{name} {
           background-color: @fill;
         }
@@ -446,7 +455,7 @@
       }
     }
     .s-swatch-@{name}--light {
-      background-color: lighten(@fill, @lightContrast);
+      background-color: fade(@fill, @lightContrast);
       color: @fill;
     }
     .s-swatch-@{name}--gradient {
@@ -477,7 +486,7 @@
     &:not(textarea) {
       background-color: @bgColor;
     }
-    &:not(textarea), h1, h2, h3, h4, h5, h6, a {
+    &:not(textarea), h1, h2, h3, h4, h5, h6, a, a& {
       color: @color;
     }
     a:hover {
@@ -498,6 +507,13 @@
     .s-popoverArrow:before {
       background: @bgColor;
       border-color: @color;
+    }
+    &[class*="s-border"][class*="--outline"] {
+      &, &[class*="s-button"] {
+        background-color: transparent;
+        border-color: @color;
+        color: @color;
+      }
     }
   }
   [class*="s-effect-@{name}"] {
