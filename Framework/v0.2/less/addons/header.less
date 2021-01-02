@@ -12,7 +12,7 @@
   }
   .s-headerBar {
     .position(@b:0, @l:0);
-    .transition(box-shadow .2s);
+    trasnition: box-shadow .2s;
     background: fade(@swatchWhite, 0%);
     box-shadow: 0px 0px 0px transparent;
     height: @headerHeight;
@@ -38,16 +38,16 @@
     }
     .s-headerBurger {
       .position(@t:50%, @l:0, @z:2);
-      .transition(color .2s, background .2s);
+      transition: color .2s, background .2s;
       .translate(0, -50%);
       display: none;
       margin-top: -@headerTopMargin;
       [class*="icon"] {
-        .transition(opacity .2s);
-        &.icon-burger {
+        transition: opacity .2s;
+        &.s-headerBurgerOpen {
           opacity: 1;
         }
-        &.icon-close {
+        &.s-headerBurgerClose {
           .position(@t:50%, @l:50%);
           .translate(-50%, -50%);
           opacity: 0;

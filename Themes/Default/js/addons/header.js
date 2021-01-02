@@ -12,10 +12,10 @@ $(document).scroll(function() {
   var header = $('.s-header');
   var windowWidth = $(window).outerWidth();
 
-  if (scrollOffset > 25 && windowWidth > 0) {
+  if (scrollOffset > 25 && windowWidth > 960) {
     header.addClass('floating');
-
-
+  } else if (scrollOffset > 0 && windowWidth < 960) {
+    header.addClass('floating');
   } else {
     header.removeClass('floating');
   }

@@ -302,6 +302,30 @@ hr.s-hr--dashed {
     }
   }
 }
+[class*="s-paragraphs"] {
+  &, &[class*="spacing--xs"] {
+    column-gap: @space-xs;
+  }
+  &, &[class*="spacing--s"] {
+    column-gap: @space-s;
+  }
+  &, &[class*="spacing--m"] {
+    column-gap: @space-m;
+  }
+  &[class*="spacing--l"] {
+    column-gap: @space-l;
+  }
+  &[class*="spacing--xl"] {
+    column-gap: @space-xl;
+  }
+}
+.createParaCols(@n:6, @i:1) when (@i =< @n) {
+  [class*="s-paragraphs"][class*="cols--@{i}"] {
+    column-count: @i;
+  }
+  .createParaCols(@n, @i:@i + 1);
+}
+.createParaCols();
 
 
 // ==========================================================

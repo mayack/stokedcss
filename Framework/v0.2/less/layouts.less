@@ -183,7 +183,18 @@ html, body {
   &[class*="-spacing--none"]{
     margin: 0;
     >* {
-      padding: 0;
+      &:not([class*="s-padding-bottom"]) {
+        padding-bottom: 0;
+      }
+      &:not([class*="s-padding-left"]) {
+        padding-left: 0;
+      }
+      &:not([class*="s-padding-right"]) {
+        padding-right: 0;
+      }
+      &:not([class*="s-padding-top"]) {
+        padding-top: 0;
+      }
     }
   }
 }
@@ -278,7 +289,18 @@ html, body {
       margin: 0;
       >* {
         &, &[class*="s-col"] {
-          padding: 0;
+          &:not([class*="s-padding-bottom"]) {
+            padding-bottom: 0;
+          }
+          &:not([class*="s-padding-left"]) {
+            padding-left: 0;
+          }
+          &:not([class*="s-padding-right"]) {
+            padding-right: 0;
+          }
+          &:not([class*="s-padding-top"]) {
+            padding-top: 0;
+          }
           width: 100%;
           // + [class*="s-col"] {
           //   margin-top: @space-m;
@@ -316,7 +338,8 @@ html, body {
     }
     &[class*="halfstackable-@{name}"] {
       flex-direction: row;
-      &[class*="s-grid"]>* {
+      flex-wrap: wrap;
+      &[class*="s-grid"]>*, >* {
         flex-basis: 50%;
         width: 50%;
         &:nth-child(2) {
@@ -408,6 +431,19 @@ html, body {
     .createResponsiveness(@n);
   }
 
+  & when (@rh = false) {
+  [class*="s-halfWrapper"] {
+      min-width: @wmax/2;
+      max-width: @wmax/2;
+      &[class*="s-halfWrapper--left"] {
+        padding-left: @wm;
+      }
+      &[class*="s-halfWrapper--right"] {
+        padding-right: @wm;
+      }
+    }
+  }
+
   & when (@rh = true) {
     .s-header {
       .s-headerBar {
@@ -444,7 +480,7 @@ html, body {
               max-width: 400px;
               width: 80vw;
             }
-            a {
+            >a {
               display: inline-block;
               text-align: center;
               + a {
@@ -465,10 +501,10 @@ html, body {
         position: fixed;
         .s-headerBar {
           .s-headerBurger {
-            .icon-burger {
+            .s-headerBurgerOpen {
               opacity: 0;
             }
-            .icon-close {
+            .s-headerBurgerClose {
               opacity: 1;
             }
           }

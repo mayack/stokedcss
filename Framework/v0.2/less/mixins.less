@@ -99,9 +99,9 @@
 }
 
 // Transitions
-.transition (@value1,@value2:X,...)
+.transition (@value)
 {
-    @value: ~`"@{arguments}".replace(/[\[\]]|\,\sX/g, '')`;
+    // @value: ~`"@{arguments}".replace(/[\[\]]|\,\sX/g, '')`;
 
     -webkit-transition: @value;
     -moz-transition: @value;

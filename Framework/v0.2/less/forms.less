@@ -4,6 +4,7 @@
 
 input, textarea, keygen, select, button {
   font-size: 1rem;
+  -webkit-appearance: none;
   [class*="s-text"][class*="-size"] &:not([class*="s-text-size"]) {
     font-size: inherit;
   }
@@ -99,7 +100,7 @@ input::-moz-focus-inner {
   label {
     cursor: pointer;
   }
-  >input[type=radio] {
+  >input[type=radio], >input[type=checkbox] {
     display: none;
     &:checked {
       + label {

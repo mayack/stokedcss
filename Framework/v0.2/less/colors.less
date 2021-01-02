@@ -3,7 +3,7 @@
 // ==========================================================
 
 
-.createSwatch(@name, @fill:#fff, @gradientColor1: @fill, @gradientColor2:darken(@fill, 10%), @gradientAngle: 180deg, @gradientStop1: 0%, @gradientStop2: 100%, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false, @jQueryUI:false, @peekyFields:false, @select2:false, @lightContrast:40%, @buttonBorders:false) {
+.createSwatch(@name, @fill:#fff, @gradientColor1: @fill, @gradientColor2:darken(@fill, 10%), @gradientAngle: 180deg, @gradientStop1: 0%, @gradientStop2: 100%, @text:auto, @heading:auto, @comment:auto, @link:auto, @linkHover:auto, @buttonText:auto, @swatchSensitivity:50%, @hoverIntensity:4%, @borderIntensity:3%, @border:darken(@fill, @borderIntensity*2), @borderDisabled:darken(@fill, @borderIntensity), @borderActive:darken(@fill, @borderIntensity*4), @borderOverlay:darken(@fill, @borderIntensity*5), @customStyles:false, @jQueryUI:false, @peekyFields:false, @select2:false, @lightContrast:40%, @buttonBorders:false, @inputBorders:true) {
 
     // Mixins
     .colorCheck (@property:color, @color:#fff, @intensity:100%) when (luma(@color) >= @swatchSensitivity) {
@@ -117,9 +117,16 @@
         border-color: @borderDisabled;
       }
       & @{bActive}, &@{bActive}, & hr@{bActive},
-      &@{bActive}[class*="s-popover"] .s-popoverArrow:before,
-      input, textarea {
+      &@{bActive}[class*="s-popover"] .s-popoverArrow:before {
         border-color: @borderActive;
+      }
+      input, textarea {
+        & when (@inputBorders = true) {
+          border-color: @borderActive;
+        }
+        & when not (@inputBorders = true) {
+          border-color: @inputBorders;
+        }
       }
       & @{bOverlay}, &@{bOverlay}, & hr@{bOverlay},
       &@{bOverlay}[class*="s-popover"] .s-popoverArrow:before {
@@ -139,7 +146,7 @@
       .s-hr-label>*:before,  .s-hr-label>*:after {
         background-color: @border;
       }
-      .s-avatar:not([class*="s-swatch"]) {
+      [class*="s-avatar"]:not([class*="s-swatch"]) {
         background-color: @borderDisabled;
       }
     }
@@ -507,6 +514,9 @@
     .s-popoverArrow:before {
       background: @bgColor;
       border-color: @color;
+    }
+    &[class*="s-avatar"] {
+      background: @bgColor;
     }
     &[class*="s-border"][class*="--outline"] {
       &, &[class*="s-button"] {

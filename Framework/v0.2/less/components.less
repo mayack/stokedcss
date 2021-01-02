@@ -385,6 +385,14 @@
     border-width: 2px 0 0 0;
   }
 }
+[class*="s-border"][class*="--heavy"] {
+  &, &[class*="s-popover"] .s-popoverArrow:before {
+    border-width: 3px !important;
+  }
+  hr& {
+    border-width: 3px 0 0 0;
+  }
+}
 [class*="s-border"][class*="--dashed"] {
   border-style: dashed;
 }
